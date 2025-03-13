@@ -1,0 +1,1801 @@
+2025-02-19 16:06:19,027 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-19 16:06:19,027 - OCRProcessor - INFO - 日志文件路径: /Users/xuebing/Desktop/shouquan/auth_system/logs/ocr.log
+2025-02-19 16:06:19,027 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-19 16:06:19,027 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-19 16:06:19,028 - OCRProcessor - INFO - 找到 det 模型: /Users/xuebing/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer
+2025-02-19 16:06:19,028 - OCRProcessor - INFO - 找到 rec 模型: /Users/xuebing/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-19 16:06:19,028 - OCRProcessor - INFO - 找到 cls 模型: /Users/xuebing/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-19 16:06:19,376 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-19 16:06:19,376 - OCRProcessor - INFO - 开始处理图片: /Users/xuebing/Desktop/shouquan/auth_system/tests/test_images/test_auth.jpg
+2025-02-19 16:06:19,378 - OCRProcessor - INFO - 图片尺寸: (1346, 1786)
+2025-02-19 16:06:19,378 - OCRProcessor - INFO - 开始OCR识别...
+2025-02-19 16:27:39,415 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-19 16:27:39,416 - OCRProcessor - INFO - 日志文件路径: /Users/xuebing/Desktop/shouquan/auth_system/logs/ocr.log
+2025-02-19 16:27:39,417 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-19 16:27:39,417 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-19 16:27:39,417 - OCRProcessor - INFO - 系统内存使用情况: 65.8%
+2025-02-19 16:27:39,454 - OCRProcessor - INFO - 找到 det 模型: /Users/xuebing/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer
+2025-02-19 16:27:39,454 - OCRProcessor - INFO - 找到 rec 模型: /Users/xuebing/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-19 16:27:39,454 - OCRProcessor - INFO - 找到 cls 模型: /Users/xuebing/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-19 16:27:39,813 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-19 16:27:39,813 - OCRProcessor - INFO - 开始处理图片: /Users/xuebing/Desktop/shouquan/auth_system/tests/test_images/test_auth.jpg
+2025-02-19 16:27:39,814 - OCRProcessor - INFO - 原始图片尺寸: 1346x1786
+2025-02-19 16:27:39,926 - OCRProcessor - INFO - 调整图片尺寸为: (1205, 1600)
+2025-02-19 16:27:39,926 - OCRProcessor - ERROR - 图片预处理失败: cannot write mode RGBA as JPEG
+2025-02-19 16:33:26,517 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-19 16:33:26,517 - OCRProcessor - INFO - 日志文件路径: /Users/xuebing/Desktop/shouquan/auth_system/logs/ocr.log
+2025-02-19 16:33:26,518 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-19 16:33:26,518 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-19 16:33:26,518 - OCRProcessor - INFO - 系统内存使用情况: 66.3%
+2025-02-19 16:33:26,561 - OCRProcessor - INFO - 找到 det 模型: /Users/xuebing/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer
+2025-02-19 16:33:26,561 - OCRProcessor - INFO - 找到 rec 模型: /Users/xuebing/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-19 16:33:26,561 - OCRProcessor - INFO - 找到 cls 模型: /Users/xuebing/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-19 16:33:26,563 - OCRProcessor - ERROR - PaddleOCR初始化失败: 'paddle.fluid.libpaddle.AnalysisConfig' object has no attribute 'set_mkldnn_cache_capacity'
+2025-02-19 16:34:31,241 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-19 16:34:31,241 - OCRProcessor - INFO - 日志文件路径: /Users/xuebing/Desktop/shouquan/auth_system/logs/ocr.log
+2025-02-19 16:34:31,242 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-19 16:34:31,242 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-19 16:34:31,242 - OCRProcessor - INFO - 系统内存使用情况: 66.3%
+2025-02-19 16:34:31,242 - OCRProcessor - INFO - 找到 det 模型: /Users/xuebing/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer
+2025-02-19 16:34:31,242 - OCRProcessor - INFO - 找到 rec 模型: /Users/xuebing/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-19 16:34:31,242 - OCRProcessor - INFO - 找到 cls 模型: /Users/xuebing/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-19 16:34:31,585 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-19 16:34:31,585 - OCRProcessor - INFO - 开始处理图片: /Users/xuebing/Desktop/shouquan/auth_system/tests/test_images/test_auth.jpg
+2025-02-19 16:34:31,586 - OCRProcessor - INFO - 原始图片尺寸: 1346x1786
+2025-02-19 16:34:31,678 - OCRProcessor - INFO - 调整图片尺寸为: (1205, 1600)
+2025-02-19 16:34:31,707 - OCRProcessor - INFO - 已保存处理后的图片
+2025-02-19 16:34:31,758 - OCRProcessor - INFO - 开始OCR识别...
+2025-02-19 16:37:52,210 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-19 16:37:52,210 - OCRProcessor - INFO - 日志文件路径: /Users/xuebing/Desktop/shouquan/auth_system/logs/ocr.log
+2025-02-19 16:37:52,210 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-19 16:37:52,210 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-19 16:37:52,210 - OCRProcessor - INFO - 系统内存使用情况: 65.4%
+2025-02-19 16:37:52,210 - OCRProcessor - INFO - 找到 det 模型: /Users/xuebing/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer
+2025-02-19 16:37:52,210 - OCRProcessor - INFO - 找到 rec 模型: /Users/xuebing/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-19 16:37:52,211 - OCRProcessor - INFO - 找到 cls 模型: /Users/xuebing/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-19 16:37:52,578 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-19 16:37:52,578 - OCRProcessor - INFO - 开始处理图片: /Users/xuebing/Desktop/shouquan/auth_system/tests/test_images/test_auth.jpg
+2025-02-19 16:37:52,579 - OCRProcessor - INFO - 原始图片尺寸: 1346x1786
+2025-02-19 16:37:52,579 - OCRProcessor - INFO - 转换图片模式从 RGBA 到 RGB
+2025-02-19 16:37:52,679 - OCRProcessor - INFO - 调整图片尺寸为: (1205, 1600)
+2025-02-19 16:37:52,712 - OCRProcessor - INFO - 已保存处理后的图片到临时文件: /var/folders/bh/n2wxyqx52yx7q_4vqwqtqyyc0000gn/T/tmpb2ktjrl_.jpg
+2025-02-19 16:37:52,713 - OCRProcessor - INFO - 验证临时图片: (1205, 1600)
+2025-02-19 16:37:52,767 - OCRProcessor - INFO - 开始OCR识别...
+2025-02-20 09:15:29,599 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-20 09:15:29,599 - OCRProcessor - INFO - 日志文件路径: /Users/xuebing/Desktop/shouquan/auth_system/logs/ocr.log
+2025-02-20 09:15:29,600 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-20 09:15:29,600 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-20 09:15:29,600 - OCRProcessor - INFO - 系统内存使用情况: 63.8%
+2025-02-20 09:15:29,600 - OCRProcessor - INFO - 找到 det 模型: /Users/xuebing/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer
+2025-02-20 09:15:29,600 - OCRProcessor - INFO - 找到 rec 模型: /Users/xuebing/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-20 09:15:29,600 - OCRProcessor - INFO - 找到 cls 模型: /Users/xuebing/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-20 09:15:29,950 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-20 09:15:29,950 - OCRProcessor - INFO - 开始处理图片: /Users/xuebing/Desktop/shouquan/auth_system/tests/test_images/test_auth.jpg
+2025-02-20 09:15:29,953 - OCRProcessor - INFO - 原始图片尺寸: 1346x1786
+2025-02-20 09:15:29,953 - OCRProcessor - INFO - 转换图片模式从 RGBA 到 RGB
+2025-02-20 09:15:30,049 - OCRProcessor - INFO - 调整图片尺寸为: (1205, 1600)
+2025-02-20 09:15:30,081 - OCRProcessor - INFO - 已保存处理后的图片到临时文件: /var/folders/bh/n2wxyqx52yx7q_4vqwqtqyyc0000gn/T/tmpt6m4g3gl.jpg
+2025-02-20 09:15:30,082 - OCRProcessor - INFO - 验证临时图片: (1205, 1600)
+2025-02-20 09:15:30,129 - OCRProcessor - INFO - 开始OCR识别...
+2025-02-20 09:33:45,745 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-20 09:33:45,745 - OCRProcessor - INFO - 日志文件路径: /Users/xuebing/Desktop/shouquan/auth_system/logs/ocr.log
+2025-02-20 09:33:45,746 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-20 09:33:45,746 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-20 09:33:45,746 - OCRProcessor - INFO - 系统内存使用情况: 64.1%
+2025-02-20 09:33:45,746 - OCRProcessor - INFO - 找到 det 模型: /Users/xuebing/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer
+2025-02-20 09:33:45,746 - OCRProcessor - INFO - 找到 rec 模型: /Users/xuebing/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-20 09:33:45,746 - OCRProcessor - INFO - 找到 cls 模型: /Users/xuebing/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-20 09:33:46,084 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-20 09:33:46,084 - OCRProcessor - INFO - 开始处理图片: /Users/xuebing/Desktop/shouquan/auth_system/tests/test_images/test_auth.jpg
+2025-02-20 09:33:46,084 - OCRProcessor - INFO - 开始OCR识别...
+2025-02-25 09:17:06,364 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-25 09:17:06,364 - OCRProcessor - INFO - 日志文件路径: /Users/xuebing/Desktop/shouquan/auth_system/logs/ocr.log
+2025-02-25 09:17:06,827 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-25 09:17:06,827 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-25 09:17:06,827 - OCRProcessor - INFO - 系统内存使用情况: 66.3%
+2025-02-25 09:17:06,827 - OCRProcessor - INFO - 找到 det 模型: /Users/xuebing/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer
+2025-02-25 09:17:06,828 - OCRProcessor - INFO - 找到 rec 模型: /Users/xuebing/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-25 09:17:06,828 - OCRProcessor - INFO - 找到 cls 模型: /Users/xuebing/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-25 09:17:07,268 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-25 09:17:08,276 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-25 09:17:08,276 - OCRProcessor - INFO - 日志文件路径: /Users/xuebing/Desktop/shouquan/auth_system/logs/ocr.log
+2025-02-25 09:17:08,504 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-25 09:17:08,504 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-25 09:17:08,504 - OCRProcessor - INFO - 系统内存使用情况: 67.5%
+2025-02-25 09:17:08,504 - OCRProcessor - INFO - 找到 det 模型: /Users/xuebing/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer
+2025-02-25 09:17:08,504 - OCRProcessor - INFO - 找到 rec 模型: /Users/xuebing/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-25 09:17:08,504 - OCRProcessor - INFO - 找到 cls 模型: /Users/xuebing/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-25 09:17:08,911 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-25 10:12:04,180 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-25 10:12:04,180 - OCRProcessor - INFO - 日志文件路径: /Users/xuebing/Desktop/shouquan/auth_system/logs/ocr.log
+2025-02-25 10:26:08,579 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-25 10:26:08,579 - OCRProcessor - INFO - 日志文件路径: /Users/xuebing/Desktop/shouquan/auth_system/logs/ocr.log
+2025-02-25 10:53:00,938 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-25 10:53:00,938 - OCRProcessor - INFO - 日志文件路径: /Users/xuebing/Desktop/shouquan/auth_system/logs/ocr.log
+2025-02-25 11:04:34,691 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-25 11:04:34,691 - OCRProcessor - INFO - 日志文件路径: /Users/xuebing/Desktop/shouquan/auth_system/logs/ocr.log
+2025-02-25 11:08:56,916 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-25 11:08:56,917 - OCRProcessor - INFO - 日志文件路径: /Users/xuebing/Desktop/shouquan/auth_system/logs/ocr.log
+2025-02-25 11:10:38,240 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-25 11:10:38,240 - OCRProcessor - INFO - 日志文件路径: /Users/xuebing/Desktop/shouquan/auth_system/logs/ocr.log
+2025-02-25 11:10:38,580 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-25 11:10:38,580 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-25 11:10:38,580 - OCRProcessor - INFO - 系统内存使用情况: 67.0%
+2025-02-25 11:10:38,580 - OCRProcessor - INFO - 找到 det 模型: /Users/xuebing/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer
+2025-02-25 11:10:38,580 - OCRProcessor - INFO - 找到 rec 模型: /Users/xuebing/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-25 11:10:38,580 - OCRProcessor - INFO - 找到 cls 模型: /Users/xuebing/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-25 11:10:38,982 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-25 11:10:39,930 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-25 11:10:39,931 - OCRProcessor - INFO - 日志文件路径: /Users/xuebing/Desktop/shouquan/auth_system/logs/ocr.log
+2025-02-25 11:10:40,155 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-25 11:10:40,155 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-25 11:10:40,155 - OCRProcessor - INFO - 系统内存使用情况: 68.1%
+2025-02-25 11:10:40,155 - OCRProcessor - INFO - 找到 det 模型: /Users/xuebing/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer
+2025-02-25 11:10:40,155 - OCRProcessor - INFO - 找到 rec 模型: /Users/xuebing/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-25 11:10:40,155 - OCRProcessor - INFO - 找到 cls 模型: /Users/xuebing/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-25 11:10:40,535 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-25 11:16:53,625 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-25 11:16:53,626 - OCRProcessor - INFO - 日志文件路径: /Users/xuebing/Desktop/shouquan/auth_system/logs/ocr.log
+2025-02-25 11:18:02,054 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-25 11:18:02,055 - OCRProcessor - INFO - 日志文件路径: /Users/xuebing/Desktop/shouquan/auth_system/logs/ocr.log
+2025-02-25 11:20:40,409 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-25 11:20:40,409 - OCRProcessor - INFO - 日志文件路径: /Users/xuebing/Desktop/shouquan/auth_system/logs/ocr.log
+2025-02-25 11:25:55,653 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-25 11:25:55,653 - OCRProcessor - INFO - 日志文件路径: /Users/xuebing/Desktop/shouquan/auth_system/logs/ocr.log
+2025-02-25 11:25:55,866 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-25 11:25:55,866 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-25 11:25:55,866 - OCRProcessor - INFO - 系统内存使用情况: 65.9%
+2025-02-25 11:25:55,866 - OCRProcessor - INFO - 找到 det 模型: /Users/xuebing/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer
+2025-02-25 11:25:55,866 - OCRProcessor - INFO - 找到 rec 模型: /Users/xuebing/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-25 11:25:55,866 - OCRProcessor - INFO - 找到 cls 模型: /Users/xuebing/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-25 11:25:56,196 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-25 11:25:57,121 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-25 11:25:57,121 - OCRProcessor - INFO - 日志文件路径: /Users/xuebing/Desktop/shouquan/auth_system/logs/ocr.log
+2025-02-25 11:25:57,331 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-25 11:25:57,331 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-25 11:25:57,331 - OCRProcessor - INFO - 系统内存使用情况: 67.9%
+2025-02-25 11:25:57,331 - OCRProcessor - INFO - 找到 det 模型: /Users/xuebing/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer
+2025-02-25 11:25:57,331 - OCRProcessor - INFO - 找到 rec 模型: /Users/xuebing/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-25 11:25:57,331 - OCRProcessor - INFO - 找到 cls 模型: /Users/xuebing/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-25 11:25:57,690 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-25 11:36:47,018 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-25 11:36:47,019 - OCRProcessor - INFO - 日志文件路径: /Users/xuebing/Desktop/shouquan/auth_system/logs/ocr.log
+2025-02-25 11:36:47,252 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-25 11:36:47,253 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-25 11:36:47,253 - OCRProcessor - INFO - 系统内存使用情况: 67.3%
+2025-02-25 11:36:47,253 - OCRProcessor - INFO - 找到 det 模型: /Users/xuebing/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer
+2025-02-25 11:36:47,253 - OCRProcessor - INFO - 找到 rec 模型: /Users/xuebing/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-25 11:36:47,253 - OCRProcessor - INFO - 找到 cls 模型: /Users/xuebing/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-25 11:36:47,579 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-25 11:40:07,359 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-25 11:40:07,359 - OCRProcessor - INFO - 日志文件路径: /Users/xuebing/Desktop/shouquan/auth_system/logs/ocr.log
+2025-02-25 11:40:07,581 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-25 11:40:07,581 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-25 11:40:07,581 - OCRProcessor - INFO - 系统内存使用情况: 67.0%
+2025-02-25 11:40:07,581 - OCRProcessor - INFO - 找到 det 模型: /Users/xuebing/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer
+2025-02-25 11:40:07,581 - OCRProcessor - INFO - 找到 rec 模型: /Users/xuebing/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-25 11:40:07,581 - OCRProcessor - INFO - 找到 cls 模型: /Users/xuebing/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-25 11:40:07,908 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-25 11:41:21,483 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-25 11:41:21,483 - OCRProcessor - INFO - 日志文件路径: /Users/xuebing/Desktop/shouquan/auth_system/logs/ocr.log
+2025-02-25 11:41:21,701 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-25 11:41:21,701 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-25 11:41:21,701 - OCRProcessor - INFO - 系统内存使用情况: 65.2%
+2025-02-25 11:41:21,702 - OCRProcessor - INFO - 找到 det 模型: /Users/xuebing/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer
+2025-02-25 11:41:21,702 - OCRProcessor - INFO - 找到 rec 模型: /Users/xuebing/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-25 11:41:21,702 - OCRProcessor - INFO - 找到 cls 模型: /Users/xuebing/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-25 11:41:22,037 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-25 11:41:22,969 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-25 11:41:22,969 - OCRProcessor - INFO - 日志文件路径: /Users/xuebing/Desktop/shouquan/auth_system/logs/ocr.log
+2025-02-25 11:41:23,183 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-25 11:41:23,183 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-25 11:41:23,183 - OCRProcessor - INFO - 系统内存使用情况: 67.0%
+2025-02-25 11:41:23,183 - OCRProcessor - INFO - 找到 det 模型: /Users/xuebing/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer
+2025-02-25 11:41:23,183 - OCRProcessor - INFO - 找到 rec 模型: /Users/xuebing/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-25 11:41:23,183 - OCRProcessor - INFO - 找到 cls 模型: /Users/xuebing/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-25 11:41:23,518 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-25 11:45:49,110 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-25 11:45:49,110 - OCRProcessor - INFO - 日志文件路径: /Users/xuebing/Desktop/shouquan/auth_system/logs/ocr.log
+2025-02-25 11:45:49,334 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-25 11:45:49,334 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-25 11:45:49,334 - OCRProcessor - INFO - 系统内存使用情况: 67.1%
+2025-02-25 11:45:49,334 - OCRProcessor - INFO - 找到 det 模型: /Users/xuebing/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer
+2025-02-25 11:45:49,334 - OCRProcessor - INFO - 找到 rec 模型: /Users/xuebing/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-25 11:45:49,334 - OCRProcessor - INFO - 找到 cls 模型: /Users/xuebing/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-25 11:45:49,672 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-25 11:46:39,649 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-25 11:46:39,649 - OCRProcessor - INFO - 日志文件路径: /Users/xuebing/Desktop/shouquan/auth_system/logs/ocr.log
+2025-02-25 11:46:39,865 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-25 11:46:39,865 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-25 11:46:39,865 - OCRProcessor - INFO - 系统内存使用情况: 65.1%
+2025-02-25 11:46:39,865 - OCRProcessor - INFO - 找到 det 模型: /Users/xuebing/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer
+2025-02-25 11:46:39,865 - OCRProcessor - INFO - 找到 rec 模型: /Users/xuebing/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-25 11:46:39,865 - OCRProcessor - INFO - 找到 cls 模型: /Users/xuebing/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-25 11:46:40,196 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-25 11:46:41,124 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-25 11:46:41,124 - OCRProcessor - INFO - 日志文件路径: /Users/xuebing/Desktop/shouquan/auth_system/logs/ocr.log
+2025-02-25 11:46:41,342 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-25 11:46:41,342 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-25 11:46:41,342 - OCRProcessor - INFO - 系统内存使用情况: 67.2%
+2025-02-25 11:46:41,343 - OCRProcessor - INFO - 找到 det 模型: /Users/xuebing/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer
+2025-02-25 11:46:41,343 - OCRProcessor - INFO - 找到 rec 模型: /Users/xuebing/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-25 11:46:41,343 - OCRProcessor - INFO - 找到 cls 模型: /Users/xuebing/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-25 11:46:41,672 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-25 11:51:28,957 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-25 11:51:28,957 - OCRProcessor - INFO - 日志文件路径: /Users/xuebing/Desktop/shouquan/auth_system/logs/ocr.log
+2025-02-25 11:51:29,230 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-25 11:51:29,230 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-25 11:51:29,230 - OCRProcessor - INFO - 系统内存使用情况: 67.8%
+2025-02-25 11:51:29,230 - OCRProcessor - INFO - 找到 det 模型: /Users/xuebing/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer
+2025-02-25 11:51:29,230 - OCRProcessor - INFO - 找到 rec 模型: /Users/xuebing/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-25 11:51:29,230 - OCRProcessor - INFO - 找到 cls 模型: /Users/xuebing/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-25 12:01:08,772 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-25 12:01:08,772 - OCRProcessor - INFO - 日志文件路径: /Users/xuebing/Desktop/shouquan/auth_system/logs/ocr.log
+2025-02-25 12:05:43,885 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-25 12:05:43,885 - OCRProcessor - INFO - 日志文件路径: /Users/xuebing/Desktop/shouquan/auth_system/logs/ocr.log
+2025-02-25 12:33:47,190 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-25 12:33:47,190 - OCRProcessor - INFO - 日志文件路径: /Users/xuebing/Desktop/shouquan/auth_system/logs/ocr.log
+2025-02-25 12:36:11,968 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-25 12:36:11,968 - OCRProcessor - INFO - 日志文件路径: /Users/xuebing/Desktop/shouquan/auth_system/logs/ocr.log
+2025-02-25 12:36:12,200 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-25 12:36:12,200 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-25 12:36:12,200 - OCRProcessor - INFO - 系统内存使用情况: 67.4%
+2025-02-25 12:36:12,200 - OCRProcessor - INFO - 找到 det 模型: /Users/xuebing/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer
+2025-02-25 12:36:12,200 - OCRProcessor - INFO - 找到 rec 模型: /Users/xuebing/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-25 12:36:12,200 - OCRProcessor - INFO - 找到 cls 模型: /Users/xuebing/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-25 12:36:12,557 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-25 12:36:13,534 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-25 12:36:13,534 - OCRProcessor - INFO - 日志文件路径: /Users/xuebing/Desktop/shouquan/auth_system/logs/ocr.log
+2025-02-25 12:36:13,769 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-25 12:36:13,769 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-25 12:36:13,769 - OCRProcessor - INFO - 系统内存使用情况: 68.6%
+2025-02-25 12:36:13,769 - OCRProcessor - INFO - 找到 det 模型: /Users/xuebing/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer
+2025-02-25 12:36:13,769 - OCRProcessor - INFO - 找到 rec 模型: /Users/xuebing/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-25 12:36:13,769 - OCRProcessor - INFO - 找到 cls 模型: /Users/xuebing/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-25 12:36:14,163 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-25 12:39:21,017 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-25 12:39:21,017 - OCRProcessor - INFO - 日志文件路径: /Users/xuebing/Desktop/shouquan/auth_system/logs/ocr.log
+2025-02-25 12:39:21,283 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-25 12:39:21,283 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-25 12:39:21,283 - OCRProcessor - INFO - 系统内存使用情况: 67.5%
+2025-02-25 12:39:21,283 - OCRProcessor - INFO - 找到 det 模型: /Users/xuebing/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer
+2025-02-25 12:39:21,283 - OCRProcessor - INFO - 找到 rec 模型: /Users/xuebing/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-25 12:39:21,283 - OCRProcessor - INFO - 找到 cls 模型: /Users/xuebing/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-25 12:39:21,618 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-25 12:39:41,114 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-25 12:39:41,114 - OCRProcessor - INFO - 日志文件路径: /Users/xuebing/Desktop/shouquan/auth_system/logs/ocr.log
+2025-02-25 12:39:41,344 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-25 12:39:41,344 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-25 12:39:41,344 - OCRProcessor - INFO - 系统内存使用情况: 67.5%
+2025-02-25 12:39:41,344 - OCRProcessor - INFO - 找到 det 模型: /Users/xuebing/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer
+2025-02-25 12:39:41,344 - OCRProcessor - INFO - 找到 rec 模型: /Users/xuebing/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-25 12:39:41,344 - OCRProcessor - INFO - 找到 cls 模型: /Users/xuebing/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-25 12:39:41,668 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-25 12:41:17,116 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-25 12:41:17,116 - OCRProcessor - INFO - 日志文件路径: /Users/xuebing/Desktop/shouquan/auth_system/logs/ocr.log
+2025-02-25 12:41:17,349 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-25 12:41:17,349 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-25 12:41:17,349 - OCRProcessor - INFO - 系统内存使用情况: 67.4%
+2025-02-25 12:41:17,349 - OCRProcessor - INFO - 找到 det 模型: /Users/xuebing/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer
+2025-02-25 12:41:17,349 - OCRProcessor - INFO - 找到 rec 模型: /Users/xuebing/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-25 12:41:17,349 - OCRProcessor - INFO - 找到 cls 模型: /Users/xuebing/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-25 12:41:17,684 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-25 12:46:37,649 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-25 12:46:37,649 - OCRProcessor - INFO - 日志文件路径: /Users/xuebing/Desktop/shouquan/auth_system/logs/ocr.log
+2025-02-25 12:46:37,872 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-25 12:46:37,872 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-25 12:46:37,872 - OCRProcessor - INFO - 系统内存使用情况: 67.5%
+2025-02-25 12:46:37,872 - OCRProcessor - INFO - 找到 det 模型: /Users/xuebing/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer
+2025-02-25 12:46:37,872 - OCRProcessor - INFO - 找到 rec 模型: /Users/xuebing/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-25 12:46:37,872 - OCRProcessor - INFO - 找到 cls 模型: /Users/xuebing/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-25 12:46:38,200 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-25 13:02:12,156 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-25 13:02:12,156 - OCRProcessor - INFO - 日志文件路径: /Users/xuebing/Desktop/shouquan/auth_system/logs/ocr.log
+2025-02-25 13:02:12,419 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-25 13:02:12,419 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-25 13:02:12,419 - OCRProcessor - INFO - 系统内存使用情况: 65.5%
+2025-02-25 13:02:12,419 - OCRProcessor - INFO - 找到 det 模型: /Users/xuebing/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer
+2025-02-25 13:02:12,419 - OCRProcessor - INFO - 找到 rec 模型: /Users/xuebing/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-25 13:02:12,419 - OCRProcessor - INFO - 找到 cls 模型: /Users/xuebing/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-25 13:02:12,764 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-25 13:02:13,739 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-25 13:02:13,739 - OCRProcessor - INFO - 日志文件路径: /Users/xuebing/Desktop/shouquan/auth_system/logs/ocr.log
+2025-02-25 13:02:13,947 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-25 13:02:13,947 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-25 13:02:13,947 - OCRProcessor - INFO - 系统内存使用情况: 67.3%
+2025-02-25 13:02:13,947 - OCRProcessor - INFO - 找到 det 模型: /Users/xuebing/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer
+2025-02-25 13:02:13,947 - OCRProcessor - INFO - 找到 rec 模型: /Users/xuebing/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-25 13:02:13,947 - OCRProcessor - INFO - 找到 cls 模型: /Users/xuebing/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-25 13:02:14,284 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-25 13:09:36,327 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-25 13:09:36,327 - OCRProcessor - INFO - 日志文件路径: /Users/xuebing/Desktop/shouquan/auth_system/logs/ocr.log
+2025-02-25 13:09:36,596 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-25 13:09:36,597 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-25 13:09:36,597 - OCRProcessor - INFO - 系统内存使用情况: 68.1%
+2025-02-25 13:09:36,597 - OCRProcessor - INFO - 找到 det 模型: /Users/xuebing/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer
+2025-02-25 13:09:36,597 - OCRProcessor - INFO - 找到 rec 模型: /Users/xuebing/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-25 13:09:36,597 - OCRProcessor - INFO - 找到 cls 模型: /Users/xuebing/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-25 13:09:36,950 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-25 14:24:37,542 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-25 14:24:37,544 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-25 14:27:21,736 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-25 14:27:21,736 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-25 16:06:02,676 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-25 16:06:02,677 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-25 16:06:03,250 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-25 16:06:03,250 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-25 16:06:03,255 - OCRProcessor - INFO - 系统内存使用情况: 46.7%
+2025-02-25 16:06:03,256 - OCRProcessor - ERROR - PaddleOCR初始化失败: det 模型目录不存在: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-25 16:06:03,257 - OCRProcessor - ERROR - Traceback (most recent call last):
+  File "c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\app\utils\ocr.py", line 117, in __init__
+    raise FileNotFoundError(f"{name} 模型目录不存在: {path}")
+FileNotFoundError: det 模型目录不存在: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+
+2025-02-25 16:11:39,413 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-25 16:11:39,414 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-25 16:13:49,454 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-25 16:13:49,455 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-25 16:16:09,210 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-25 16:16:09,211 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-25 16:16:15,175 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-25 16:16:15,176 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-25 16:16:15,182 - OCRProcessor - INFO - 系统内存使用情况: 46.9%
+2025-02-25 16:16:15,182 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-25 16:16:15,183 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-25 16:16:15,183 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-25 16:16:16,222 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-25 16:16:19,772 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-25 16:16:19,772 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-25 16:16:22,927 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-25 16:16:22,927 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-25 16:16:22,932 - OCRProcessor - INFO - 系统内存使用情况: 47.7%
+2025-02-25 16:16:22,933 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-25 16:16:22,933 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-25 16:16:22,934 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-25 16:16:23,973 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-25 16:27:41,439 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-25 16:27:41,440 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-25 16:27:42,842 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-25 16:27:42,842 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-25 16:27:42,849 - OCRProcessor - INFO - 系统内存使用情况: 44.3%
+2025-02-25 16:27:42,849 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-25 16:27:42,850 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-25 16:27:42,850 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-25 16:27:43,926 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-25 17:23:56,667 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-25 17:23:56,667 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-25 17:23:58,529 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-25 17:23:58,530 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-25 17:23:58,536 - OCRProcessor - INFO - 系统内存使用情况: 45.7%
+2025-02-25 17:23:58,537 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-25 17:23:58,537 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-25 17:23:58,538 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-25 17:23:59,933 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-25 17:24:04,628 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-25 17:24:04,629 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-25 17:24:06,227 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-25 17:24:06,228 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-25 17:24:06,233 - OCRProcessor - INFO - 系统内存使用情况: 46.5%
+2025-02-25 17:24:06,234 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-25 17:24:06,235 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-25 17:24:06,235 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-25 17:24:07,486 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-25 17:28:06,260 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-25 17:28:06,261 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-26 08:55:28,138 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-26 08:55:28,138 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-26 08:58:00,043 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-26 08:58:00,044 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-26 09:03:49,195 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-26 09:03:49,195 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-26 09:03:51,512 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-26 09:03:51,514 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-26 09:03:51,519 - OCRProcessor - INFO - 系统内存使用情况: 47.0%
+2025-02-26 09:03:51,520 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-26 09:03:51,521 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-26 09:03:51,522 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-26 09:03:52,820 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-26 09:03:57,482 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-26 09:03:57,482 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-26 09:03:59,600 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-26 09:03:59,601 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-26 09:03:59,608 - OCRProcessor - INFO - 系统内存使用情况: 47.9%
+2025-02-26 09:03:59,609 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-26 09:03:59,610 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-26 09:03:59,610 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-26 09:04:01,107 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-26 09:05:07,167 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-26 09:05:07,168 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-26 09:05:09,198 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-26 09:05:09,199 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-26 09:05:09,205 - OCRProcessor - INFO - 系统内存使用情况: 48.2%
+2025-02-26 09:05:09,206 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-26 09:05:09,207 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-26 09:05:09,207 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-26 09:05:11,080 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-26 09:16:13,365 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-26 09:16:13,365 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-26 09:16:15,141 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-26 09:16:15,142 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-26 09:16:15,147 - OCRProcessor - INFO - 系统内存使用情况: 48.8%
+2025-02-26 09:16:15,148 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-26 09:16:15,148 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-26 09:16:15,149 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-26 09:16:16,325 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-26 09:18:15,314 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-26 09:18:15,315 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-26 09:18:16,821 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-26 09:18:16,821 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-26 09:18:16,828 - OCRProcessor - INFO - 系统内存使用情况: 49.4%
+2025-02-26 09:18:16,829 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-26 09:18:16,829 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-26 09:18:16,830 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-26 09:18:18,018 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-26 14:39:27,889 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-26 14:39:27,890 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-26 14:39:29,508 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-26 14:39:29,508 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-26 14:39:29,513 - OCRProcessor - INFO - 系统内存使用情况: 50.5%
+2025-02-26 14:39:29,514 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-26 14:39:29,514 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-26 14:39:29,515 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-26 14:39:30,504 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-27 08:55:24,794 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-27 08:55:24,795 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-27 08:55:26,530 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-27 08:55:26,531 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-27 08:55:26,535 - OCRProcessor - INFO - 系统内存使用情况: 47.2%
+2025-02-27 08:55:26,536 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-27 08:55:26,537 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-27 08:55:26,537 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-27 08:55:27,620 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-27 08:57:45,996 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-27 08:57:45,996 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-27 08:57:49,614 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-27 08:57:49,615 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-27 08:57:49,621 - OCRProcessor - INFO - 系统内存使用情况: 46.7%
+2025-02-27 08:57:49,622 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-27 08:57:49,622 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-27 08:57:49,623 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-27 08:57:50,660 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-27 08:57:54,074 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-27 08:57:54,076 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-27 08:57:55,410 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-27 08:57:55,410 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-27 08:57:55,414 - OCRProcessor - INFO - 系统内存使用情况: 47.6%
+2025-02-27 08:57:55,415 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-27 08:57:55,415 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-27 08:57:55,416 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-27 08:57:56,412 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-27 09:18:53,573 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-27 09:18:53,574 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-27 09:18:55,330 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-27 09:18:55,331 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-27 09:18:55,336 - OCRProcessor - INFO - 系统内存使用情况: 48.1%
+2025-02-27 09:18:55,337 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-27 09:18:55,338 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-27 09:18:55,338 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-27 09:18:56,394 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-27 10:09:04,766 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-27 10:09:04,767 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-27 10:09:07,416 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-27 10:09:07,417 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-27 10:09:07,428 - OCRProcessor - INFO - 系统内存使用情况: 47.0%
+2025-02-27 10:09:07,429 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-27 10:09:07,431 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-27 10:09:07,432 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-27 10:09:09,697 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-27 10:11:41,964 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-27 10:11:41,965 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-27 10:11:44,228 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-27 10:11:44,229 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-27 10:11:44,235 - OCRProcessor - INFO - 系统内存使用情况: 46.1%
+2025-02-27 10:11:44,236 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-27 10:11:44,237 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-27 10:11:44,238 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-27 10:11:46,074 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-27 10:11:53,611 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-27 10:11:53,612 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-27 10:11:55,553 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-27 10:11:55,554 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-27 10:11:55,562 - OCRProcessor - INFO - 系统内存使用情况: 47.0%
+2025-02-27 10:11:55,563 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-27 10:11:55,563 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-27 10:11:55,564 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-27 10:11:57,175 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-27 10:13:13,223 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-27 10:13:13,224 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-27 10:13:15,569 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-27 10:13:15,570 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-27 10:13:15,577 - OCRProcessor - INFO - 系统内存使用情况: 47.1%
+2025-02-27 10:13:15,577 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-27 10:13:15,578 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-27 10:13:15,579 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-27 10:13:18,013 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-27 10:14:25,546 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-27 10:14:25,547 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-27 10:14:30,758 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-27 10:14:30,759 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-27 10:14:30,774 - OCRProcessor - INFO - 系统内存使用情况: 47.4%
+2025-02-27 10:14:30,776 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-27 10:14:30,777 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-27 10:14:30,779 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-27 10:14:33,749 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-27 10:14:47,768 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-27 10:14:47,769 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-27 10:14:50,303 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-27 10:14:50,304 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-27 10:14:50,310 - OCRProcessor - INFO - 系统内存使用情况: 47.5%
+2025-02-27 10:14:50,312 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-27 10:14:50,313 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-27 10:14:50,315 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-27 10:14:53,065 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-27 10:15:55,873 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-27 10:15:55,874 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-27 10:15:58,189 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-27 10:15:58,189 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-27 10:15:58,196 - OCRProcessor - INFO - 系统内存使用情况: 47.5%
+2025-02-27 10:15:58,197 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-27 10:15:58,197 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-27 10:15:58,198 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-27 10:16:00,354 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-27 11:10:21,537 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-27 11:10:21,538 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-27 11:10:23,170 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-27 11:10:23,170 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-27 11:10:23,175 - OCRProcessor - INFO - 系统内存使用情况: 49.4%
+2025-02-27 11:10:23,176 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-27 11:10:23,176 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-27 11:10:23,177 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-27 11:10:24,209 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-27 11:10:57,578 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-27 11:10:57,578 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-27 11:10:59,592 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-27 11:10:59,593 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-27 11:10:59,598 - OCRProcessor - INFO - 系统内存使用情况: 49.7%
+2025-02-27 11:10:59,599 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-27 11:10:59,600 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-27 11:10:59,600 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-27 11:11:00,726 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-27 11:15:26,861 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-27 11:15:26,861 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-27 11:15:28,594 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-27 11:15:28,595 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-27 11:15:28,600 - OCRProcessor - INFO - 系统内存使用情况: 49.5%
+2025-02-27 11:15:28,600 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-27 11:15:28,601 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-27 11:15:28,602 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-27 11:15:29,677 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-27 11:36:24,190 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-27 11:36:24,190 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-27 11:36:25,881 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-27 11:36:25,881 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-27 11:36:25,886 - OCRProcessor - INFO - 系统内存使用情况: 45.9%
+2025-02-27 11:36:25,887 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-27 11:36:25,888 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-27 11:36:25,888 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-27 11:36:26,917 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-28 09:10:00,998 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-28 09:10:00,998 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-28 09:10:03,094 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-28 09:10:03,095 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-28 09:10:03,102 - OCRProcessor - INFO - 系统内存使用情况: 46.8%
+2025-02-28 09:10:03,103 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-28 09:10:03,103 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-28 09:10:03,104 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-28 09:10:04,815 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-28 09:11:20,747 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-28 09:11:20,748 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-28 09:11:22,282 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-28 09:11:22,282 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-28 09:11:22,289 - OCRProcessor - INFO - 系统内存使用情况: 46.9%
+2025-02-28 09:11:22,289 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-28 09:11:22,289 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-28 09:11:22,290 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-28 09:11:23,352 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-28 09:11:30,874 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-28 09:11:30,874 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-28 09:11:32,748 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-28 09:11:32,749 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-28 09:11:32,755 - OCRProcessor - INFO - 系统内存使用情况: 46.8%
+2025-02-28 09:11:32,755 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-28 09:11:32,756 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-28 09:11:32,756 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-28 09:11:34,270 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-28 09:11:39,104 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-28 09:11:39,105 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-28 09:11:40,805 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-28 09:11:40,805 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-28 09:11:40,811 - OCRProcessor - INFO - 系统内存使用情况: 47.7%
+2025-02-28 09:11:40,812 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-28 09:11:40,812 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-28 09:11:40,813 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-28 09:11:42,158 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-28 09:51:13,982 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-28 09:51:13,982 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-28 09:51:15,579 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-28 09:51:15,579 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-28 09:51:15,585 - OCRProcessor - INFO - 系统内存使用情况: 45.9%
+2025-02-28 09:51:15,586 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-28 09:51:15,587 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-28 09:51:15,587 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-28 09:51:16,650 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-28 09:55:06,868 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-28 09:55:06,869 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-28 09:55:08,359 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-28 09:55:08,360 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-28 09:55:08,366 - OCRProcessor - INFO - 系统内存使用情况: 45.4%
+2025-02-28 09:55:08,367 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-28 09:55:08,368 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-28 09:55:08,368 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-28 09:55:09,418 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-28 09:55:12,890 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-28 09:55:12,890 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-28 09:55:14,415 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-28 09:55:14,416 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-28 09:55:14,420 - OCRProcessor - INFO - 系统内存使用情况: 46.2%
+2025-02-28 09:55:14,421 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-28 09:55:14,421 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-28 09:55:14,422 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-28 09:55:15,451 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-28 10:09:44,562 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-28 10:09:44,564 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-28 10:09:46,195 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-28 10:09:46,196 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-28 10:09:46,203 - OCRProcessor - INFO - 系统内存使用情况: 46.9%
+2025-02-28 10:09:46,204 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-28 10:09:46,205 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-28 10:09:46,206 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-28 10:09:47,297 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-28 10:17:39,100 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-28 10:17:39,101 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-28 10:17:40,581 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-28 10:17:40,582 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-28 10:17:40,587 - OCRProcessor - INFO - 系统内存使用情况: 47.6%
+2025-02-28 10:17:40,587 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-28 10:17:40,588 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-28 10:17:40,588 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-28 10:17:41,796 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-28 10:19:47,301 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-28 10:19:47,302 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-28 10:19:48,694 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-28 10:19:48,695 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-28 10:19:48,699 - OCRProcessor - INFO - 系统内存使用情况: 47.3%
+2025-02-28 10:19:48,700 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-28 10:19:48,701 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-28 10:19:48,701 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-28 10:19:49,760 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-28 13:19:08,946 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-28 13:19:08,947 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-28 13:19:10,465 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-28 13:19:10,466 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-28 13:19:10,472 - OCRProcessor - INFO - 系统内存使用情况: 48.7%
+2025-02-28 13:19:10,473 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-28 13:19:10,474 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-28 13:19:10,474 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-28 13:19:11,545 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-28 13:32:50,002 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-28 13:32:50,002 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-28 13:32:51,426 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-28 13:32:51,427 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-28 13:32:51,435 - OCRProcessor - INFO - 系统内存使用情况: 49.0%
+2025-02-28 13:32:51,436 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-28 13:32:51,436 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-28 13:32:51,437 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-28 13:32:52,533 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-28 13:45:10,141 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-28 13:45:10,141 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-28 13:46:58,995 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-28 13:46:58,995 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-28 13:47:00,378 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-28 13:47:00,379 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-28 13:47:00,383 - OCRProcessor - INFO - 系统内存使用情况: 48.8%
+2025-02-28 13:47:00,384 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-28 13:47:00,384 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-28 13:47:00,385 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-28 13:47:01,391 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-28 13:47:04,888 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-28 13:47:04,889 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-28 13:47:06,217 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-28 13:47:06,217 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-28 13:47:06,223 - OCRProcessor - INFO - 系统内存使用情况: 49.5%
+2025-02-28 13:47:06,223 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-28 13:47:06,224 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-28 13:47:06,224 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-28 13:47:07,223 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-28 13:48:28,174 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-28 13:48:28,174 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-28 13:48:29,499 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-28 13:48:29,500 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-28 13:48:29,505 - OCRProcessor - INFO - 系统内存使用情况: 49.6%
+2025-02-28 13:48:29,506 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-28 13:48:29,506 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-28 13:48:29,507 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-28 13:48:30,509 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-28 13:49:31,191 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-28 13:49:31,192 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-28 13:49:32,770 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-28 13:49:32,771 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-28 13:49:32,777 - OCRProcessor - INFO - 系统内存使用情况: 49.1%
+2025-02-28 13:49:32,778 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-28 13:49:32,779 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-28 13:49:32,779 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-28 13:49:33,846 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-28 13:49:47,902 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-28 13:49:47,903 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-28 13:49:49,342 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-28 13:49:49,343 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-28 13:49:49,349 - OCRProcessor - INFO - 系统内存使用情况: 48.4%
+2025-02-28 13:49:49,349 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-28 13:49:49,350 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-28 13:49:49,351 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-28 13:49:50,352 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-28 13:49:54,209 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-28 13:49:54,210 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-28 13:49:55,562 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-28 13:49:55,563 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-28 13:49:55,568 - OCRProcessor - INFO - 系统内存使用情况: 49.3%
+2025-02-28 13:49:55,569 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-28 13:49:55,570 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-28 13:49:55,570 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-28 13:49:56,600 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-28 13:51:16,721 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-28 13:51:16,722 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-28 13:51:18,208 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-28 13:51:18,209 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-28 13:51:18,215 - OCRProcessor - INFO - 系统内存使用情况: 49.3%
+2025-02-28 13:51:18,216 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-28 13:51:18,216 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-28 13:51:18,217 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-28 13:51:19,292 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-28 13:51:25,483 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-28 13:51:25,484 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-28 13:51:26,867 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-28 13:51:26,868 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-28 13:51:26,875 - OCRProcessor - INFO - 系统内存使用情况: 49.2%
+2025-02-28 13:51:26,876 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-28 13:51:26,877 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-28 13:51:26,877 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-28 13:51:27,897 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-28 13:56:54,879 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-28 13:56:54,880 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-28 13:56:56,234 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-28 13:56:56,235 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-28 13:56:56,240 - OCRProcessor - INFO - 系统内存使用情况: 49.4%
+2025-02-28 13:56:56,240 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-28 13:56:56,241 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-28 13:56:56,242 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-28 13:56:57,264 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-28 14:00:09,649 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-28 14:00:09,649 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-28 14:00:11,112 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-28 14:00:11,113 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-28 14:00:11,120 - OCRProcessor - INFO - 系统内存使用情况: 49.6%
+2025-02-28 14:00:11,121 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-28 14:00:11,123 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-28 14:00:11,123 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-28 14:00:12,241 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-28 14:01:01,173 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-28 14:01:01,173 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-28 14:01:02,533 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-28 14:01:02,534 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-28 14:01:02,539 - OCRProcessor - INFO - 系统内存使用情况: 48.8%
+2025-02-28 14:01:02,540 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-28 14:01:02,540 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-28 14:01:02,540 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-28 14:01:03,687 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-28 14:01:07,902 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-28 14:01:07,903 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-28 14:01:09,537 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-28 14:01:09,537 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-28 14:01:09,543 - OCRProcessor - INFO - 系统内存使用情况: 49.6%
+2025-02-28 14:01:09,543 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-28 14:01:09,544 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-28 14:01:09,545 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-28 14:01:10,805 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-28 14:09:55,526 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-28 14:09:55,527 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-28 14:09:56,999 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-28 14:09:57,000 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-28 14:09:57,006 - OCRProcessor - INFO - 系统内存使用情况: 49.6%
+2025-02-28 14:09:57,007 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-28 14:09:57,007 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-28 14:09:57,008 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-28 14:09:58,063 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-28 14:13:56,078 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-28 14:13:56,078 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-28 14:13:57,478 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-28 14:13:57,479 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-28 14:13:57,484 - OCRProcessor - INFO - 系统内存使用情况: 48.2%
+2025-02-28 14:13:57,484 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-28 14:13:57,485 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-28 14:13:57,485 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-28 14:13:58,520 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-28 14:14:01,972 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-28 14:14:01,972 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-28 14:14:03,350 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-28 14:14:03,350 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-28 14:14:03,357 - OCRProcessor - INFO - 系统内存使用情况: 49.1%
+2025-02-28 14:14:03,358 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-28 14:14:03,358 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-28 14:14:03,359 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-28 14:14:04,460 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-28 14:29:06,284 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-28 14:29:06,284 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-28 14:29:07,720 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-28 14:29:07,720 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-28 14:29:07,725 - OCRProcessor - INFO - 系统内存使用情况: 47.4%
+2025-02-28 14:29:07,726 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-28 14:29:07,726 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-28 14:29:07,727 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-28 14:29:08,788 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-28 14:45:34,976 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-28 14:45:34,977 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-28 14:45:36,892 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-28 14:45:36,893 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-28 14:45:36,899 - OCRProcessor - INFO - 系统内存使用情况: 46.9%
+2025-02-28 14:45:36,899 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-28 14:45:36,900 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-28 14:45:36,900 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-28 14:45:38,387 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-28 14:45:43,110 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-28 14:45:43,110 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-28 14:45:44,847 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-28 14:45:44,848 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-28 14:45:44,854 - OCRProcessor - INFO - 系统内存使用情况: 47.6%
+2025-02-28 14:45:44,855 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-28 14:45:44,855 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-28 14:45:44,856 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-28 14:45:46,376 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-28 14:46:44,185 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-28 14:46:44,185 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-28 14:46:45,662 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-28 14:46:45,663 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-28 14:46:45,669 - OCRProcessor - INFO - 系统内存使用情况: 47.6%
+2025-02-28 14:46:45,670 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-28 14:46:45,671 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-28 14:46:45,671 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-28 14:46:47,063 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-28 15:45:30,752 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-28 15:45:30,752 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-28 15:45:32,280 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-28 15:45:32,280 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-28 15:45:32,287 - OCRProcessor - INFO - 系统内存使用情况: 48.9%
+2025-02-28 15:45:32,288 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-28 15:45:32,288 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-28 15:45:32,289 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-28 15:45:33,593 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-28 15:45:59,031 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-28 15:45:59,031 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-28 15:46:00,773 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-28 15:46:00,774 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-28 15:46:00,780 - OCRProcessor - INFO - 系统内存使用情况: 48.1%
+2025-02-28 15:46:00,781 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-28 15:46:00,782 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-28 15:46:00,782 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-28 15:46:02,277 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-28 15:46:07,631 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-28 15:46:07,632 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-28 15:46:09,569 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-28 15:46:09,570 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-28 15:46:09,576 - OCRProcessor - INFO - 系统内存使用情况: 48.9%
+2025-02-28 15:46:09,577 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-28 15:46:09,578 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-28 15:46:09,578 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-28 15:46:10,869 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-28 15:47:53,226 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-28 15:47:53,227 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-28 15:48:09,920 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-28 15:48:09,921 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-28 15:48:41,469 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-28 15:48:41,470 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-28 15:48:43,089 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-28 15:48:43,090 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-28 15:48:43,096 - OCRProcessor - INFO - 系统内存使用情况: 47.9%
+2025-02-28 15:48:43,097 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-28 15:48:43,097 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-28 15:48:43,098 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-28 15:48:44,475 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-28 15:48:48,827 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-28 15:48:48,827 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-28 15:48:50,926 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-28 15:48:50,926 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-28 15:48:50,931 - OCRProcessor - INFO - 系统内存使用情况: 48.9%
+2025-02-28 15:48:50,932 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-28 15:48:50,932 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-28 15:48:50,933 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-28 15:48:51,977 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-02-28 15:52:09,364 - OCRProcessor - INFO - 日志系统初始化成功
+2025-02-28 15:52:09,365 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-02-28 15:52:11,213 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-02-28 15:52:11,214 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-02-28 15:52:11,220 - OCRProcessor - INFO - 系统内存使用情况: 49.1%
+2025-02-28 15:52:11,222 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-02-28 15:52:11,222 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-02-28 15:52:11,223 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-02-28 15:52:12,354 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-03 10:22:27,314 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-03 10:22:27,315 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-03 10:22:28,586 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-03 10:22:28,587 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-03 10:22:28,593 - OCRProcessor - INFO - 系统内存使用情况: 50.6%
+2025-03-03 10:22:28,594 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-03 10:22:28,594 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-03 10:22:28,595 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-03 10:22:29,597 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-03 10:22:33,976 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-03 10:22:33,976 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-03 10:22:35,615 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-03 10:22:35,616 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-03 10:22:35,622 - OCRProcessor - INFO - 系统内存使用情况: 51.4%
+2025-03-03 10:22:35,623 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-03 10:22:35,623 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-03 10:22:35,624 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-03 10:22:37,030 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-03 10:24:16,440 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-03 10:24:16,441 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-03 10:24:18,223 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-03 10:24:18,224 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-03 10:24:18,232 - OCRProcessor - INFO - 系统内存使用情况: 51.1%
+2025-03-03 10:24:18,233 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-03 10:24:18,233 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-03 10:24:18,234 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-03 10:24:19,739 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-03 10:36:11,650 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-03 10:36:11,651 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-03 10:36:13,011 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-03 10:36:13,011 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-03 10:36:13,017 - OCRProcessor - INFO - 系统内存使用情况: 49.7%
+2025-03-03 10:36:13,017 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-03 10:36:13,018 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-03 10:36:13,018 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-03 10:36:14,140 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-03 10:36:34,523 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-03 10:36:34,523 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-03 10:36:35,777 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-03 10:36:35,778 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-03 10:36:35,783 - OCRProcessor - INFO - 系统内存使用情况: 48.9%
+2025-03-03 10:36:35,784 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-03 10:36:35,784 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-03 10:36:35,784 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-03 10:36:36,807 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-03 10:36:40,321 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-03 10:36:40,321 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-03 10:36:41,626 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-03 10:36:41,626 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-03 10:36:41,632 - OCRProcessor - INFO - 系统内存使用情况: 49.8%
+2025-03-03 10:36:41,632 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-03 10:36:41,633 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-03 10:36:41,633 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-03 10:36:42,678 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-03 10:38:04,721 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-03 10:38:04,722 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-03 10:38:05,985 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-03 10:38:05,985 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-03 10:38:05,992 - OCRProcessor - INFO - 系统内存使用情况: 50.5%
+2025-03-03 10:38:05,992 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-03 10:38:05,993 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-03 10:38:05,993 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-03 10:38:07,383 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-03 10:40:06,179 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-03 10:40:06,179 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-03 10:40:07,431 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-03 10:40:07,432 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-03 10:40:07,438 - OCRProcessor - INFO - 系统内存使用情况: 48.7%
+2025-03-03 10:40:07,438 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-03 10:40:07,439 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-03 10:40:07,439 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-03 10:40:08,658 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-03 10:40:12,321 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-03 10:40:12,322 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-03 10:40:13,581 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-03 10:40:13,581 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-03 10:40:13,588 - OCRProcessor - INFO - 系统内存使用情况: 49.5%
+2025-03-03 10:40:13,588 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-03 10:40:13,589 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-03 10:40:13,589 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-03 10:40:14,604 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-03 10:44:19,947 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-03 10:44:19,948 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-03 10:44:21,247 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-03 10:44:21,248 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-03 10:44:21,253 - OCRProcessor - INFO - 系统内存使用情况: 48.8%
+2025-03-03 10:44:21,254 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-03 10:44:21,255 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-03 10:44:21,255 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-03 10:44:22,303 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-03 10:45:15,865 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-03 10:45:15,866 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-03 10:45:17,116 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-03 10:45:17,116 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-03 10:45:17,122 - OCRProcessor - INFO - 系统内存使用情况: 48.9%
+2025-03-03 10:45:17,123 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-03 10:45:17,123 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-03 10:45:17,124 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-03 10:45:18,172 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-03 16:17:12,352 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-03 16:17:12,353 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-03 16:17:13,960 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-03 16:17:13,961 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-03 16:17:13,968 - OCRProcessor - INFO - 系统内存使用情况: 52.0%
+2025-03-03 16:17:13,969 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-03 16:17:13,970 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-03 16:17:13,970 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-03 16:17:15,117 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-05 10:51:32,854 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-05 10:51:32,855 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-05 10:51:34,133 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-05 10:51:34,134 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-05 10:51:34,139 - OCRProcessor - INFO - 系统内存使用情况: 48.7%
+2025-03-05 10:51:34,140 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-05 10:51:34,140 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-05 10:51:34,140 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-05 10:51:35,133 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-05 10:51:38,599 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-05 10:51:38,599 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-05 10:51:39,938 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-05 10:51:39,939 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-05 10:51:39,945 - OCRProcessor - INFO - 系统内存使用情况: 49.5%
+2025-03-05 10:51:39,946 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-05 10:51:39,946 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-05 10:51:39,947 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-05 10:51:41,065 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-05 14:04:55,594 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-05 14:04:55,594 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-05 14:04:57,025 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-05 14:04:57,026 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-05 14:04:57,032 - OCRProcessor - INFO - 系统内存使用情况: 48.4%
+2025-03-05 14:04:57,032 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-05 14:04:57,033 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-05 14:04:57,033 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-05 14:04:58,552 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-05 14:31:31,288 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-05 14:31:31,289 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-05 14:31:32,581 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-05 14:31:32,582 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-05 14:31:32,588 - OCRProcessor - INFO - 系统内存使用情况: 49.1%
+2025-03-05 14:31:32,589 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-05 14:31:32,590 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-05 14:31:32,591 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-05 14:31:33,682 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-05 14:45:56,643 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-05 14:45:56,643 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-05 14:45:58,042 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-05 14:45:58,043 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-05 14:45:58,049 - OCRProcessor - INFO - 系统内存使用情况: 50.6%
+2025-03-05 14:45:58,051 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-05 14:45:58,051 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-05 14:45:58,052 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-05 14:45:59,108 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-05 14:46:02,590 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-05 14:46:02,590 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-05 14:46:03,871 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-05 14:46:03,872 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-05 14:46:03,877 - OCRProcessor - INFO - 系统内存使用情况: 51.4%
+2025-03-05 14:46:03,878 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-05 14:46:03,878 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-05 14:46:03,879 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-05 14:46:04,914 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-05 14:52:32,459 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-05 14:52:32,459 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-05 14:52:34,038 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-05 14:52:34,038 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-05 14:52:34,045 - OCRProcessor - INFO - 系统内存使用情况: 48.9%
+2025-03-05 14:52:34,045 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-05 14:52:34,046 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-05 14:52:34,047 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-05 14:52:35,664 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-05 14:53:09,817 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-05 14:53:09,818 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-05 14:53:11,958 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-05 14:53:11,959 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-05 14:53:11,965 - OCRProcessor - INFO - 系统内存使用情况: 50.3%
+2025-03-05 14:53:11,966 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-05 14:53:11,967 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-05 14:53:11,968 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-05 14:53:13,304 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-05 14:53:23,456 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-05 14:53:23,459 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-05 14:53:25,085 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-05 14:53:25,085 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-05 14:53:25,092 - OCRProcessor - INFO - 系统内存使用情况: 51.2%
+2025-03-05 14:53:25,093 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-05 14:53:25,094 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-05 14:53:25,095 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-05 14:53:26,195 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-05 14:58:30,988 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-05 14:58:30,990 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-05 14:58:32,542 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-05 14:58:32,542 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-05 14:58:32,548 - OCRProcessor - INFO - 系统内存使用情况: 49.3%
+2025-03-05 14:58:32,549 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-05 14:58:32,549 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-05 14:58:32,550 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-05 14:58:33,604 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-05 14:58:43,773 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-05 14:58:43,775 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-05 14:58:45,432 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-05 14:58:45,433 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-05 14:58:45,440 - OCRProcessor - INFO - 系统内存使用情况: 50.3%
+2025-03-05 14:58:45,441 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-05 14:58:45,442 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-05 14:58:45,445 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-05 14:58:46,536 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-05 15:00:42,946 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-05 15:00:42,947 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-05 15:00:44,651 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-05 15:00:44,652 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-05 15:00:44,658 - OCRProcessor - INFO - 系统内存使用情况: 47.3%
+2025-03-05 15:00:44,659 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-05 15:00:44,659 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-05 15:00:44,660 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-05 15:00:46,003 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-05 15:00:50,451 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-05 15:00:50,452 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-05 15:00:52,084 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-05 15:00:52,085 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-05 15:00:52,092 - OCRProcessor - INFO - 系统内存使用情况: 48.1%
+2025-03-05 15:00:52,093 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-05 15:00:52,094 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-05 15:00:52,095 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-05 15:00:53,382 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-05 15:07:02,014 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-05 15:07:02,015 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-05 15:07:03,853 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-05 15:07:03,854 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-05 15:07:03,861 - OCRProcessor - INFO - 系统内存使用情况: 48.5%
+2025-03-05 15:07:03,862 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-05 15:07:03,863 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-05 15:07:03,863 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-05 15:07:05,327 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-05 15:07:57,981 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-05 15:07:57,981 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-05 15:07:59,257 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-05 15:07:59,258 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-05 15:07:59,263 - OCRProcessor - INFO - 系统内存使用情况: 48.6%
+2025-03-05 15:07:59,264 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-05 15:07:59,264 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-05 15:07:59,265 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-05 15:08:00,650 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-05 15:14:43,935 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-05 15:14:43,936 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-05 15:14:45,677 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-05 15:14:45,677 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-05 15:14:45,684 - OCRProcessor - INFO - 系统内存使用情况: 48.5%
+2025-03-05 15:14:45,686 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-05 15:14:45,686 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-05 15:14:45,687 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-05 15:14:47,203 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-05 15:16:44,152 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-05 15:16:44,153 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-05 15:16:45,900 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-05 15:16:45,901 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-05 15:16:45,908 - OCRProcessor - INFO - 系统内存使用情况: 48.4%
+2025-03-05 15:16:45,909 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-05 15:16:45,909 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-05 15:16:45,910 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-05 15:16:47,216 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-05 15:17:26,846 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-05 15:17:26,847 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-05 15:17:28,155 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-05 15:17:28,156 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-05 15:17:28,161 - OCRProcessor - INFO - 系统内存使用情况: 48.6%
+2025-03-05 15:17:28,162 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-05 15:17:28,163 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-05 15:17:28,163 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-05 15:17:29,367 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-05 15:20:22,688 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-05 15:20:22,689 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-05 15:20:24,018 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-05 15:20:24,019 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-05 15:20:24,025 - OCRProcessor - INFO - 系统内存使用情况: 49.5%
+2025-03-05 15:20:24,026 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-05 15:20:24,026 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-05 15:20:24,027 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-05 15:20:25,125 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-05 15:23:11,168 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-05 15:23:11,169 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-05 15:23:12,484 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-05 15:23:12,485 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-05 15:23:12,493 - OCRProcessor - INFO - 系统内存使用情况: 49.4%
+2025-03-05 15:23:12,494 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-05 15:23:12,494 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-05 15:23:12,495 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-05 15:23:58,627 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-05 15:23:58,628 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-05 15:24:00,675 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-05 15:24:00,675 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-05 15:24:00,682 - OCRProcessor - INFO - 系统内存使用情况: 48.6%
+2025-03-05 15:24:00,682 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-05 15:24:00,683 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-05 15:24:00,684 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-05 15:24:01,913 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-05 15:24:12,583 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-05 15:24:12,585 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-05 15:24:14,111 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-05 15:24:14,111 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-05 15:24:14,117 - OCRProcessor - INFO - 系统内存使用情况: 49.6%
+2025-03-05 15:24:14,118 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-05 15:24:14,120 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-05 15:24:14,120 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-05 15:24:15,127 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-05 15:27:19,769 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-05 15:27:19,772 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-05 15:27:21,939 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-05 15:27:21,940 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-05 15:27:21,948 - OCRProcessor - INFO - 系统内存使用情况: 49.6%
+2025-03-05 15:27:21,949 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-05 15:27:21,951 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-05 15:27:21,953 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-05 15:27:23,477 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-05 15:28:13,660 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-05 15:28:13,661 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-05 15:28:15,327 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-05 15:28:15,328 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-05 15:28:15,334 - OCRProcessor - INFO - 系统内存使用情况: 48.7%
+2025-03-05 15:28:15,334 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-05 15:28:15,335 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-05 15:28:15,336 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-05 15:28:16,666 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-05 15:28:21,733 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-05 15:28:21,733 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-05 15:28:23,581 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-05 15:28:23,582 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-05 15:28:23,589 - OCRProcessor - INFO - 系统内存使用情况: 49.5%
+2025-03-05 15:28:23,590 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-05 15:28:23,590 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-05 15:28:23,591 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-05 15:28:25,163 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-05 16:50:31,004 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-05 16:50:31,005 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-05 16:50:32,278 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-05 16:50:32,278 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-05 16:50:32,284 - OCRProcessor - INFO - 系统内存使用情况: 48.5%
+2025-03-05 16:50:32,285 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-05 16:50:32,285 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-05 16:50:32,286 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-05 16:50:33,314 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-05 16:50:36,974 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-05 16:50:36,975 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-05 16:50:38,266 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-05 16:50:38,266 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-05 16:50:38,272 - OCRProcessor - INFO - 系统内存使用情况: 49.3%
+2025-03-05 16:50:38,273 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-05 16:50:38,273 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-05 16:50:38,274 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-05 16:50:39,332 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-05 17:11:03,592 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-05 17:11:03,593 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-05 17:11:04,837 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-05 17:11:04,838 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-05 17:11:04,843 - OCRProcessor - INFO - 系统内存使用情况: 49.7%
+2025-03-05 17:11:04,844 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-05 17:11:04,844 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-05 17:11:04,845 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-05 17:11:05,856 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-05 17:15:12,883 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-05 17:15:12,884 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-05 17:15:14,169 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-05 17:15:14,169 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-05 17:15:14,176 - OCRProcessor - INFO - 系统内存使用情况: 49.8%
+2025-03-05 17:15:14,177 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-05 17:15:14,177 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-05 17:15:14,178 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-05 17:15:15,243 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-05 17:16:13,944 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-05 17:16:13,944 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-05 17:16:15,366 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-05 17:16:15,367 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-05 17:16:15,373 - OCRProcessor - INFO - 系统内存使用情况: 49.9%
+2025-03-05 17:16:15,373 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-05 17:16:15,374 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-05 17:16:15,374 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-05 17:16:16,512 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-05 17:16:54,593 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-05 17:16:54,595 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-05 17:16:56,213 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-05 17:16:56,214 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-05 17:16:56,221 - OCRProcessor - INFO - 系统内存使用情况: 49.1%
+2025-03-05 17:16:56,222 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-05 17:16:56,222 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-05 17:16:56,223 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-05 17:16:57,306 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-05 17:17:07,663 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-05 17:17:07,665 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-05 17:17:09,267 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-05 17:17:09,268 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-05 17:17:09,277 - OCRProcessor - INFO - 系统内存使用情况: 50.1%
+2025-03-05 17:17:09,279 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-05 17:17:09,282 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-05 17:17:09,283 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-05 17:17:10,371 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-06 09:30:38,448 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-06 09:30:38,448 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-06 09:30:40,626 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-06 09:30:40,627 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-06 09:30:40,635 - OCRProcessor - INFO - 系统内存使用情况: 53.0%
+2025-03-06 09:30:40,636 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-06 09:30:40,637 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-06 09:30:40,639 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-06 09:30:42,396 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-06 09:30:48,288 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-06 09:30:48,289 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-06 09:30:49,956 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-06 09:30:49,957 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-06 09:30:49,963 - OCRProcessor - INFO - 系统内存使用情况: 53.8%
+2025-03-06 09:30:49,964 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-06 09:30:49,964 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-06 09:30:49,965 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-06 09:30:51,172 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-06 11:37:35,009 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-06 11:37:35,009 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-06 11:37:36,687 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-06 11:37:36,687 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-06 11:37:36,694 - OCRProcessor - INFO - 系统内存使用情况: 50.6%
+2025-03-06 11:37:36,695 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-06 11:37:36,695 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-06 11:37:36,696 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-06 11:37:38,245 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-06 13:23:47,116 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-06 13:23:47,117 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-06 13:23:48,382 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-06 13:23:48,383 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-06 13:23:48,390 - OCRProcessor - INFO - 系统内存使用情况: 50.8%
+2025-03-06 13:23:48,391 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-06 13:23:48,392 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-06 13:23:48,392 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-06 13:23:49,416 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-06 13:23:52,878 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-06 13:23:52,879 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-06 13:23:54,141 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-06 13:23:54,141 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-06 13:23:54,147 - OCRProcessor - INFO - 系统内存使用情况: 51.5%
+2025-03-06 13:23:54,148 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-06 13:23:54,148 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-06 13:23:54,149 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-06 13:23:55,192 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-06 13:44:06,886 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-06 13:44:06,887 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-06 13:44:08,409 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-06 13:44:08,410 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-06 13:44:08,416 - OCRProcessor - INFO - 系统内存使用情况: 52.4%
+2025-03-06 13:44:08,416 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-06 13:44:08,417 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-06 13:44:08,417 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-06 13:44:09,473 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-06 14:08:24,049 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-06 14:08:24,049 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-06 14:08:26,515 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-06 14:08:26,515 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-06 14:08:26,524 - OCRProcessor - INFO - 系统内存使用情况: 53.7%
+2025-03-06 14:08:26,525 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-06 14:08:26,526 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-06 14:08:26,527 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-06 14:08:28,545 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-06 15:50:53,685 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-06 15:50:53,688 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-06 15:50:57,108 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-06 15:50:57,109 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-06 15:50:57,122 - OCRProcessor - INFO - 系统内存使用情况: 51.9%
+2025-03-06 15:50:57,123 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-06 15:50:57,125 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-06 15:50:57,126 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-06 15:51:00,075 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-06 15:51:08,595 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-06 15:51:08,596 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-06 15:51:11,697 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-06 15:51:11,699 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-06 15:51:11,713 - OCRProcessor - INFO - 系统内存使用情况: 52.8%
+2025-03-06 15:51:11,714 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-06 15:51:11,715 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-06 15:51:11,716 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-06 15:51:14,144 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-07 09:41:42,125 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-07 09:41:42,125 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-07 09:41:43,713 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-07 09:41:43,713 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-07 09:41:43,724 - OCRProcessor - INFO - 系统内存使用情况: 53.1%
+2025-03-07 09:41:43,725 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-07 09:41:43,726 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-07 09:41:43,727 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-07 09:41:44,997 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-07 09:41:49,398 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-07 09:41:49,398 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-07 09:41:51,190 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-07 09:41:51,191 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-07 09:41:51,199 - OCRProcessor - INFO - 系统内存使用情况: 54.2%
+2025-03-07 09:41:51,200 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-07 09:41:51,200 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-07 09:41:51,201 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-07 09:41:52,500 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-07 14:28:41,969 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-07 14:28:41,970 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-07 14:28:43,544 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-07 14:28:43,544 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-07 14:28:43,554 - OCRProcessor - INFO - 系统内存使用情况: 51.9%
+2025-03-07 14:28:43,555 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-07 14:28:43,556 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-07 14:28:43,556 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-07 14:28:44,734 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-10 10:01:22,932 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-10 10:01:22,933 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-10 10:21:40,347 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-10 10:21:40,348 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-10 10:24:18,957 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-10 10:24:18,958 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-10 10:24:22,605 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-10 10:24:22,607 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-10 10:24:22,633 - OCRProcessor - INFO - 系统内存使用情况: 52.7%
+2025-03-10 10:24:22,644 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-10 10:24:22,648 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-10 10:24:22,694 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-10 10:24:25,541 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-10 10:24:33,070 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-10 10:24:33,071 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-10 10:24:35,760 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-10 10:24:35,761 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-10 10:24:35,769 - OCRProcessor - INFO - 系统内存使用情况: 53.0%
+2025-03-10 10:24:35,770 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-10 10:24:35,770 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-10 10:24:35,771 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-10 10:24:37,294 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-10 10:36:34,081 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-10 10:36:34,082 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-10 10:36:37,082 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-10 10:36:37,083 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-10 10:36:37,091 - OCRProcessor - INFO - 系统内存使用情况: 54.0%
+2025-03-10 10:36:37,091 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-10 10:36:37,092 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-10 10:36:37,093 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-10 10:36:38,894 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-10 10:36:44,018 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-10 10:36:44,020 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-10 10:36:46,573 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-10 10:36:46,579 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-10 10:36:46,612 - OCRProcessor - INFO - 系统内存使用情况: 54.8%
+2025-03-10 10:36:46,613 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-10 10:36:46,614 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-10 10:36:46,615 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-10 10:36:49,487 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-10 11:08:01,003 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-10 11:08:01,003 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-10 11:08:03,448 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-10 11:08:03,449 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-10 11:08:03,457 - OCRProcessor - INFO - 系统内存使用情况: 52.7%
+2025-03-10 11:08:03,458 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-10 11:08:03,459 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-10 11:08:03,460 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-10 11:08:05,195 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-10 11:08:09,809 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-10 11:08:09,810 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-10 11:08:11,845 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-10 11:08:11,846 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-10 11:08:11,855 - OCRProcessor - INFO - 系统内存使用情况: 53.3%
+2025-03-10 11:08:11,856 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-10 11:08:11,857 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-10 11:08:11,857 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-10 11:08:13,755 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-10 11:10:27,316 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-10 11:10:27,317 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-10 11:10:29,146 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-10 11:10:29,147 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-10 11:10:29,154 - OCRProcessor - INFO - 系统内存使用情况: 53.5%
+2025-03-10 11:10:29,154 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-10 11:10:29,156 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-10 11:10:29,157 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-10 11:10:30,466 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-10 11:13:48,129 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-10 11:13:48,129 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-10 11:13:50,319 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-10 11:13:50,319 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-10 11:13:50,326 - OCRProcessor - INFO - 系统内存使用情况: 53.2%
+2025-03-10 11:13:50,326 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-10 11:13:50,327 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-10 11:13:50,328 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-10 11:13:51,549 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-10 11:33:03,125 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-10 11:33:03,125 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-10 11:33:05,106 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-10 11:33:05,107 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-10 11:33:05,115 - OCRProcessor - INFO - 系统内存使用情况: 53.0%
+2025-03-10 11:33:05,116 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-10 11:33:05,117 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-10 11:33:05,117 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-10 11:33:06,472 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-10 11:34:09,800 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-10 11:34:09,801 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-10 11:34:11,629 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-10 11:34:11,631 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-10 11:34:11,639 - OCRProcessor - INFO - 系统内存使用情况: 52.1%
+2025-03-10 11:34:11,639 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-10 11:34:11,640 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-10 11:34:11,641 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-10 11:34:12,755 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-10 11:34:16,179 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-10 11:34:16,179 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-10 11:34:17,804 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-10 11:34:17,805 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-10 11:34:17,812 - OCRProcessor - INFO - 系统内存使用情况: 52.6%
+2025-03-10 11:34:17,812 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-10 11:34:17,813 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-10 11:34:17,814 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-10 11:34:18,905 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-10 11:37:56,060 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-10 11:37:56,061 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\pythonProject\auth_system\logs\ocr.log
+2025-03-10 11:37:58,148 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-10 11:37:58,149 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-10 11:37:58,158 - OCRProcessor - INFO - 系统内存使用情况: 52.7%
+2025-03-10 11:37:58,159 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-10 11:37:58,160 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-10 11:37:58,161 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-10 11:37:59,495 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-10 21:54:07,236 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-10 21:54:07,236 - OCRProcessor - INFO - 日志文件路径: /root/auth_system/logs/ocr.log
+2025-03-10 21:59:20,261 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-10 21:59:20,261 - OCRProcessor - INFO - 日志文件路径: /root/auth_system/logs/ocr.log
+2025-03-10 22:00:06,807 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-10 22:00:06,807 - OCRProcessor - INFO - 日志文件路径: /root/auth_system/logs/ocr.log
+2025-03-10 22:01:36,560 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-10 22:01:36,561 - OCRProcessor - INFO - 日志文件路径: /root/auth_system/logs/ocr.log
+2025-03-10 22:03:03,611 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-10 22:03:03,611 - OCRProcessor - INFO - 日志文件路径: /root/auth_system/logs/ocr.log
+2025-03-10 22:07:31,392 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-10 22:07:31,392 - OCRProcessor - INFO - 日志文件路径: /root/auth_system/logs/ocr.log
+2025-03-10 22:09:03,786 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-10 22:09:03,786 - OCRProcessor - INFO - 日志文件路径: /root/auth_system/logs/ocr.log
+2025-03-10 22:11:48,979 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-10 22:11:48,980 - OCRProcessor - INFO - 日志文件路径: /root/auth_system/logs/ocr.log
+2025-03-10 23:16:36,359 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-10 23:16:36,359 - OCRProcessor - INFO - 日志文件路径: /root/auth_system/logs/ocr.log
+2025-03-10 23:49:37,831 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-10 23:49:37,831 - OCRProcessor - INFO - 日志文件路径: /root/auth_system/logs/ocr.log
+2025-03-10 23:51:34,569 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-10 23:51:34,569 - OCRProcessor - INFO - 日志文件路径: /root/auth_system/logs/ocr.log
+2025-03-10 23:52:11,098 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-10 23:52:11,098 - OCRProcessor - INFO - 日志文件路径: /root/auth_system/logs/ocr.log
+2025-03-11 00:25:49,370 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-11 00:25:49,370 - OCRProcessor - INFO - 日志文件路径: /root/auth_system/logs/ocr.log
+2025-03-11 02:38:34,560 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-11 02:38:34,561 - OCRProcessor - INFO - 日志文件路径: /root/auth_system/logs/ocr.log
+2025-03-11 02:44:09,906 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-11 02:44:09,906 - OCRProcessor - INFO - 日志文件路径: /root/auth_system/logs/ocr.log
+2025-03-11 15:01:44,241 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-11 15:01:44,242 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\project\auth_system\logs\ocr.log
+2025-03-11 15:01:46,022 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-11 15:01:46,022 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-11 15:01:46,033 - OCRProcessor - INFO - 系统内存使用情况: 54.4%
+2025-03-11 15:01:46,033 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-11 15:01:46,034 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-11 15:01:46,035 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-11 15:01:47,312 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-11 15:01:52,190 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-11 15:01:52,191 - OCRProcessor - INFO - 日志文件路径: c:\Users\acederz\Documents\worksoft\project\auth_system\logs\ocr.log
+2025-03-11 15:01:53,237 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-11 15:01:53,238 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-11 15:01:53,246 - OCRProcessor - INFO - 系统内存使用情况: 55.3%
+2025-03-11 15:01:53,247 - OCRProcessor - INFO - 找到 det 模型: C:\Users\acederz\.paddleocr\whl\det/ch/ch_PP-OCRv4_det_infer
+2025-03-11 15:01:53,248 - OCRProcessor - INFO - 找到 rec 模型: C:\Users\acederz\.paddleocr\whl\rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-11 15:01:53,249 - OCRProcessor - INFO - 找到 cls 模型: C:\Users\acederz\.paddleocr\whl\cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-11 15:01:54,642 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-12 14:48:30,563 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-12 14:48:30,564 - OCRProcessor - INFO - 日志文件路径: /tmp/auth_system/logs/ocr.log
+2025-03-12 14:51:04,031 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-12 14:51:04,032 - OCRProcessor - INFO - 日志文件路径: /tmp/auth_system/logs/ocr.log
+2025-03-12 14:53:23,585 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-12 14:53:23,586 - OCRProcessor - INFO - 日志文件路径: /tmp/auth_system/logs/ocr.log
+2025-03-12 14:55:14,474 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-12 14:55:14,474 - OCRProcessor - INFO - 日志文件路径: /tmp/auth_system/logs/ocr.log
+2025-03-12 14:55:18,157 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-12 14:55:18,158 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-12 14:55:18,158 - OCRProcessor - INFO - 系统内存使用情况: 16.2%
+2025-03-12 14:55:18,158 - OCRProcessor - INFO - 找到 det 模型: /root/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer
+2025-03-12 14:55:18,159 - OCRProcessor - INFO - 找到 rec 模型: /root/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-12 14:55:18,159 - OCRProcessor - INFO - 找到 cls 模型: /root/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-12 14:55:18,999 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-12 14:55:23,430 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-12 14:55:23,430 - OCRProcessor - INFO - 日志文件路径: /tmp/auth_system/logs/ocr.log
+2025-03-12 14:55:24,266 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-12 14:55:24,267 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-12 14:55:24,267 - OCRProcessor - INFO - 系统内存使用情况: 20.7%
+2025-03-12 14:55:24,267 - OCRProcessor - INFO - 找到 det 模型: /root/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer
+2025-03-12 14:55:24,267 - OCRProcessor - INFO - 找到 rec 模型: /root/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-12 14:55:24,268 - OCRProcessor - INFO - 找到 cls 模型: /root/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-12 14:55:25,079 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-12 14:59:09,222 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-12 14:59:09,223 - OCRProcessor - INFO - 日志文件路径: /tmp/auth_system/logs/ocr.log
+2025-03-12 14:59:10,411 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-12 14:59:10,411 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-12 14:59:10,412 - OCRProcessor - INFO - 系统内存使用情况: 16.2%
+2025-03-12 14:59:10,412 - OCRProcessor - INFO - 找到 det 模型: /root/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer
+2025-03-12 14:59:10,412 - OCRProcessor - INFO - 找到 rec 模型: /root/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-12 14:59:10,412 - OCRProcessor - INFO - 找到 cls 模型: /root/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-12 14:59:11,519 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-12 14:59:17,620 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-12 14:59:17,620 - OCRProcessor - INFO - 日志文件路径: /tmp/auth_system/logs/ocr.log
+2025-03-12 14:59:18,556 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-12 14:59:18,557 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-12 14:59:18,557 - OCRProcessor - INFO - 系统内存使用情况: 20.6%
+2025-03-12 14:59:18,557 - OCRProcessor - INFO - 找到 det 模型: /root/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer
+2025-03-12 14:59:18,557 - OCRProcessor - INFO - 找到 rec 模型: /root/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-12 14:59:18,557 - OCRProcessor - INFO - 找到 cls 模型: /root/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-12 14:59:19,723 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-12 15:04:06,012 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-12 15:04:06,012 - OCRProcessor - INFO - 日志文件路径: /tmp/auth_system/logs/ocr.log
+2025-03-12 15:04:07,073 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-12 15:04:07,074 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-12 15:04:07,075 - OCRProcessor - INFO - 系统内存使用情况: 16.1%
+2025-03-12 15:04:07,075 - OCRProcessor - INFO - 找到 det 模型: /root/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer
+2025-03-12 15:04:07,075 - OCRProcessor - INFO - 找到 rec 模型: /root/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-12 15:04:07,075 - OCRProcessor - INFO - 找到 cls 模型: /root/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-12 15:04:08,202 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-12 15:04:13,921 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-12 15:04:13,921 - OCRProcessor - INFO - 日志文件路径: /tmp/auth_system/logs/ocr.log
+2025-03-12 15:04:15,084 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-12 15:04:15,085 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-12 15:04:15,085 - OCRProcessor - INFO - 系统内存使用情况: 20.7%
+2025-03-12 15:04:15,085 - OCRProcessor - INFO - 找到 det 模型: /root/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer
+2025-03-12 15:04:15,086 - OCRProcessor - INFO - 找到 rec 模型: /root/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-12 15:04:15,086 - OCRProcessor - INFO - 找到 cls 模型: /root/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-12 15:04:15,974 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-12 15:14:34,293 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-12 15:14:34,294 - OCRProcessor - INFO - 日志文件路径: /tmp/auth_system/logs/ocr.log
+2025-03-12 15:14:35,152 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-12 15:14:35,153 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-12 15:14:35,153 - OCRProcessor - INFO - 系统内存使用情况: 16.3%
+2025-03-12 15:14:35,153 - OCRProcessor - INFO - 找到 det 模型: /root/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer
+2025-03-12 15:14:35,153 - OCRProcessor - INFO - 找到 rec 模型: /root/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-12 15:14:35,153 - OCRProcessor - INFO - 找到 cls 模型: /root/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-12 15:14:35,983 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-12 15:14:39,904 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-12 15:14:39,905 - OCRProcessor - INFO - 日志文件路径: /tmp/auth_system/logs/ocr.log
+2025-03-12 15:14:41,055 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-12 15:14:41,056 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-12 15:14:41,056 - OCRProcessor - INFO - 系统内存使用情况: 20.7%
+2025-03-12 15:14:41,056 - OCRProcessor - INFO - 找到 det 模型: /root/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer
+2025-03-12 15:14:41,056 - OCRProcessor - INFO - 找到 rec 模型: /root/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-12 15:14:41,056 - OCRProcessor - INFO - 找到 cls 模型: /root/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-12 15:14:41,797 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-12 15:14:59,891 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-12 15:14:59,891 - OCRProcessor - INFO - 日志文件路径: /tmp/auth_system/logs/ocr.log
+2025-03-12 15:29:38,614 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-12 15:29:38,615 - OCRProcessor - INFO - 日志文件路径: /tmp/auth_system/logs/ocr.log
+2025-03-12 15:29:39,360 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-12 15:29:39,360 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-12 15:29:39,360 - OCRProcessor - INFO - 系统内存使用情况: 19.8%
+2025-03-12 15:29:39,360 - OCRProcessor - INFO - 找到 det 模型: /root/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer
+2025-03-12 15:29:39,361 - OCRProcessor - INFO - 找到 rec 模型: /root/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-12 15:29:39,361 - OCRProcessor - INFO - 找到 cls 模型: /root/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-12 15:29:40,132 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-12 15:30:51,142 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-12 15:30:51,142 - OCRProcessor - INFO - 日志文件路径: /tmp/auth_system/logs/ocr.log
+2025-03-12 15:30:51,872 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-12 15:30:51,873 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-12 15:30:51,873 - OCRProcessor - INFO - 系统内存使用情况: 19.8%
+2025-03-12 15:30:51,873 - OCRProcessor - INFO - 找到 det 模型: /root/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer
+2025-03-12 15:30:51,873 - OCRProcessor - INFO - 找到 rec 模型: /root/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-12 15:30:51,873 - OCRProcessor - INFO - 找到 cls 模型: /root/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-12 15:30:52,602 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-12 15:31:14,502 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-12 15:31:14,503 - OCRProcessor - INFO - 日志文件路径: /tmp/auth_system/logs/ocr.log
+2025-03-12 15:31:15,307 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-12 15:31:15,308 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-12 15:31:15,308 - OCRProcessor - INFO - 系统内存使用情况: 16.1%
+2025-03-12 15:31:15,308 - OCRProcessor - INFO - 找到 det 模型: /root/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer
+2025-03-12 15:31:15,308 - OCRProcessor - INFO - 找到 rec 模型: /root/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-12 15:31:15,308 - OCRProcessor - INFO - 找到 cls 模型: /root/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-12 15:31:16,072 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-12 15:31:19,865 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-12 15:31:19,865 - OCRProcessor - INFO - 日志文件路径: /tmp/auth_system/logs/ocr.log
+2025-03-12 15:31:20,674 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-12 15:31:20,674 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-12 15:31:20,675 - OCRProcessor - INFO - 系统内存使用情况: 20.8%
+2025-03-12 15:31:20,675 - OCRProcessor - INFO - 找到 det 模型: /root/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer
+2025-03-12 15:31:20,675 - OCRProcessor - INFO - 找到 rec 模型: /root/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-12 15:31:20,675 - OCRProcessor - INFO - 找到 cls 模型: /root/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-12 15:31:21,436 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-12 15:36:27,696 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-12 15:36:27,696 - OCRProcessor - INFO - 日志文件路径: /tmp/auth_system/logs/ocr.log
+2025-03-12 15:36:28,477 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-12 15:36:28,477 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-12 15:36:28,477 - OCRProcessor - INFO - 系统内存使用情况: 15.9%
+2025-03-12 15:36:28,477 - OCRProcessor - INFO - 找到 det 模型: /root/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer
+2025-03-12 15:36:28,478 - OCRProcessor - INFO - 找到 rec 模型: /root/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-12 15:36:28,478 - OCRProcessor - INFO - 找到 cls 模型: /root/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-12 15:36:29,242 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-12 15:36:33,102 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-12 15:36:33,102 - OCRProcessor - INFO - 日志文件路径: /tmp/auth_system/logs/ocr.log
+2025-03-12 15:36:33,883 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-12 15:36:33,884 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-12 15:36:33,884 - OCRProcessor - INFO - 系统内存使用情况: 20.4%
+2025-03-12 15:36:33,884 - OCRProcessor - INFO - 找到 det 模型: /root/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer
+2025-03-12 15:36:33,884 - OCRProcessor - INFO - 找到 rec 模型: /root/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-12 15:36:33,884 - OCRProcessor - INFO - 找到 cls 模型: /root/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-12 15:36:34,619 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-12 15:39:56,921 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-12 15:39:56,922 - OCRProcessor - INFO - 日志文件路径: /tmp/auth_system/logs/ocr.log
+2025-03-12 15:39:57,693 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-12 15:39:57,693 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-12 15:39:57,693 - OCRProcessor - INFO - 系统内存使用情况: 15.9%
+2025-03-12 15:39:57,694 - OCRProcessor - INFO - 找到 det 模型: /root/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer
+2025-03-12 15:39:57,694 - OCRProcessor - INFO - 找到 rec 模型: /root/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-12 15:39:57,694 - OCRProcessor - INFO - 找到 cls 模型: /root/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-12 15:39:58,455 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-12 15:40:02,631 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-12 15:40:02,631 - OCRProcessor - INFO - 日志文件路径: /tmp/auth_system/logs/ocr.log
+2025-03-12 15:40:03,425 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-12 15:40:03,425 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-12 15:40:03,426 - OCRProcessor - INFO - 系统内存使用情况: 20.4%
+2025-03-12 15:40:03,426 - OCRProcessor - INFO - 找到 det 模型: /root/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer
+2025-03-12 15:40:03,426 - OCRProcessor - INFO - 找到 rec 模型: /root/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-12 15:40:03,426 - OCRProcessor - INFO - 找到 cls 模型: /root/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-12 15:40:04,225 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-12 15:41:11,698 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-12 15:41:11,698 - OCRProcessor - INFO - 日志文件路径: /tmp/auth_system/logs/ocr.log
+2025-03-12 16:38:12,222 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-12 16:38:12,223 - OCRProcessor - INFO - 日志文件路径: /tmp/auth_system/logs/ocr.log
+2025-03-12 16:41:03,065 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-12 16:41:03,066 - OCRProcessor - INFO - 日志文件路径: /tmp/auth_system/logs/ocr.log
+2025-03-12 16:42:36,680 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-12 16:42:36,681 - OCRProcessor - INFO - 日志文件路径: /tmp/auth_system/logs/ocr.log
+2025-03-12 16:42:37,688 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-12 16:42:37,688 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-12 16:42:37,689 - OCRProcessor - INFO - 系统内存使用情况: 15.9%
+2025-03-12 16:42:37,689 - OCRProcessor - INFO - 找到 det 模型: /root/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer
+2025-03-12 16:42:37,689 - OCRProcessor - INFO - 找到 rec 模型: /root/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-12 16:42:37,689 - OCRProcessor - INFO - 找到 cls 模型: /root/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-12 16:42:38,903 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-12 16:42:42,983 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-12 16:42:42,983 - OCRProcessor - INFO - 日志文件路径: /tmp/auth_system/logs/ocr.log
+2025-03-12 16:42:43,759 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-12 16:42:43,759 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-12 16:42:43,760 - OCRProcessor - INFO - 系统内存使用情况: 20.4%
+2025-03-12 16:42:43,760 - OCRProcessor - INFO - 找到 det 模型: /root/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer
+2025-03-12 16:42:43,760 - OCRProcessor - INFO - 找到 rec 模型: /root/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-12 16:42:43,760 - OCRProcessor - INFO - 找到 cls 模型: /root/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-12 16:42:44,506 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-12 16:46:32,854 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-12 16:46:32,855 - OCRProcessor - INFO - 日志文件路径: /tmp/auth_system/logs/ocr.log
+2025-03-12 16:46:33,657 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-12 16:46:33,657 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-12 16:46:33,658 - OCRProcessor - INFO - 系统内存使用情况: 20.4%
+2025-03-12 16:46:33,658 - OCRProcessor - INFO - 找到 det 模型: /root/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer
+2025-03-12 16:46:33,658 - OCRProcessor - INFO - 找到 rec 模型: /root/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-12 16:46:33,658 - OCRProcessor - INFO - 找到 cls 模型: /root/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-12 16:46:34,404 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-12 16:58:04,410 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-12 16:58:04,411 - OCRProcessor - INFO - 日志文件路径: /tmp/auth_system/logs/ocr.log
+2025-03-12 16:58:05,228 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-12 16:58:05,228 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-12 16:58:05,229 - OCRProcessor - INFO - 系统内存使用情况: 20.4%
+2025-03-12 16:58:05,229 - OCRProcessor - INFO - 找到 det 模型: /root/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer
+2025-03-12 16:58:05,229 - OCRProcessor - INFO - 找到 rec 模型: /root/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-12 16:58:05,229 - OCRProcessor - INFO - 找到 cls 模型: /root/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-12 16:58:06,054 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-12 17:04:44,880 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-12 17:04:44,880 - OCRProcessor - INFO - 日志文件路径: /tmp/auth_system/logs/ocr.log
+2025-03-12 17:08:38,464 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-12 17:08:38,465 - OCRProcessor - INFO - 日志文件路径: /tmp/auth_system/logs/ocr.log
+2025-03-13 10:58:52,924 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-13 10:58:52,925 - OCRProcessor - INFO - 日志文件路径: /tmp/auth_system/logs/ocr.log
+2025-03-13 11:01:02,518 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-13 11:01:02,518 - OCRProcessor - INFO - 日志文件路径: /tmp/auth_system/logs/ocr.log
+2025-03-13 11:07:57,743 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-13 11:07:57,743 - OCRProcessor - INFO - 日志文件路径: /tmp/auth_system/logs/ocr.log
+2025-03-13 11:07:58,512 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-13 11:07:58,512 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-13 11:07:58,512 - OCRProcessor - INFO - 系统内存使用情况: 21.0%
+2025-03-13 11:07:58,513 - OCRProcessor - INFO - 找到 det 模型: /root/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer
+2025-03-13 11:07:58,513 - OCRProcessor - INFO - 找到 rec 模型: /root/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-13 11:07:58,513 - OCRProcessor - INFO - 找到 cls 模型: /root/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-13 11:07:59,393 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-13 11:08:03,345 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-13 11:08:03,345 - OCRProcessor - INFO - 日志文件路径: /tmp/auth_system/logs/ocr.log
+2025-03-13 11:08:04,027 - OCRProcessor - INFO - 开始初始化 OCRProcessor...
+2025-03-13 11:08:04,028 - OCRProcessor - INFO - 正在初始化 PaddleOCR...
+2025-03-13 11:08:04,028 - OCRProcessor - INFO - 系统内存使用情况: 25.5%
+2025-03-13 11:08:04,028 - OCRProcessor - INFO - 找到 det 模型: /root/.paddleocr/whl/det/ch/ch_PP-OCRv4_det_infer
+2025-03-13 11:08:04,028 - OCRProcessor - INFO - 找到 rec 模型: /root/.paddleocr/whl/rec/ch/ch_PP-OCRv4_rec_infer
+2025-03-13 11:08:04,028 - OCRProcessor - INFO - 找到 cls 模型: /root/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer
+2025-03-13 11:08:04,834 - OCRProcessor - INFO - PaddleOCR初始化完成
+2025-03-13 11:08:56,178 - OCRProcessor - INFO - 日志系统初始化成功
+2025-03-13 11:08:56,178 - OCRProcessor - INFO - 日志文件路径: /tmp/auth_system/logs/ocr.log

@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+{% block title %}授权书管理{% endblock %}
+
+{% block content %}
+<div class="auth-list">
+    <div class="list-header">
+        <h2>授权书管理</h2>
+        <div class="header-actions">
+            <a href="{{ url_for('main.download_template') }}" class="btn btn-secondary">下载Word模板</a>
+            <button onclick="exportExcel()" class="btn btn-secondary">导出Excel</button>
+            <a href="{{ url_for('upload.upload_page') }}" class="btn btn-primary">上传授权书</a>
+        </div>
+    </div>
+
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="搜索授权编号、被授权人、品牌...">
+        <select id="channelFilter">
+            <option value="">全部渠道</option>
+            {% for channel in channels %}
+            <option value="{{ channel }}">{{ channel }}</option>
+            {% endfor %}
+        </select>
+        <select id="statusFilter">
+            <option value="">全部状态</option>
+            <option value="生效中">生效中</option>
+            <option value="已过期">已过期</option>
+        </select>
+        <select id="yearFilter">
+            <option value="">全部年份</option>
+            {% for year in years %}
+            <option value="{{ year }}">{{ year }}</option>
+            {% endfor %}
+        </select>
+        <button onclick="searchAuths()" class="btn btn-search">搜索</button>
+    </div>
+
+    <div class="table-container">
+        <table class="auth-table">
+            <thead>
+                <tr>
+                    <th>授权编号</th>
+                    <th>被授权人</th>
+                    <th>授权品牌</th>
+                    <th>授权渠道</th>
+                    <th>授权时间范围</th>
+                    <th>授权状态</th>
+                    <th>创建时间</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for auth in authorizations %}
+                <tr>
+                    <td>{{ auth.auth_number }}</td>
+                    <td>{{ auth.company }}</td>
+                    <td>{{ auth.brand }}</td>
+                    <td>{{ auth.channel }}</td>
+                    <td>{{ auth.valid_period }}</td>
+                    <td>
+                        <span class="status-badge {{ auth.status }}">
+                            {{ auth.status }}
+                        </span>
+                    </td>
+                    <td>{{ auth.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                    <td>
+                        <button onclick="viewAuth('{{ auth.id }}')" class="btn btn-small">查看</button>
+                        <button onclick="downloadAuth('{{ auth.id }}')" class="btn btn-small">下载</button>
+                        <button onclick="openEditModal(this, '{{ auth.id }}', '{{ auth.auth_number }}', '{{ auth.company }}', '{{ auth.brand }}', '{{ auth.channel }}', '{{ auth.valid_period }}')" class="btn btn-small edit-btn">编辑</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 模态框 -->
+    <div id="editModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>编辑授权书</h2>
+            <table>
+                <tr>
+                    <td><label for="editAuthNumber">授权编号:</label></td>
+                    <td><input type="text" id="editAuthNumber"></td>
+                </tr>
+                <tr>
+                    <td><label for="editCompany">被授权人:</label></td>
+                    <td><input type="text" id="editCompany"></td>
+                </tr>
+                <tr>
+                    <td><label for="editBrand">授权品牌:</label></td>
+                    <td><input type="text" id="editBrand"></td>
+                </tr>
+                <tr>
+                    <td><label for="editChannel">授权渠道:</label></td>
+                    <td><input type="text" id="editChannel"></td>
+                </tr>
+                <tr>
+                    <td><label for="editValidPeriod">授权时间范围:</label></td>
+                    <td><input type="text" id="editValidPeriod"></td>
+                </tr>
+                <tr><td></td><td><button onclick="saveEdit()" class="btn btn-primary" >保存</button></td></tr>
+        </table>
+        </div>
+    </div>
+
+    <div id="viewModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>授权书图片预览</h2>
+            <div class="modal-image-container"></div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/list.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>查询结果 - 信息查询系统</title>
+    <meta charset="utf-8">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        {% if auth %}
+                            <div class="text-center mb-4">
+                                <i class="fas fa-check-circle text-success" style="font-size: 48px;"></i>
+                                <h3 class="mt-3">授权验证通过</h3>
+                                <p class="text-muted">该授权书已经过系统验证，信息真实有效</p>
+                            </div>
+                            <div class="auth-info">
+                                <h4>授权信息</h4>
+                                <table class="table">
+                                    <tr>
+                                        <th>授权编号：</th>
+                                        <td>{{ auth.auth_number }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>被授权人：</th>
+                                        <td>{{ auth.company }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>授权渠道：</th>
+                                        <td>{{ auth.channel }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>授权时间：</th>
+                                        <td>{{ auth.valid_period }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>授权品牌：</th>
+                                        <td>{{ auth.brand }}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            {% if auth.documents %}
+                            <div class="mt-4">
+                                <h4>授权书原件</h4>
+                                {% for d in auth.documents %}
+                                <img src="{{ url_for('static', filename='uploads/'+d.filename) }}" class="img-fluid">
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                        {% else %}
+                            <div class="text-center mb-4">
+                                <i class="fas fa-times-circle text-danger" style="font-size: 48px;"></i>
+                                <h3 class="mt-3">未查询到授权信息</h3>
+                                <p class="text-muted">请检查授权编号和密钥是否正确，或联系系统管理员</p>
+                            </div>
+                        {% endif %}
+                        <div class="text-center mt-4">
+                            <a href="{{ url_for('verify.query') }}" class="btn btn-primary">返回查询</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> 
