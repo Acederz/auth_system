@@ -9,7 +9,7 @@ class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or os.urandom(24)
     
     # 数据库配置
-    SQLALCHEMY_DATABASE_URI = f"mysql://root:Bigdata_1@localhost:3306/auth_system"
+    SQLALCHEMY_DATABASE_URI = f"mysql://root:Bigdata_1@192.168.80.150:3306/auth_system"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     
     # 文件上传配置

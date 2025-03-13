@@ -1,23 +1,17 @@
 # Python
 __pycache__/
 *.py[cod]
-*.log
-*.sqlite
-.env
-.env.dev
+*.so
+.Python
+venv/
 
 # Virtual Environment
 venv/
-.venv/
+
+# Logs
+logs/
+*.log
 
 # IDE
 .vscode/
 .idea/
-
-# Flask specific
-instance/
-uploads/
-
-# Test
-.coverage
-htmlcov/
