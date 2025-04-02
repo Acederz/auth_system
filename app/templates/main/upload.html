@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}授权书登记{% endblock %}
+
+{% block content %}
+<div class="upload-container">
+    <div class="upload-header">
+        <h2>授权书登记</h2>
+    </div>
+
+    <div class="upload-form">
+        <div class="form-section">
+            <div class="form-group">
+                <label for="authNumber">授权编号</label>
+                <div class="input-group">
+                    <input type="text" id="authNumber" required>
+                    <button onclick="generateSystemKey()" class="btn btn-secondary">生成秘钥</button>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="systemKey">系统秘钥</label>
+                <label style="color: red;">如果授权编号之前已生成过密钥，则会获取历史密钥信息。</label>
+                <div class="input-group">
+                    <input type="text" id="systemKey" readonly>
+                    <button onclick="copySystemKey()" class="btn btn-secondary">复制</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="upload-section">
+            <div class="upload-box" id="dropZone">
+                <img src="{{ url_for('static', filename='images/upload-icon.png') }}" alt="上传">
+                <p>拖拽文件到此处或点击上传</p>
+                <p>支持通用模板识别关键信息，其他模板需要手动填写修改信息</p>
+                <p class="sub-text">支持格式：PDF、JPG、PNG、TIF，单个文件不超过10MB</p>
+            </div>
+            
+            <div class="progress-container" style="display: none;">
+                <div class="progress-bar">
+                    <div class="progress" style="width: 0%"></div>
+                </div>
+                <span class="progress-text">正在上传：0%</span>
+            </div>
+        </div>
+
+        <div class="ocr-results">
+            <h3>识别结果</h3>
+            <span style="color: red;">识别结果可能存在些许错误，请在文本框中修改</span>
+            <div class="form-group">
+                <label for="company">被授权人</label>
+                <input type="text" id="company">
+            </div>
+            <div class="form-group">
+                <label for="channel">授权渠道</label>
+                <input type="text" id="channel">
+            </div>
+            <div class="form-group">
+                <label for="validPeriod">授权时间</label>
+                <input type="text" id="validPeriod">
+            </div>
+            <div class="form-group">
+                <label for="brand">授权品牌</label>
+                <input type="text" id="brand">
+            </div>
+        </div>
+
+        <div class="uploaded-files">
+            <h3>已上传文件</h3>
+            <ul id="fileList"></ul>
+        </div>
+
+        <div class="form-actions">
+            <button onclick="submitForm()" class="btn btn-primary">提交</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/upload.js') }}"></script>
+{% endblock %}
