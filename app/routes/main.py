@@ -157,3 +157,37 @@ def download_template():
     """下载授权书模板"""
     filepath = os.path.join(current_app.config['UPLOAD_FOLDER'], '授权模版.docx')
     return send_file(filepath, as_attachment=True)
+
+@main.route('/deleteauth/<auth_id>', methods=['DELETE'])
+def delete_auth(auth_id):
+    """删除授权书及其相关文档"""
+    try:
+        # 查找授权记录
+        auth = Authorization.query.get(auth_id)
+        if not auth:
+            return jsonify({'success': False, 'error': '未找到授权记录'}), 404
+        
+        # 查找相关文档
+        documents = Document.query.filter_by(auth_id=auth_id).all()
+        
+        # 删除文件系统中的文档文件
+        for doc in documents:
+            filepath = os.path.join(current_app.config['UPLOAD_FOLDER'], doc.filename)
+            if os.path.exists(filepath):
+                try:
+                    os.remove(filepath)
+                except Exception as e:
+                    current_app.logger.error(f"删除文件失败: {filepath}, 错误: {str(e)}")
+            
+            # 从数据库中删除文档记录
+            db.session.delete(doc)
+        
+        # 删除授权记录
+        db.session.delete(auth)
+        db.session.commit()
+        
+        return jsonify({'success': True})
+    except Exception as e:
+        db.session.rollback()
+        current_app.logger.error(f"删除授权记录失败: {str(e)}")
+        return jsonify({'success': False, 'error': str(e)}), 500

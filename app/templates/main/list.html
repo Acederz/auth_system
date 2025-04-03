@@ -69,6 +69,7 @@
                         <button onclick="viewAuth('{{ auth.id }}')" class="btn btn-small">查看</button>
                         <button onclick="downloadAuth('{{ auth.id }}')" class="btn btn-small">下载</button>
                         <button onclick="openEditModal(this, '{{ auth.id }}', '{{ auth.auth_number }}', '{{ auth.company }}', '{{ auth.brand }}', '{{ auth.channel }}', '{{ auth.valid_period }}')" class="btn btn-small edit-btn">编辑</button>
+                        <button onclick="confirmDelete('{{ auth.id }}')" class="btn btn-small delete-btn">删除</button>
                     </td>
                 </tr>
                 {% endfor %}
@@ -112,6 +113,18 @@
             <span class="close" onclick="closeModal()">&times;</span>
             <h2>授权书图片预览</h2>
             <div class="modal-image-container"></div>
+        </div>
+    </div>
+
+    <div id="deleteModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>确认删除</h2>
+            <p>您确定要删除这条授权记录吗？此操作不可恢复。</p>
+            <div class="modal-actions">
+                <button onclick="closeModal()" class="btn btn-secondary">取消</button>
+                <button onclick="deleteAuth()" class="btn btn-danger">确认删除</button>
+            </div>
         </div>
     </div>
 </div>

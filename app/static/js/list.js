@@ -73,6 +73,7 @@ document.getElementById('searchInput').addEventListener('keypress', function(e) 
 function closeModal() {
     document.getElementById('editModal').style.display = 'none'; // 隐藏模态框
     document.getElementById('viewModal').style.display = 'none'; 
+    document.getElementById('deleteModal').style.display = 'none';
 }
 
 // 打开编辑模态框并填充当前行数据
@@ -111,5 +112,36 @@ async function saveEdit() {
         location.reload();
     } else {
         alert('更新失败');
+    }
+}
+
+function confirmDelete(authId) {
+    window.currentAuthId = authId; // 保存当前要删除的授权ID
+    document.getElementById('deleteModal').style.display = 'block';
+}
+
+// 执行删除操作
+async function deleteAuth() {
+    try {
+        const response = await fetch(`/deleteauth/${window.currentAuthId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        const result = await response.json();
+        
+        if (result.success) {
+            // 删除成功后刷新页面
+            location.reload();
+        } else {
+            alert('删除失败: ' + result.error);
+        }
+    } catch (error) {
+        console.error('删除过程中出错:', error);
+        alert('删除过程中出错');
+    } finally {
+        closeModal();
     }
 }
