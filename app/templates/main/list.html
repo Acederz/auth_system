@@ -77,6 +77,37 @@
         </table>
     </div>
 
+    <!-- 分页控件 -->
+    <div class="pagination">
+        {% if pagination.has_prev %}
+            <a href="{{ url_for('main.list', page=pagination.prev_num, search=request.args.get('search', ''), channel=request.args.get('channel', ''), status=request.args.get('status', ''), year=request.args.get('year', '')) }}" class="page-link">&laquo; 上一页</a>
+        {% else %}
+            <span class="page-link disabled">&laquo; 上一页</span>
+        {% endif %}
+
+        {% for page in pagination.iter_pages(left_edge=2, left_current=2, right_current=3, right_edge=2) %}
+            {% if page %}
+                {% if page == pagination.page %}
+                    <span class="page-link active">{{ page }}</span>
+                {% else %}
+                    <a href="{{ url_for('main.list', page=page, search=request.args.get('search', ''), channel=request.args.get('channel', ''), status=request.args.get('status', ''), year=request.args.get('year', '')) }}" class="page-link">{{ page }}</a>
+                {% endif %}
+            {% else %}
+                <span class="page-link">...</span>
+            {% endif %}
+        {% endfor %}
+
+        {% if pagination.has_next %}
+            <a href="{{ url_for('main.list', page=pagination.next_num, search=request.args.get('search', ''), channel=request.args.get('channel', ''), status=request.args.get('status', ''), year=request.args.get('year', '')) }}" class="page-link">下一页 &raquo;</a>
+        {% else %}
+            <span class="page-link disabled">下一页 &raquo;</span>
+        {% endif %}
+        
+        <div class="page-info">
+            第 {{ pagination.page }} 页，共 {{ pagination.pages }} 页，总计 {{ pagination.total }} 条记录
+        </div>
+    </div>
+
     <!-- 模态框 -->
     <div id="editModal" class="modal" style="display: none;">
         <div class="modal-content">

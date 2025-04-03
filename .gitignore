@@ -5,11 +5,12 @@ app/routes/__pycache__/
 app/static/uploads/
 app/models/__pycache__/
 app/utils/__pycache__/
-logs/
 *.py[cod]
 *.so
 .Python
 venv/
+config.py
+requirements.txt
 
 # Virtual Environment
 venv/

@@ -23,6 +23,9 @@ def index():
 @login_required
 def list():
     # 获取查询参数
+    page = request.args.get('page', 1, type=int)
+    per_page = 10  # 每页显示的记录数
+    # 获取查询参数
     search = request.args.get('search', '')
     channel = request.args.get('channel', '')
     status = request.args.get('status', '')
@@ -44,16 +47,21 @@ def list():
     if year:
         query = query.filter(Authorization.valid_period.contains(year))
 
-    authorizations = query.order_by(Authorization.created_at.desc()).all()
+    # 分页查询
+    pagination = query.order_by(Authorization.created_at.desc()).paginate(
+        page=page, per_page=per_page, error_out=False
+    )
+    authorizations = pagination.items
     # 获取所有授权书的有效期
+    all_auths = Authorization.query.all()
     yearSet = set()
     channelSet = set()
-    for auth in authorizations :
+    for auth in all_auths :
          print(auth.valid_period+'  '+auth.channel)
          yearSet.update(re.findall(r'\d{4}', auth.valid_period))
          channelSet.add(auth.channel)
     years = sorted(yearSet)
-    return render_template('main/list.html', authorizations=authorizations, years=years,channels = channelSet)
+    return render_template('main/list.html', authorizations=authorizations, pagination=pagination, years=years,channels = channelSet)
 
 @main.route('/export-excel')
 @login_required
