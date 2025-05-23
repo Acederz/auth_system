@@ -55,7 +55,7 @@ if __name__ == '__main__':
         
         # 运行应用
         print("启动应用服务器...")
-        app.run(host='0.0.0.0', port=5002, debug=True)
+        app.run(host='0.0.0.0', port=5001, debug=True)
     except Exception as e:
         print(f"应用启动错误: {str(e)}")
         raise
