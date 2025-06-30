@@ -22,7 +22,8 @@ def make_shell_context():
     from app.models.authorization import Authorization
     from app.models.document import Document
     from app.models.systemkey import SystemKey
-    return dict(db=db, Authorization=Authorization, Document=Document, SystemKey=SystemKey)
+    from app.models.enroll import Enroll, ModelQuantity
+    return dict(db=db, Authorization=Authorization, Document=Document, SystemKey=SystemKey, Enroll=Enroll, ModelQuantity=ModelQuantity)
 
 @app.cli.command()
 def deploy():

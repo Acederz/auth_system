@@ -1,0 +1,423 @@
+{% extends "base.html" %} {% block title %}登记申请详情{% endblock %} {% block
+content %}
+<div class="verify-container">
+  <div class="verify-header">
+    <h2>登记申请详情</h2>
+    <p class="verify-subtitle">登记编号：<strong>{{ enroll.id }}</strong></p>
+    <input id="enroll-id" type="hidden" value="{{ enroll.id }}" />
+  </div>
+
+  <div class="verify-info">
+    <div class="info-item">
+      <span class="info-label">项目名称：</span>
+      <span class="info-value">{{ enroll.project_name }}</span>
+    </div>
+    <div class="info-item">
+      <span class="info-label">有效期：</span>
+      <span class="info-value"
+        >{{ enroll.start_date }} 至 {{ enroll.end_date }}</span
+      >
+    </div>
+    <div class="info-item">
+      <span class="info-label">报备公司：</span>
+      <span class="info-value">{{ enroll.company }}</span>
+    </div>
+    <div class="info-item">
+      <span class="info-label">授权公司：</span>
+      <span class="info-value">{{ enroll.authorized_company }}</span>
+    </div>
+    <div class="info-item">
+      <span class="info-label">对接业务：</span>
+      <span class="info-value">{{ enroll.business }}</span>
+    </div>
+    <div class="info-item">
+      <span class="info-label">报表品类：</span>
+      <span class="info-value">{{ enroll.category }}</span>
+    </div>
+    <div class="info-item">
+      <span class="info-label">中标情况：</span>
+      <span class="info-value">{{ enroll.bid }}</span>
+    </div>
+    <div class="info-item">
+      <span class="info-label">状态：</span>
+      <span class="info-value"> {{ enroll.status }} </span>
+    </div>
+    <div class="info-item">
+      <span class="info-label">申请人：</span>
+      <span class="info-value">{{ enroll.username }}</span>
+    </div>
+
+    <div class="model-quantity mt-4">
+      <h5>登记型号及数量：</h5>
+      <ul class="list-group model-list">
+        {% for item in enroll.model_quantities %}
+        <li
+          class="list-group-item d-flex justify-content-between align-items-center"
+          data-model="{{ item.model }}"
+          data-id="{{ item.id }}"
+        >
+          <div>
+            {{ item.model }}
+            <span class="badge status-badge {{ item.status }} ms-2">
+              {{ item.status }}
+            </span>
+            <span class="model-stats" id="detail-stats-{{ item.id }}"></span>
+          </div>
+          <span class="badge bg-primary rounded-pill">{{ item.quantity }}</span>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+  <div class="text-center mt-4">
+    <a
+      href="{{ url_for('audited.enroll_list') }}"
+      class="btn btn-secondary mx-2"
+      >返回列表</a
+    >
+    {% if enroll.status == '待审核' %}
+    <button
+      onclick="openAuditModal('{{ enroll.id }}')"
+      class="btn btn-primary mx-2"
+    >
+      审核
+    </button>
+    {% endif %}
+  </div>
+
+  <!-- 审核模态框 -->
+  <div id="auditModal" class="modal" style="display: none">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2>审核登记申请</h2>
+      <input type="hidden" id="auditEnrollId" />
+      <div class="form-group">
+        <label for="auditStatus">审核结果:</label>
+        <select id="auditStatus" class="form-control">
+          <option value="已通过">通过</option>
+          <option value="已拒绝">拒绝</option>
+        </select>
+      </div>
+
+      <!-- 替换审核意见为型号勾选列表 -->
+      <div>
+        <label>选择授权型号:</label>
+        <div class="model-checkbox-list">
+          {% for item in enroll.model_quantities %}
+          <div class="form-check">
+            <input
+              class="form-check-input model-checkbox"
+              type="checkbox"
+              value="{{ item.id }}"
+              id="model{{ item.id }}"
+              data-model="{{ item.model }}"
+            />
+            <label class="form-check-label" for="model{{ item.id }}">
+              {{ item.model }} (数量: {{ item.quantity }})
+              <span class="model-stats" id="stats-{{ item.id }}"></span>
+            </label>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="mt-2">
+          <button
+            type="button"
+            class="btn btn-sm btn-outline-secondary"
+            onclick="selectAllModels()"
+          >
+            全选
+          </button>
+          <button
+            type="button"
+            class="btn btn-sm btn-outline-secondary"
+            onclick="deselectAllModels()"
+          >
+            取消全选
+          </button>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button onclick="closeModal()" class="btn btn-secondary">取消</button>
+        <button onclick="submitAudit()" class="btn btn-primary">提交</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %} {% block extra_css %}
+<style>
+  .verify-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 15px;
+  }
+  .verify-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .verify-subtitle {
+    color: #666;
+    font-size: 14px;
+  }
+  .verify-info {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  .info-item {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+  }
+  .info-label {
+    display: inline-block;
+    width: 120px;
+    font-weight: 500;
+    color: #666;
+  }
+  .info-value {
+    color: #333;
+  }
+  .model-quantity {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+  }
+  .status-badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+  }
+  .status-badge.待审核 {
+    background-color: #ffc107;
+    color: #212529;
+  }
+  .status-badge.已通过 {
+    background-color: #28a745;
+    color: white;
+  }
+  .status-badge.未通过 {
+    background-color: #dc3545;
+    color: white;
+  }
+  /* 保留原有的待审核样式 */
+  .status-badge.待审核 {
+    background-color: #ffc107;
+    color: #212529;
+  }
+  .status-badge.已拒绝 {
+    background-color: #dc3545;
+    color: white;
+  }
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  .modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 5px;
+    width: 50%;
+    max-width: 500px;
+  }
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .form-group {
+    margin-bottom: 15px;
+  }
+  .form-control {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  .modal-actions {
+    text-align: right;
+    margin-top: 20px;
+  }
+  
+  /* 确保模态框中的按钮高度一致 */
+  .modal-actions .btn {
+    height: 38px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+  }
+
+  .model-checkbox-list {
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    margin-top: 5px;
+    background-color: #f9f9f9;
+  }
+  .form-check {
+    margin-bottom: 8px;
+  }
+  .form-check-input {
+    margin-right: 8px;
+  }
+
+  .mt-2 {
+    text-align: right;
+  }
+  
+  .model-stats {
+    margin-left: 10px;
+    font-size: 12px;
+  }
+  
+  .has-approved {
+    color: #28a745;
+  }
+</style>
+{% endblock %} {% block extra_js %}
+<script>
+  // 页面加载完成后，加载详情页的型号统计信息
+  $(document).ready(function() {
+    const enrollId = $("#enroll-id").val(); // 从隐藏字段获取登记ID
+    
+    // 为详情页的每个型号加载使用统计
+    $(".model-list li").each(function() {
+      const model = $(this).data("model");
+      const modelId = $(this).data("id");
+      loadModelStatsForDetail(model, modelId, enrollId);
+    });
+  });
+  
+  function loadModelStatsForDetail(model, modelId, enrollId) {
+    $.ajax({
+      url: "{{ url_for('audited.get_model_stats') }}",
+      method: "GET",
+      data: { 
+        model: model,
+        enroll_id: enrollId
+      },
+      success: function(response) {
+        if (response.success) {
+          let statsHtml = `<span class="badge bg-secondary">已有: ${response.total_count}家申请记录</span>`;
+          
+          if (response.has_approved) {
+            statsHtml += ` <span class="badge bg-success">已有通过的申请</span>`;
+          }
+          
+          $(`#detail-stats-${modelId}`).html(statsHtml);
+        }
+      },
+      error: function(xhr, status, error) {
+        console.error("获取型号统计失败:", error);
+      }
+    });
+  }
+
+  function openAuditModal(enrollId) {
+    $("#auditEnrollId").val(enrollId);
+    $("#auditModal").show();
+    
+    const currentEnrollId = $("#enroll-id").val(); // 获取当前登记ID
+    
+    // 为每个型号加载使用统计
+    $(".model-checkbox").each(function() {
+      const modelId = $(this).val();
+      const model = $(this).data('model');
+      loadModelStats(model, modelId, currentEnrollId);
+    });
+  }
+  
+  function loadModelStats(model, modelId, enrollId) {
+    $.ajax({
+      url: "{{ url_for('audited.get_model_stats') }}",
+      method: "GET",
+      data: { 
+        model: model,
+        enroll_id: enrollId
+      },
+      success: function(response) {
+        if (response.success) {
+          let statsHtml = `<span class="badge bg-secondary">已有: ${response.total_count}家申请记录</span>`;
+          
+          if (response.has_approved) {
+            statsHtml += ` <span class="badge bg-success">已有通过的申请</span>`;
+          }
+          
+          $(`#stats-${modelId}`).html(statsHtml);
+        }
+      },
+      error: function(xhr, status, error) {
+        console.error("获取型号统计失败:", error);
+      }
+    });
+  }
+
+  function closeModal() {
+    $("#auditModal").hide();
+  }
+
+  // 全选型号
+  function selectAllModels() {
+    $(".model-checkbox").prop("checked", true);
+  }
+
+  // 取消全选
+  function deselectAllModels() {
+    $(".model-checkbox").prop("checked", false);
+  }
+
+  function submitAudit() {
+    const enrollId = $("#auditEnrollId").val();
+    const status = $("#auditStatus").val();
+    //const comment = $("#auditComment").val();
+
+    // 获取所有勾选的型号ID
+    const selectedModels = [];
+    $(".model-checkbox:checked").each(function () {
+      selectedModels.push($(this).val());
+    });
+
+    $.ajax({
+      url: "{{ url_for('audited.audit_enroll') }}",
+      method: "POST",
+      contentType: "application/json",
+      data: JSON.stringify({
+        enroll_id: enrollId,
+        status: status,
+        //comment: comment,
+        authorized_models: selectedModels, // 添加勾选的型号ID列表
+      }),
+      success: function (response) {
+        if (response.success) {
+          showAlertS("审核成功！");
+          setTimeout(function () {
+            window.location.reload();
+          }, 1500);
+        } else {
+          showAlert("审核失败: " + response.message);
+        }
+        closeModal();
+      },
+      error: function (xhr, status, error) {
+        console.error("审核失败:", error);
+        showAlert("审核失败，请稍后重试。");
+        closeModal();
+      },
+    });
+  }
+</script>
+{% endblock %}

@@ -1,0 +1,153 @@
+{% extends "base.html" %} {% block title %}登记申请管理{% endblock %} {% block
+content %}
+<div class="auth-list">
+  <div class="list-header">
+    <h2>登记申请管理</h2>
+    <div class="header-actions">
+      <button onclick="exportExcel()" class="btn btn-secondary">
+        导出Excel
+      </button>
+    </div>
+  </div>
+
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="搜索项目名称、公司..." />
+    <select id="statusFilter">
+      <option value="">全部状态</option>
+      <option value="待审核">待审核</option>
+      <option value="已通过">已通过</option>
+      <option value="已拒绝">已拒绝</option>
+    </select>
+    <select id="bidFilter">
+      <option value="">全部中标情况</option>
+      <option value="已中标">已中标</option>
+      <option value="未中标">未中标</option>
+      <option value="未开始">未开始</option>
+    </select>
+    <button onclick="searchEnrolls()" class="btn btn-search">搜索</button>
+  </div>
+
+  <div class="table-container">
+    <table class="auth-table">
+      <thead>
+        <tr>
+          <th>项目名称</th>
+          <th>报备公司</th>
+          <th>授权公司</th>
+          <th>开始时间</th>
+          <th>结束时间</th>
+          <th>中标情况</th>
+          <th>状态</th>
+          <th>申请人</th>
+          <th>申请时间</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for enroll in enrolls %}
+        <tr>
+          <td>{{ enroll.project_name }}</td>
+          <td>{{ enroll.company }}</td>
+          <td>{{ enroll.authorized_company }}</td>
+          <td>{{ enroll.start_date }}</td>
+          <td>{{ enroll.end_date }}</td>
+          <td>{{ enroll.bid }}</td>
+          <td>
+            <span class="status-badge {{ enroll.status }}">
+              {{ enroll.status }}
+            </span>
+          </td>
+          <td>{{ enroll.username }}</td>
+          <td>{{ enroll.created_at }}</td>
+          <td>
+            <a
+              href="{{ url_for('audited.enroll_detail', enroll_id=enroll.id) }}"
+              class="btn btn-small"
+              >查看</a
+            >
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 分页控件 -->
+  <div class="pagination">
+    {% if pagination.has_prev %}
+    <a
+      href="{{ url_for('audited.enroll_list', page=pagination.prev_num, search=request.args.get('search', ''), status=request.args.get('status', ''), bid=request.args.get('bid', '')) }}"
+      class="page-link"
+      >&laquo; 上一页</a
+    >
+    {% else %}
+    <span class="page-link disabled">&laquo; 上一页</span>
+    {% endif %} {% for page in pagination.iter_pages(left_edge=2,
+    left_current=2, right_current=3, right_edge=2) %} {% if page %} {% if page
+    == pagination.page %}
+    <span class="page-link active">{{ page }}</span>
+    {% else %}
+    <a
+      href="{{ url_for('audited.enroll_list', page=page, search=request.args.get('search', ''), status=request.args.get('status', ''), bid=request.args.get('bid', '')) }}"
+      class="page-link"
+      >{{ page }}</a
+    >
+    {% endif %} {% else %}
+    <span class="page-link">...</span>
+    {% endif %} {% endfor %} {% if pagination.has_next %}
+    <a
+      href="{{ url_for('audited.enroll_list', page=pagination.next_num, search=request.args.get('search', ''), status=request.args.get('status', ''), bid=request.args.get('bid', '')) }}"
+      class="page-link"
+      >下一页 &raquo;</a
+    >
+    {% else %}
+    <span class="page-link disabled">下一页 &raquo;</span>
+    {% endif %}
+
+    <div class="page-info">
+      第 {{ pagination.page }} 页，共 {{ pagination.pages }} 页，总计 {{
+      pagination.total }} 条记录
+    </div>
+  </div>
+</div>
+{% endblock %} {% block extra_js %}
+<script>
+  function searchEnrolls() {
+    const searchText = $("#searchInput").val();
+    const status = $("#statusFilter").val();
+    const bid = $("#bidFilter").val();
+
+    window.location.href =
+      "{{ url_for('audited.enroll_list') }}" +
+      "?search=" +
+      encodeURIComponent(searchText) +
+      "&status=" +
+      encodeURIComponent(status) +
+      "&bid=" +
+      encodeURIComponent(bid);
+  }
+
+  function exportExcel() {
+    const searchText = $("#searchInput").val();
+    const status = $("#statusFilter").val();
+    const bid = $("#bidFilter").val();
+
+    window.location.href =
+      "{{ url_for('audited.export_enrolls') }}" +
+      "?search=" +
+      encodeURIComponent(searchText) +
+      "&status=" +
+      encodeURIComponent(status) +
+      "&bid=" +
+      encodeURIComponent(bid);
+  }
+
+  // 页面加载时从URL参数中恢复搜索条件
+  $(document).ready(function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    $("#searchInput").val(urlParams.get("search") || "");
+    $("#statusFilter").val(urlParams.get("status") || "");
+    $("#bidFilter").val(urlParams.get("bid") || "");
+  });
+</script>
+{% endblock %}

@@ -1,0 +1,316 @@
+{% extends "base_user.html" %} {# 继承用户基础模板 #} {% block title
+%}登记详情{% endblock %} {% block content %}
+<div class="verify-container">
+  {# 使用与登记表单相似的容器样式 #}
+  <div class="verify-header">
+    <h2>登记详情</h2>
+    <p class="verify-subtitle">登记编号：<strong>{{ enroll.id }}</strong></p>
+    <input id="enroll-id" type="hidden" value="{{ enroll.id }}" />
+  </div>
+
+  <div class="verify-info">
+    {# 使用信息展示样式 #}
+    <div class="info-item">
+      <span class="info-label">项目名称：</span>
+      <span class="info-value">{{ enroll.project_name }}</span>
+    </div>
+    <div class="info-item">
+      <span class="info-label">有效期：</span>
+      <span class="info-value"
+        >{{ enroll.start_date }} 至 {{ enroll.end_date }}</span
+      >
+    </div>
+    <div class="info-item">
+      <span class="info-label">报备公司：</span>
+      <span class="info-value">{{ enroll.company }}</span>
+    </div>
+    <div class="info-item">
+      <span class="info-label">授权公司：</span>
+      <span class="info-value">{{ enroll.authorized_company }}</span>
+    </div>
+    <div class="info-item">
+      <span class="info-label">对接业务：</span>
+      <span class="info-value">{{ enroll.business }}</span>
+    </div>
+    <div class="info-item">
+      <span class="info-label">报表品类：</span>
+      <span class="info-value"> {{ enroll.category }} </span>
+    </div>
+    <div class="info-item">
+      {# 显示中标情况 #}
+      <span class="info-label">中标情况：</span>
+      <span class="info-value" id="bid-status-display">{{ enroll.bid }}</span>
+      {# 添加ID用于JS控制 #}
+      <div id="bid-status-edit" style="display: none">
+        {# 编辑状态下的单选按钮组，初始隐藏 #}
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="edit_bid_status"
+          id="edit_bid_success" value="已中标" {% if enroll.bid == '已中标'
+          %}checked{% endif %}>
+          <label class="form-check-label" for="edit_bid_success">已中标</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="edit_bid_status"
+          id="edit_bid_fail" value="未中标" {% if enroll.bid == '未中标'
+          %}checked{% endif %}>
+          <label class="form-check-label" for="edit_bid_fail">未中标</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="edit_bid_status"
+          id="edit_bid_pending" value="未开始" {% if enroll.bid == '未开始'
+          %}checked{% endif %}>
+          <label class="form-check-label" for="edit_bid_pending">未开始</label>
+        </div>
+      </div>
+    </div>
+    <div class="info-item">
+      {# 显示状态 #}
+      <span class="info-label">状态：</span>
+      <span class="info-value">{{ enroll.status }}</span>
+    </div>
+    <div class="info-item">
+      {# 显示申请人 #}
+      <span class="info-label">申请人：</span>
+      <span class="info-value">{{ enroll.username }}</span>
+    </div>
+
+    <div class="model-quantity mt-4">
+      {# 显示型号数量列表 #}
+      <h5>登记型号及数量：</h5>
+      <ul class="list-group model-list">
+        {% for item in enroll.model_quantities %}
+        <li
+          class="list-group-item d-flex justify-content-between align-items-center"
+          data-model="{{ item.model }}"
+          data-id="{{ item.id }}"
+        >
+          <div>
+            {{ item.model }}
+            {% if item.status %}
+            <span class="badge status-badge {{ item.status }} ms-2">
+              {{ item.status }}
+            </span>
+            {% endif %}
+            <span class="model-stats" id="detail-stats-{{ item.id }}"></span>
+          </div>
+          <span class="badge bg-primary rounded-pill">{{ item.quantity }}</span>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+  <div class="text-center mt-4">
+    <a href="{{ url_for('enroll.enroll_list') }}" class="btn btn-secondary mx-2"
+      >返回列表</a
+    >
+    {# 返回列表按钮 #}
+    <button id="edit-bid-button" class="btn btn-secondary mx-2">
+      更新中标情况
+    </button>
+    {# 编辑按钮，初始显示 #}
+    <button
+      id="save-bid-button"
+      class="btn btn-primary mx-2"
+      style="display: none"
+    >
+      确认更新
+    </button>
+    {# 保存按钮，初始隐藏 #}
+    <button
+      id="cancel-edit-button"
+      class="btn btn-secondary mx-2"
+      style="display: none"
+    >
+      取消
+    </button>
+    {# 取消按钮，初始隐藏 #}
+  </div>
+</div>
+{% endblock %} {% block extra_css %} {# 可以复用或调整 success.html 中的样式 #}
+<style>
+  .verify-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 15px;
+  }
+  .verify-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .verify-subtitle {
+    color: #666;
+    font-size: 14px;
+  }
+  .verify-info {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  .info-item {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+  }
+  .info-label {
+    display: inline-block;
+    width: 120px;
+    font-weight: 500;
+    color: #666;
+  }
+  .info-value {
+    color: #333;
+  }
+  .model-quantity {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+  }
+  
+  .status-badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+  }
+  .status-badge.待审核 {
+    background-color: #ffc107;
+    color: #212529;
+  }
+  .status-badge.已通过 {
+    background-color: #28a745;
+    color: white;
+  }
+  .status-badge.未通过 {
+    background-color: #dc3545;
+    color: white;
+  }
+  .status-badge.已拒绝 {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  .model-stats {
+    margin-left: 10px;
+    font-size: 12px;
+  }
+</style>
+{% endblock %} {% block extra_js %} {# 添加JavaScript代码块 #}
+<script>
+  $(document).ready(function () {
+    const enrollId = $("#enroll-id").val(); // 从Flask模板获取登记ID
+
+    // 为详情页的每个型号加载使用统计
+    $(".model-list li").each(function() {
+      const model = $(this).data("model");
+      const modelId = $(this).data("id");
+      loadModelStatsForDetail(model, modelId, enrollId);
+    });
+    
+    // 加载型号统计信息
+    function loadModelStatsForDetail(model, modelId, enrollId) {
+      $.ajax({
+        url: "{{ url_for('enroll.get_model_stats') }}",
+        method: "GET",
+        data: { 
+          model: model,
+          enroll_id: enrollId
+        },
+        success: function(response) {
+          if (response.success) {
+            let statsHtml = `<span class="badge bg-secondary">已有: ${response.total_count}家申请记录</span>`;
+            
+            // if (response.has_approved) {
+            //   statsHtml += ` <span class="badge bg-success">已有通过的申请</span>`;
+            // }
+            
+            $(`#detail-stats-${modelId}`).html(statsHtml);
+          }
+        },
+        error: function(xhr, status, error) {
+          console.error("获取型号统计失败:", error);
+        }
+      });
+    }
+
+    // 获取相关元素
+    const $bidStatusDisplay = $("#bid-status-display"); // 显示中标情况的span
+    const $bidStatusEdit = $("#bid-status-edit"); // 编辑中标情况的div (包含单选按钮)
+    const $editBidButton = $("#edit-bid-button"); // "更新中标情况"按钮
+    const $saveBidButton = $("#save-bid-button"); // "确认更新"按钮
+    const $cancelEditButton = $("#cancel-edit-button"); // "取消"按钮
+    const $continueEnrollButton = $("#continue-enroll-button"); // "继续登记"按钮
+
+    // 切换到编辑模式
+    function switchToEditMode() {
+      $bidStatusDisplay.hide(); // 隐藏显示文本
+      $bidStatusEdit.show(); // 显示单选按钮组
+      $editBidButton.hide(); // 隐藏编辑按钮
+      $saveBidButton.show(); // 显示保存按钮
+      $cancelEditButton.show(); // 显示取消按钮
+      $continueEnrollButton.hide(); // 隐藏继续登记按钮
+    }
+
+    // 切换回查看模式
+    function switchToViewMode() {
+      $bidStatusDisplay.show(); // 显示显示文本
+      $bidStatusEdit.hide(); // 隐藏单选按钮组
+      $editBidButton.show(); // 显示编辑按钮
+      $saveBidButton.hide(); // 隐藏保存按钮
+      $cancelEditButton.hide(); // 隐藏取消按钮
+      $continueEnrollButton.show(); // 显示继续登记按钮
+    }
+
+    // 点击"更新中标情况"按钮
+    $editBidButton.on("click", function () {
+      switchToEditMode();
+    });
+
+    // 点击"取消"按钮
+    $cancelEditButton.on("click", function () {
+      // 恢复单选按钮的选中状态为当前显示的值
+      const currentBidStatus = $bidStatusDisplay.text().trim();
+      $bidStatusEdit
+        .find('input[value="' + currentBidStatus + '"]')
+        .prop("checked", true);
+      switchToViewMode();
+    });
+
+    // 点击"确认更新"按钮
+    $saveBidButton.on("click", function () {
+      const selectedBidStatus = $bidStatusEdit
+        .find('input[name="edit_bid_status"]:checked')
+        .val();
+
+      if (!selectedBidStatus) {
+        showAlert("请选择中标情况"); // 如果没有选中任何选项，提示用户
+        return;
+      }
+
+      // 发送AJAX请求到后端更新数据
+      $.ajax({
+        url: "{{ url_for('enroll.update_bid_status', enroll_id=enroll.id) }}", // 调用后端更新路由
+        method: "POST",
+        contentType: "application/json", // 发送JSON数据
+        data: JSON.stringify({ bid_status: selectedBidStatus }), // 将选中的值作为JSON发送
+        success: function (response) {
+          if (response.success) {
+            // 更新成功，更新页面显示的值
+            $bidStatusDisplay.text(selectedBidStatus);
+            // 切换回查看模式
+            switchToViewMode();
+            showAlertS("中标情况更新成功！"); // 提示用户
+          } else {
+            // 更新失败，显示错误信息
+            showAlert("更新失败: " + response.message);
+          }
+        },
+        error: function (xhr, status, error) {
+          console.error("更新失败:", error);
+          showAlert("更新失败，请稍后重试。"); // 通用错误提示
+        },
+      });
+    });
+  });
+</script>
+{% endblock %}

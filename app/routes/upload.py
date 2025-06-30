@@ -4,7 +4,7 @@ from werkzeug.utils import secure_filename
 from app.models.authorization import Authorization
 from app.models.document import Document
 from app.models.systemkey import SystemKey
-from app.utils.decorators import login_required
+from app.utils.decorators import login_required,admin_required
 from app import db
 import os
 import secrets
@@ -18,7 +18,7 @@ def allowed_file(filename):
            filename.rsplit('.', 1)[1].lower() in current_app.config['ALLOWED_EXTENSIONS']
 
 @upload.route('/generate-key', methods=['POST'])
-@login_required
+@admin_required
 def generate_key():
     data = request.get_json()
     auth_number = data.get('auth_number')
@@ -46,7 +46,7 @@ def generate_key():
     return jsonify({'success': True, 'systemKey': system_key})
 
 @upload.route('/upload', methods=['POST'])
-@login_required
+@admin_required
 def upload_file():
     if 'file' not in request.files:
         return jsonify({'success': False, 'error': 'No file part'})
@@ -88,7 +88,7 @@ def upload_file():
     return jsonify({'success': False, 'error': 'File type not allowed'})
 
 @upload.route('/submit-auth', methods=['POST'])
-@login_required
+@admin_required
 def submit_auth():
     data = request.get_json()
     
@@ -123,7 +123,7 @@ def submit_auth():
         return jsonify({'success': False, 'error': str(e)})
 
 @upload.route('/upload-page')
-@login_required
+@admin_required
 def upload_page():
     """显示上传页面"""
     return render_template('main/upload.html')
