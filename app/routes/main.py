@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, jsonify, redirect, url_for, send_file, session
 from app.models.authorization import Authorization
 from app.models.document import Document
-from app.utils.decorators import login_required
+from app.utils.decorators import login_required,admin_required
 from app import db
 import pandas as pd
 from datetime import datetime
@@ -20,7 +20,7 @@ def index():
     return redirect(url_for('main.list'))
 
 @main.route('/main/list')
-@login_required
+@admin_required
 def list():
     # 获取查询参数
     page = request.args.get('page', 1, type=int)
@@ -64,7 +64,7 @@ def list():
     return render_template('main/list.html', authorizations=authorizations, pagination=pagination, years=years,channels = channelSet)
 
 @main.route('/export-excel')
-@login_required
+@admin_required
 def export_excel():
     authorizations = Authorization.query.all()
     
@@ -107,7 +107,7 @@ def get_auth_images():
     return jsonify({'success': True, 'images': image_urls})
 
 @main.route('/downloadauth/<auth_id>')
-@login_required
+@admin_required
 def download_auth(auth_id):
     """下载授权书图片"""
     documents = Document.query.filter_by(auth_id=auth_id).all()
@@ -139,7 +139,7 @@ def download_auth(auth_id):
     )
 
 @main.route('/updateauth', methods=['POST'])
-@login_required
+@admin_required
 def update_auth():
     data = request.get_json()
     auth_id = data.get('authId')

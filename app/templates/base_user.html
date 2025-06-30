@@ -15,6 +15,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
       rel="stylesheet"
     />
+
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='css/style.css') }}"
@@ -25,19 +26,13 @@
     <nav class="navbar">
       <div class="nav-brand">授权书管理系统</div>
       <div class="nav-items">
-        {% if session.get('logged_in') %}
-        <a href="{{ url_for('auth.user_list') }}" class="nav-item">用户管理</a>
-        <a href="{{ url_for('audited.enroll_list') }}" class="nav-item">登记申请管理</a>
-        <a href="{{ url_for('audited.model_list') }}" class="nav-item">型号管理</a>
-        <a href="{{ url_for('main.list') }}" class="nav-item">授权书管理</a>
-        <a href="{{ url_for('upload.upload_page') }}" class="nav-item"
-          >授权书登记</a
-        >
-        <a href="{{ url_for('auth.logout') }}" class="nav-item">退出登录</a>
-        {% else %}
         <a href="{{ url_for('verify.query') }}" class="nav-item"
           >授权验证查询</a
         >
+        {% if session.get('logged_in') %}
+        <a href="{{ url_for('enroll.enroll') }}" class="nav-item">授权登记</a>
+        <a href="{{ url_for('auth.logout') }}" class="nav-item">退出登录</a>
+        {% else %}
         <a href="{{ url_for('auth.login') }}" class="nav-item">管理员登录</a>
         {% endif %}
       </div>

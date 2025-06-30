@@ -1,0 +1,129 @@
+{% extends "base.html" %} 
+{% block title %}型号管理列表{% endblock %} 
+{% block content %}
+<div class="auth-list">
+  <div class="list-header">
+    <h2>型号管理列表</h2>
+    <div class="header-actions">
+      <button onclick="exportExcel()" class="btn btn-secondary">
+        导出Excel
+      </button>
+    </div>
+  </div>
+
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="搜索型号..." value="{{ search }}" />
+    <select id="statusFilter">
+      <option value="">全部状态</option>
+      <option value="已通过" {% if status == '已通过' %}selected{% endif %}>已通过</option>
+      <option value="未通过" {% if status == '未通过' %}selected{% endif %}>未通过</option>
+      <option value="未审核" {% if status == '未审核' %}selected{% endif %}>未审核</option>
+    </select>
+    <button onclick="searchModels()" class="btn btn-search">搜索</button>
+  </div>
+
+  <div class="table-container">
+    <table class="auth-table">
+      <thead>
+        <tr>
+          <th>型号</th>
+          <th>总数量</th>
+          <th>申请次数</th>
+          <th>状态</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for model_data in models_data %}
+        <tr>
+          <td>{{ model_data.model }}</td>
+          <td>{{ model_data.total_quantity }}</td>
+          <td>{{ model_data.usage_count }}</td>
+          <td>{{ model_data.statuses }}</td>
+          <td>
+            <a
+              href="{{ url_for('audited.model_detail', model_name=model_data.model) }}"
+              class="btn btn-small"
+              >查看详情</a
+            >
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 分页控件 -->
+  <div class="pagination">
+    {% if pagination.has_prev %}
+    <a
+      href="{{ url_for('audited.model_list', page=pagination.prev_num, search=search, status=status) }}"
+      class="page-link"
+      >&laquo; 上一页</a
+    >
+    {% else %}
+    <span class="page-link disabled">&laquo; 上一页</span>
+    {% endif %} 
+    
+    {% for page in pagination.iter_pages(left_edge=2, left_current=2, right_current=3, right_edge=2) %} 
+      {% if page %} 
+        {% if page == pagination.page %}
+          <span class="page-link active">{{ page }}</span>
+        {% else %}
+          <a href="{{ url_for('audited.model_list', page=page, search=search, status=status) }}" class="page-link">
+            {{ page }}
+          </a>
+        {% endif %} 
+      {% else %}
+        <span class="page-link">...</span>
+      {% endif %} 
+    {% endfor %} 
+    
+    {% if pagination.has_next %}
+    <a
+      href="{{ url_for('audited.model_list', page=pagination.next_num, search=search, status=status) }}"
+      class="page-link"
+      >下一页 &raquo;</a
+    >
+    {% else %}
+    <span class="page-link disabled">下一页 &raquo;</span>
+    {% endif %}
+
+    <div class="page-info">
+      第 {{ pagination.page }} 页，共 {{ pagination.pages }} 页，总计 {{
+      pagination.total }} 条记录
+    </div>
+  </div>
+</div>
+{% endblock %} 
+
+{% block extra_js %}
+<script>
+  function searchModels() {
+    const searchText = $("#searchInput").val();
+    const status = $("#statusFilter").val();
+
+    window.location.href =
+      "{{ url_for('audited.model_list') }}" +
+      "?search=" +
+      encodeURIComponent(searchText) +
+      "&status=" +
+      encodeURIComponent(status);
+  }
+
+  function exportExcel() {
+    const searchText = $("#searchInput").val();
+    const status = $("#statusFilter").val();
+
+    // TODO: 实现导出功能
+    alert("导出功能正在开发中...");
+  }
+
+  // 页面加载时从URL参数中恢复搜索条件
+  $(document).ready(function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    $("#searchInput").val(urlParams.get("search") || "");
+    $("#statusFilter").val(urlParams.get("status") || "");
+  });
+</script>
+{% endblock %} 

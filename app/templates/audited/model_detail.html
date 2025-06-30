@@ -1,0 +1,108 @@
+{% extends "base.html" %} 
+{% block title %}型号详情 - {{ model_name }}{% endblock %} 
+
+{% block content %}
+<div class="auth-list">
+  <div class="list-header">
+    <h2>型号详情: {{ model_name }}</h2>
+    <div class="header-actions">
+      <a href="{{ url_for('audited.model_list') }}" class="btn btn-secondary">
+        返回列表
+      </a>
+    </div>
+  </div>
+
+  <div class="table-container">
+    <table class="auth-table">
+      <thead>
+        <tr>
+          <th>项目名称</th>
+          <th>报备公司</th>
+          <th>授权公司</th>
+          <th>数量</th>
+          <th>型号状态</th>
+          <th>项目状态</th>
+          <th>中标情况</th>
+          <th>有效期</th>
+          <th>申请人</th>
+          <th>申请时间</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for detail in model_details %}
+        <tr>
+          <td>{{ detail.project_name }}</td>
+          <td>{{ detail.company }}</td>
+          <td>{{ detail.authorized_company }}</td>
+          <td>{{ detail.quantity }}</td>
+          <td>
+            <span class="status-badge {{ detail.status }}">
+              {{ detail.status }}
+            </span>
+          </td>
+          <td>
+            <span class="status-badge {{ detail.enroll_status }}">
+              {{ detail.enroll_status }}
+            </span>
+          </td>
+          <td>{{ detail.bid_status }}</td>
+          <td>{{ detail.start_date }} 至 {{ detail.end_date }}</td>
+          <td>{{ detail.username }}</td>
+          <td>{{ detail.created_at }}</td>
+          <td>
+            <a
+              href="{{ url_for('audited.enroll_detail', enroll_id=detail.enroll_id) }}"
+              class="btn btn-small"
+              >查看详情</a
+            >
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 分页控件 -->
+  <div class="pagination">
+    {% if pagination.has_prev %}
+    <a
+      href="{{ url_for('audited.model_detail', model_name=model_name, page=pagination.prev_num) }}"
+      class="page-link"
+      >&laquo; 上一页</a
+    >
+    {% else %}
+    <span class="page-link disabled">&laquo; 上一页</span>
+    {% endif %} 
+    
+    {% for page in pagination.iter_pages(left_edge=2, left_current=2, right_current=3, right_edge=2) %} 
+      {% if page %} 
+        {% if page == pagination.page %}
+          <span class="page-link active">{{ page }}</span>
+        {% else %}
+          <a href="{{ url_for('audited.model_detail', model_name=model_name, page=page) }}" class="page-link">
+            {{ page }}
+          </a>
+        {% endif %} 
+      {% else %}
+        <span class="page-link">...</span>
+      {% endif %} 
+    {% endfor %} 
+    
+    {% if pagination.has_next %}
+    <a
+      href="{{ url_for('audited.model_detail', model_name=model_name, page=pagination.next_num) }}"
+      class="page-link"
+      >下一页 &raquo;</a
+    >
+    {% else %}
+    <span class="page-link disabled">下一页 &raquo;</span>
+    {% endif %}
+
+    <div class="page-info">
+      第 {{ pagination.page }} 页，共 {{ pagination.pages }} 页，总计 {{
+      pagination.total }} 条记录
+    </div>
+  </div>
+</div>
+{% endblock %} 

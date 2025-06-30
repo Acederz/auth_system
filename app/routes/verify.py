@@ -57,10 +57,7 @@ def query():
         except Exception as e:
             current_app.logger.exception("验证过程发生意外错误")
             flash('系统发生未知错误')
-            return redirect(url_for('verify.query'))
-            
-        
-        
+            return redirect(url_for('verify.query')) 
         
     return render_template('verify/query.html') 
 
