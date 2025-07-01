@@ -18,7 +18,7 @@ class Enroll(db.Model):
     bid = db.Column(db.String(50), nullable=False, comment='中标情况')
     username = db.Column(db.String(50), nullable=False, comment='用户名')
     # 创建时间
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    created_at = db.Column(db.DateTime, default=datetime.now)
     
     # 关联型号数量表
     model_quantities = db.relationship('ModelQuantity', backref='enroll', lazy=True, cascade='all, delete-orphan')

@@ -12,7 +12,7 @@ class Authorization(db.Model):
     valid_period = db.Column(db.String(100))
     status = db.Column(db.String(20))
     system_key = db.Column(db.String(100))
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    created_at = db.Column(db.DateTime, default=datetime.now)
     
     # 关联文档
     documents = db.relationship('Document', backref='authorization', lazy=True)

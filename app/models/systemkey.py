@@ -7,7 +7,7 @@ class SystemKey(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     auth_number = db.Column(db.String(20), unique=True, nullable=False)
     system_key = db.Column(db.String(100), nullable=False)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    created_at = db.Column(db.DateTime, default=datetime.now)
 
     @staticmethod
     def get_system_key(auth_number):

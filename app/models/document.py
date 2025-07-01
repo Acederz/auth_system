@@ -10,7 +10,7 @@ class Document(db.Model):
     file_path = db.Column(db.String(255), nullable=False)
     file_type = db.Column(db.String(50))
     file_size = db.Column(db.Integer)  # 文件大小（字节）
-    uploaded_at = db.Column(db.DateTime, default=datetime.utcnow)
+    uploaded_at = db.Column(db.DateTime, default=datetime.now)
 
     def to_dict(self):
         return {
