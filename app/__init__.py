@@ -1,7 +1,8 @@
 from flask import Flask, current_app, redirect, url_for
 from .extensions import db  # 导入 db 实例
 from config import config
-from .utils.ocr import OCRProcessor
+# 注释掉OCR相关导入
+# from .utils.ocr import OCRProcessor
 from .routes.verify import verify_bp  # 修改为导入 verify_bp
 from .routes.auth import auth
 from .routes.main import main
@@ -10,11 +11,12 @@ from .routes.enroll import enroll_bp
 from .routes.audited import audited_bp
 from .models.user import User
 
-def get_ocr_processor():
-    """获取OCR处理器实例"""
-    if not hasattr(current_app, 'ocr_processor'):
-        current_app.ocr_processor = OCRProcessor()
-    return current_app.ocr_processor
+# 注释掉OCR处理器获取函数
+# def get_ocr_processor():
+#     """获取OCR处理器实例"""
+#     if not hasattr(current_app, 'ocr_processor'):
+#         current_app.ocr_processor = OCRProcessor()
+#     return current_app.ocr_processor
 
 def create_app(config_name='default'):
     app = Flask(__name__)

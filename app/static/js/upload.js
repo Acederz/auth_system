@@ -95,10 +95,11 @@ async function handleFiles(files) {
                 });
                 updateFileList();
                 
+                // 注释掉OCR结果处理
                 // 处理OCR结果
-                if (data.ocrResults) {
-                    updateOCRResults(data.ocrResults);
-                }
+                // if (data.ocrResults) {
+                //     updateOCRResults(data.ocrResults);
+                // }
             } else {
                 showAlert(data.error);
             }
@@ -129,12 +130,13 @@ function removeFile(index) {
     updateFileList();
 }
 
-function updateOCRResults(results) {
-    document.getElementById('company').value = results.company || '';
-    document.getElementById('channel').value = results.channel || '';
-    document.getElementById('validPeriod').value = results.valid_period || '';
-    document.getElementById('brand').value = results.brand || '';
-}
+// 注释掉OCR结果更新函数
+// function updateOCRResults(results) {
+//     document.getElementById('company').value = results.company || '';
+//     document.getElementById('channel').value = results.channel || '';
+//     document.getElementById('validPeriod').value = results.valid_period || '';
+//     document.getElementById('brand').value = results.brand || '';
+// }
 
 async function submitForm() {
     const authNumber = document.getElementById('authNumber').value;

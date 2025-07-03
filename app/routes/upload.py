@@ -9,7 +9,8 @@ from app import db
 import os
 import secrets
 import time
-from app.utils.ocrDeal import orcScan
+# 注释掉OCR相关导入
+# from app.utils.ocrDeal import orcScan
 
 upload = Blueprint('upload', __name__)
 
@@ -72,12 +73,16 @@ def upload_file():
             filepath = jpg_filepath
         else:
             file.save(filepath)
-        # TODO: 添加OCR处理逻辑
-        if not filename.lower().endswith('.pdf') :
-            ocrResults = orcScan(filepath)
-        else:
-            ocrResults = []
+        # 注释掉OCR处理逻辑
+        # if not filename.lower().endswith('.pdf') :
+        #     ocrResults = orcScan(filepath)
+        # else:
+        #     ocrResults = []
         filename = filename.replace('tif','jpg')
+        
+        # 返回空的OCR结果
+        ocrResults = []
+        
         return jsonify({
             'success': True,
             'filename': filename,

@@ -32,7 +32,8 @@
             <div class="upload-box" id="dropZone">
                 <img src="{{ url_for('static', filename='images/upload-icon.png') }}" alt="上传">
                 <p>拖拽文件到此处或点击上传</p>
-                <p>支持通用模板识别关键信息，其他模板需要手动填写修改信息</p>
+                <!-- OCR功能已禁用 -->
+                <p>请上传授权文件，并在下方手动填写授权信息</p>
                 <p class="sub-text">支持格式：PDF、JPG、PNG、TIF，单个文件不超过10MB</p>
             </div>
             
@@ -45,8 +46,9 @@
         </div>
 
         <div class="ocr-results">
-            <h3>识别结果</h3>
-            <span style="color: red;">识别结果可能存在些许错误，请在文本框中修改</span>
+            <h3>授权信息</h3>
+            <!-- OCR功能已禁用 -->
+            <span style="color: red;">请手动填写以下授权信息</span>
             <div class="form-group">
                 <label for="company">被授权人</label>
                 <input type="text" id="company">

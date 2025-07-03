@@ -47,11 +47,12 @@ if __name__ == '__main__':
         # 在应用上下文中创建所有数据库表和初始化 OCR
         with app.app_context():
             db.create_all()
-            from app import get_ocr_processor
-            from paddleocr import PaddleOCR
-            print("正在初始化 OCR 模型，首次运行可能需要下载模型文件...")
-            PaddleOCR(use_angle_cls=False, lang='ch', show_log=False,enable_mkldnn=False,rec_image_shape='3,32,320',det_limit_side_len=480  )  # 这一步会自动下载所需模型
-            get_ocr_processor()
+            # 注释掉OCR相关代码
+            # from app import get_ocr_processor
+            # from paddleocr import PaddleOCR
+            # print("正在初始化 OCR 模型，首次运行可能需要下载模型文件...")
+            # PaddleOCR(use_angle_cls=False, lang='ch', show_log=False,enable_mkldnn=False,rec_image_shape='3,32,320',det_limit_side_len=480)  # 这一步会自动下载所需模型
+            # get_ocr_processor()
             print("数据库表创建成功")
         
         # 运行应用
