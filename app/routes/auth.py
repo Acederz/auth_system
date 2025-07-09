@@ -78,7 +78,15 @@ def logout():
 @auth.route('/users')
 @admin_required
 def user_list():
-    users = User.query.all()
+    search_query = request.args.get('search', '')
+    
+    if search_query:
+        # 如果有搜索查询，根据用户名进行过滤
+        users = User.query.filter(User.username.like(f'%{search_query}%')).all()
+    else:
+        # 否则获取所有用户
+        users = User.query.all()
+    
     return render_template('auth/user_list.html', users=users)
 
 @auth.route('/users/add', methods=['GET', 'POST'])
@@ -157,3 +165,126 @@ def change_password():
             flash('密码修改失败', 'error')
             
     return render_template('auth/change_password.html')
+
+@auth.route('/users/reset_password', methods=['GET', 'POST'])
+@admin_required
+def reset_password():
+    # 获取URL中的username参数
+    username = request.args.get('username', '')
+    
+    if request.method == 'POST':
+        # 从表单获取用户名和密码
+        username = request.form.get('username')
+        new_password = request.form.get('new_password')
+        confirm_password = request.form.get('confirm_password')
+        
+        # 查找用户
+        user = User.query.filter_by(username=username).first()
+        
+        if not user:
+            flash('用户不存在', 'error')
+            return render_template('auth/change_password.html', username=username)
+            
+        # 验证新密码
+        if new_password != confirm_password:
+            flash('两次输入的新密码不一致', 'error')
+            return render_template('auth/change_password.html', username=username)
+            
+        # 重置密码
+        user.set_password(new_password)
+        
+        try:
+            db.session.commit()
+            flash(f'用户 {username} 的密码已重置成功', 'success')
+            return redirect(url_for('auth.user_list'))
+        except Exception as e:
+            db.session.rollback()
+            current_app.logger.error(f"Error resetting password: {str(e)}")
+            flash('密码重置失败', 'error')
+            
+    return render_template('auth/change_password.html', username=username)
+
+@auth.route('/users/delete', methods=['POST'])
+@admin_required
+def delete_user():
+    username = request.form.get('username')
+    
+    # 不能删除管理员账户
+    if username == 'admin':
+        flash('无法删除管理员账户', 'error')
+        return redirect(url_for('auth.user_list'))
+    
+    # 查找要删除的用户
+    user = User.query.filter_by(username=username).first()
+    
+    if not user:
+        flash('用户不存在', 'error')
+        return redirect(url_for('auth.user_list'))
+    
+    try:
+        db.session.delete(user)
+        db.session.commit()
+        flash(f'用户 {username} 已成功删除', 'success')
+    except Exception as e:
+        db.session.rollback()
+        current_app.logger.error(f"Error deleting user: {str(e)}")
+        flash('删除用户失败', 'error')
+    
+    return redirect(url_for('auth.user_list'))
+
+@auth.route('/admin', methods=['GET', 'POST'])
+def admin_login():
+    # 从会话中获取next_url
+    next_url = session.get('next_url')
+    
+    # 如果用户已登录且是管理员，直接重定向
+    if session.get('logged_in') and session.get('username') == 'admin':
+        if next_url:
+            session.pop('next_url', None)
+            return redirect(next_url)
+        return redirect(url_for('main.list'))
+        
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+        remember = request.form.get('remember')
+        
+        # 添加日志输出，便于调试
+        current_app.logger.info(f"Admin login attempt for user: {username}")
+        
+        if not username or not password:
+            flash('请输入管理员账号和密码', 'error')
+            return render_template('auth/admin_login.html')
+        
+        # 从数据库查询用户
+        user = User.query.filter_by(username=username).first()
+        
+        # 验证用户和密码，并且确保是管理员
+        if user and check_password_hash(user.password_hash, password):
+            if username != 'admin':
+                flash('此入口仅供管理员使用', 'error')
+                current_app.logger.warning(f"Non-admin user {username} attempted to use admin login")
+                return render_template('auth/admin_login.html')
+                
+            session['logged_in'] = True
+            session['username'] = username
+            session['user_id'] = user.id
+            session['is_admin'] = True
+            
+            # 如果选择了"记住我"，设置会话的持久性
+            if remember:
+                session.permanent = True
+                
+            current_app.logger.info(f"Admin {username} logged in successfully")
+            
+            # 如果有next_url，则重定向到原始请求页面
+            if next_url:
+                session.pop('next_url', None)
+                return redirect(next_url)
+            else:
+                return redirect(url_for('auth.user_list'))  # 管理员默认进入用户管理页面
+        else:
+            flash('管理员账号或密码错误', 'error')
+            current_app.logger.warning(f"Failed admin login attempt for user: {username}")
+    
+    return render_template('auth/admin_login.html')

@@ -15,7 +15,6 @@ class Enroll(db.Model):
     business = db.Column(db.String(100), nullable=False, comment='对接业务')
     category = db.Column(db.String(50), nullable=False, comment='报表品类')
     status = db.Column(db.String(50), nullable=False, comment='状态')
-    bid = db.Column(db.String(50), nullable=False, comment='中标情况')
     username = db.Column(db.String(50), nullable=False, comment='用户名')
     # 创建时间
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
@@ -29,7 +28,9 @@ class ModelQuantity(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     enroll_id = db.Column(db.Integer, db.ForeignKey('enroll.id'), nullable=False)
     model = db.Column(db.String(100), nullable=False, comment='型号')
+    barcode = db.Column(db.String(100), nullable=True, comment='商品条码')
     quantity = db.Column(db.Integer, nullable=False, comment='数量')
     status = db.Column(db.String(50), nullable=True, comment='状态')
-
+    bid = db.Column(db.String(50), nullable=False, default='未开始', comment='中标情况')
+    
     created_at = db.Column(db.DateTime, default=datetime.utcnow)

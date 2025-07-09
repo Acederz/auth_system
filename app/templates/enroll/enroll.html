@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
-      {% block title %}脱普产品授权登记表{% endblock %} - 授权管理系统
+      {% block title %}脱普产品授权登记表{% endblock %} - 项目保护系统
     </title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Bootstrap CSS -->
@@ -26,8 +26,8 @@
   <body>
     <div class="verify-container">
       <div class="verify-header">
-        <h2>脱普产品授权登记表</h2>
-        <p class="verify-subtitle">用于填写申请需要得到授权商品的相关信息。</p>
+        <h2>脱普项目保护登记</h2>
+        <p class="verify-subtitle">用于填写申请脱普项目保护的相关信息。</p>
         <div class="text-end mb-3">
           <a href="{{ url_for('enroll.enroll_list') }}" class="btn btn-outline-primary">
             <i class="fas fa-list"></i> 我的登记列表
@@ -38,7 +38,7 @@
       <div class="verify-info">
         <p>查询是否已有授权</p>
         <p class="verify-description">
-          申请前可先查询意向平台的意向商品是否已有授权，只支持单一平台的单商品查询。如果有多平台多商品请分批查询。
+          申请前可先查询意向项目的意向商品是否已有授权，只支持单一项目的单商品查询。如果有多项目多商品请分批查询。
         </p>
       </div>
 
@@ -50,14 +50,14 @@
               name="search_project"
               id="search_project"
               class="form-control"
-              placeholder="输入平台"
+              placeholder="输入项目(客户名+产品系列)"
             />
             <input
               type="text"
               name="search_model"
               id="search_model"
               class="form-control"
-              placeholder="输入商品"
+              placeholder="输入商品(商品条码)"
             />
             <button type="submit" class="btn btn-primary">查询</button>
           </div>
@@ -71,12 +71,12 @@
       >
         <div class="form-group">
           <label class="required">项目名</label>
-          <div class="input-description">受助方主体+项目描述</div>
+          <div class="input-description">客户名+产品系列</div>
           <input
             type="text"
             class="form-control"
             name="project_name"
-            placeholder="请输入..."
+            placeholder="请输入客户名+产品系列..."
             required
           />
         </div>
@@ -149,10 +149,19 @@
 
         <div class="form-group">
           <label class="required">登记型号及数量</label>
-          <div class="input-description">例：MOWBA 5000，RNWASNL2+1 30000</div>
+          <div class="input-description">请填写商品条码、型号和数量</div>
           <div id="model-quantity-container">
             <div class="model-quantity-row row mb-2">
-              <div class="col-md-6">
+              <div class="col-md-4">
+                <input
+                  type="text"
+                  name="barcode[]"
+                  class="form-control"
+                  placeholder="商品条码"
+                  required
+                />
+              </div>
+              <div class="col-md-4">
                 <input
                   type="text"
                   name="model[]"
@@ -161,7 +170,7 @@
                   required
                 />
               </div>
-              <div class="col-md-4">
+              <div class="col-md-3">
                 <input
                   type="number"
                   name="quantity[]"
@@ -170,7 +179,9 @@
                   required
                 />
               </div>
-              <div class="col-md-2">
+              <!-- 隐藏的中标情况字段，固定为"未开始" -->
+              <input type="hidden" name="bid_status[]" value="未开始">
+              <div class="col-md-1">
                 <button
                   type="button"
                   class="btn btn-danger btn-sm remove-row"
@@ -189,43 +200,6 @@
             添加一行
           </button>
         </div>
-        <!-- 新增中标情况 -->
-        <div class="form-group">
-          <label class="required">中标情况</label>
-        </div>
-        <div class="btn-group-vertical" role="group">
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="bid_status"
-              id="bid_pending"
-              value="未开始"
-              required
-            />
-            <label class="form-check-label" for="bid_pending">未开始</label>
-          </div>
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="bid_status"
-              id="bid_success"
-              value="已中标"
-            />
-            <label class="form-check-label" for="bid_success">已中标</label>
-          </div>
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="bid_status"
-              id="bid_fail"
-              value="未中标"
-            />
-            <label class="form-check-label" for="bid_fail">未中标</label>
-          </div>
-        </div>
         <div class="form-submit">
           <button type="submit" class="btn btn-primary btn-block">提交</button>
         </div>
@@ -242,9 +216,14 @@
           var $firstRow = $(
             "#model-quantity-container .model-quantity-row:first"
           );
-          var $newRow = $firstRow.clone(false, false); // 只克隆结构
-          $newRow.find("input").val("");
+          var $newRow = $firstRow.clone(true, false); // 克隆结构和事件
+          
+          // 清空所有输入字段值，但保留隐藏字段的值
+          $newRow.find("input[type='text'], input[type='number']").val("");
+          
+          // 确保显示删除按钮
           $newRow.find(".remove-row").show();
+          
           $("#model-quantity-container").append($newRow);
         });
 
@@ -263,9 +242,9 @@
         var searchProject = $("#search_project").val().trim();
         var searchModel = $("#search_model").val().trim();
         
-        // 检查是否至少有一个查询条件
-        if (!searchProject && !searchModel) {
-          alert("请至少输入一个查询条件");
+        // 检查两个查询条件都必须输入
+        if (!searchProject || !searchModel) {
+          alert("请同时输入项目和商品条码");
           return;
         }
         
@@ -285,7 +264,7 @@
               if (response.count === 0) {
                 resultsHtml += '<div class="alert alert-info">未被登记，可以放心申请</div>';
               } else {
-                resultsHtml += '<div class="alert alert-warning">已有其他的授权登记</div>';
+                resultsHtml += '<div class="alert alert-warning">该项目该品已有授权登记，请选择其他商品</div>';
                 // resultsHtml += '<table class="table table-striped">';
                 // resultsHtml += '<thead><tr><th>项目名称</th><th>型号</th><th>数量</th><th>状态</th><th>中标情况</th><th>有效期</th></tr></thead>';
                 // resultsHtml += '<tbody>';

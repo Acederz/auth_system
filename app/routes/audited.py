@@ -365,3 +365,47 @@ def model_detail(model_name):
         model_details=model_details,
         pagination=pagination
     )
+
+@audited_bp.route('/admin/model_applications', methods=['GET'])
+@admin_required
+def get_model_applications():
+    """获取特定型号的所有申请记录"""
+    model = request.args.get('model', '')
+    
+    if not model:
+        return jsonify({'success': False, 'message': '缺少model参数'}), 400
+    
+    try:
+        # 查询使用该型号的所有记录
+        results = db.session.query(
+            Enroll, ModelQuantity
+        ).join(
+            ModelQuantity, 
+            Enroll.id == ModelQuantity.enroll_id
+        ).filter(
+            ModelQuantity.model == model
+        ).order_by(Enroll.created_at.asc()).all()
+        
+        # 格式化结果
+        applications = []
+        for enroll, model_quantity in results:
+            applications.append({
+                'enroll_id': enroll.id,
+                'project_name': enroll.project_name,
+                'company': enroll.company,
+                'authorized_company': enroll.authorized_company,
+                'quantity': model_quantity.quantity,
+                'status': model_quantity.status or '未审核',
+                'enroll_status': enroll.status,
+                'bid_status': model_quantity.bid or '未开始',  # 从ModelQuantity中获取bid字段
+                'created_at': enroll.created_at.strftime('%Y-%m-%d %H:%M:%S')
+            })
+        
+        return jsonify({
+            'success': True,
+            'applications': applications,
+            'total_count': len(applications)
+        })
+    except Exception as e:
+        current_app.logger.error(f"获取型号申请记录失败: {str(e)}")
+        return jsonify({'success': False, 'message': '获取申请记录失败'}), 500

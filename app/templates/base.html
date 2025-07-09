@@ -2,8 +2,8 @@
 <html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{% block title %}授权书管理系统{% endblock %} - 授权管理系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>{% block title %}授权书管理系统{% endblock %} - 项目保护系统</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Bootstrap CSS -->
     <link
@@ -23,12 +23,11 @@
   </head>
   <body>
     <nav class="navbar">
-      <div class="nav-brand">授权书管理系统</div>
+      <div class="nav-brand">项目保护系统</div>
       <div class="nav-items">
         {% if session.get('logged_in') %}
-        <a href="{{ url_for('auth.user_list') }}" class="nav-item">用户管理</a>
-        <a href="{{ url_for('audited.enroll_list') }}" class="nav-item">登记申请管理</a>
-        <a href="{{ url_for('audited.model_list') }}" class="nav-item">型号管理</a>
+        <a href="{{ url_for('auth.user_list') }}" class="nav-item">客户管理</a>
+        <a href="{{ url_for('audited.enroll_list') }}" class="nav-item">项目保护登记申请管理</a>
         <a href="{{ url_for('main.list') }}" class="nav-item">授权书管理</a>
         <a href="{{ url_for('upload.upload_page') }}" class="nav-item"
           >授权书登记</a
@@ -38,7 +37,7 @@
         <a href="{{ url_for('verify.query') }}" class="nav-item"
           >授权验证查询</a
         >
-        <a href="{{ url_for('auth.login') }}" class="nav-item">管理员登录</a>
+        <a href="{{ url_for('auth.admin_login') }}" class="nav-item">管理员登录</a>
         {% endif %}
       </div>
     </nav>

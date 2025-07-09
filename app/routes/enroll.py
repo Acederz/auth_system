@@ -9,56 +9,62 @@ enroll_bp = Blueprint('enroll', __name__)
 @enroll_bp.route('/enroll/form', methods=['GET', 'POST'])
 @login_required
 def enroll():
+    """处理登记表单"""
     if request.method == 'POST':
+        # 获取表单数据
+        project_name = request.form.get('project_name')
+        start_date = request.form.get('start_date')
+        end_date = request.form.get('end_date')
+        company = request.form.get('company')
+        authorized_company = request.form.get('authorized_company')
+        business = request.form.get('business')
+        category = request.form.get('category')
+        username = session.get('username')
+        # 获取型号、条码、数量和中标情况列表
+        barcodes = request.form.getlist('barcode[]')
+        models = request.form.getlist('model[]')
+        quantities = request.form.getlist('quantity[]')
+        bid_statuses = request.form.getlist('bid_status[]')  # 获取每行的中标情况
+        
         try:
-            # 获取表单数据
-            project_name = request.form.get('project_name')
-            start_date = datetime.strptime(request.form.get('start_date'), '%Y-%m-%d').date()
-            end_date = datetime.strptime(request.form.get('end_date'), '%Y-%m-%d').date()
-            company = request.form.get('company')
-            authorized_company = request.form.get('authorized_company')
-            business = request.form.get('business')
-            category = request.form.get('category')
-            bid = request.form.get('bid_status')
-            username = session.get('username')
-            # 创建主表记录
-            new_enroll = Enroll(
+            # 创建登记记录
+            enroll = Enroll(
                 project_name=project_name,
-                start_date=start_date,
-                end_date=end_date,
+                start_date=datetime.strptime(start_date, '%Y-%m-%d').date(),
+                end_date=datetime.strptime(end_date, '%Y-%m-%d').date(),
                 company=company,
                 authorized_company=authorized_company,
                 business=business,
                 category=category,
                 status='待审核',
-                bid = bid,
-                username = username
+                username=username
             )
             
-            db.session.add(new_enroll)
-            db.session.flush()  # 获取new_enroll的id
+            db.session.add(enroll)
+            db.session.flush()  # 获取enroll.id
             
-            # 处理型号和数量
-            models = request.form.getlist('model[]')
-            quantities = request.form.getlist('quantity[]')
-            
-            for model, quantity in zip(models, quantities):
+            # 添加型号数量记录
+            for i in range(len(models)):
                 model_quantity = ModelQuantity(
-                    enroll_id=new_enroll.id,
-                    model=model,
-                    quantity=int(quantity)
+                    enroll_id=enroll.id,
+                    barcode=barcodes[i],
+                    model=models[i],
+                    quantity=int(quantities[i]),
+                    status='待审核',
+                    bid=bid_statuses[i] if i < len(bid_statuses) else '未开始'  # 使用每行的中标情况
                 )
                 db.session.add(model_quantity)
             
             db.session.commit()
-            flash('登记成功！', 'success')
-            return redirect(url_for('enroll.success', enroll_id=new_enroll.id))
+            
+            # 重定向到成功页面
+            return redirect(url_for('enroll.success', enroll_id=enroll.id))
             
         except Exception as e:
             current_app.logger.error(f"登记失败: {str(e)}")
-            flash('系统错误，请稍后重试', 'error')
             db.session.rollback()
-            
+            flash('系统错误，请稍后重试', 'error')
+    
     return render_template('enroll/enroll.html')
 
 @enroll_bp.route('/success/<int:enroll_id>')
@@ -177,15 +183,15 @@ def update_bid_status(enroll_id):
 @enroll_bp.route('/enroll/search_auth', methods=['GET'])
 @login_required
 def search_auth():
-    """根据平台和商品查询是否已有授权登记"""
+    """根据项目和商品条码查询是否已有授权登记"""
     search_project = request.args.get('search_project', '')
-    search_model = request.args.get('search_model', '')
+    search_barcode = request.args.get('search_model', '')  # 前端参数名保持不变，但实际是条码
     
-    # 如果两个参数都为空，返回空结果
-    if not search_project and not search_model:
+    # 两个参数都必须输入
+    if not search_project or not search_barcode:
         return jsonify({
             'success': False,
-            'message': '请至少输入一个查询条件'
+            'message': '请同时输入项目和商品条码'
         }), 400
     
     try:
@@ -196,11 +202,11 @@ def search_auth():
         )
         
         # 根据输入条件过滤
-        if search_project:
-            query = query.filter(Enroll.project_name.like(f'%{search_project}%'))
+        query = query.filter(Enroll.project_name.like(f'%{search_project}%'))
+        query = query.filter(ModelQuantity.barcode.like(f'%{search_barcode}%'))
         
-        if search_model:
-            query = query.filter(ModelQuantity.model.like(f'%{search_model}%'))
+        # 只查询ModelQuantity状态为"已通过"的记录
+        query = query.filter(ModelQuantity.status == '已通过')
         
         # 执行查询
         results = query.all()
@@ -212,8 +218,9 @@ def search_auth():
                 'enroll_id': enroll.id,
                 'project_name': enroll.project_name,
                 'model': model_quantity.model,
+                'barcode': model_quantity.barcode,
                 'quantity': model_quantity.quantity,
-                'status': enroll.status,
+                'status': model_quantity.status,
                 'bid_status': enroll.bid,
                 'start_date': enroll.start_date.strftime('%Y-%m-%d'),
                 'end_date': enroll.end_date.strftime('%Y-%m-%d')
@@ -231,3 +238,56 @@ def search_auth():
             'success': False,
             'message': '查询失败，请稍后重试'
         }), 500
+
+@enroll_bp.route('/enroll/update_models_bid_status/<int:enroll_id>', methods=['POST'])
+@login_required
+def update_models_bid_status(enroll_id):
+    """更新登记记录中多个型号的中标情况"""
+    enroll = Enroll.query.get(enroll_id)
+
+    # 检查记录是否存在且属于当前用户
+    if not enroll:
+        return jsonify({'success': False, 'message': '记录未找到'}), 404
+    if enroll.username != session.get('username'):
+        return jsonify({'success': False, 'message': '无权操作'}), 403
+
+    # 从请求体中获取更新数据
+    data = request.get_json()
+    if not data or 'updates' not in data or not isinstance(data['updates'], list):
+        return jsonify({'success': False, 'message': '无效的请求数据'}), 400
+
+    updates = data['updates']
+    valid_statuses = ['已中标', '未中标', '未开始']
+    updated_models = []
+
+    try:
+        for update in updates:
+            model_id = update.get('model_id')
+            bid_status = update.get('bid_status')
+
+            # 验证数据有效性
+            if not model_id or not bid_status or bid_status not in valid_statuses:
+                continue
+
+            # 查询型号记录并验证所属关系
+            model_quantity = ModelQuantity.query.get(model_id)
+            if not model_quantity or model_quantity.enroll_id != enroll_id:
+                continue
+
+            # 更新中标情况
+            model_quantity.bid = bid_status
+            updated_models.append({
+                'id': model_quantity.id,
+                'bid': bid_status
+            })
+
+        db.session.commit()
+        return jsonify({
+            'success': True, 
+            'message': '中标情况更新成功',
+            'updated_models': updated_models
+        })
+    except Exception as e:
+        db.session.rollback()
+        current_app.logger.error(f"更新型号中标情况失败 (Enroll ID: {enroll_id}): {str(e)}")
+        return jsonify({'success': False, 'message': '更新失败，请稍后重试'}), 500
