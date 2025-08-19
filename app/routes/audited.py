@@ -56,6 +56,46 @@ def enroll_detail(enroll_id):
     enroll = Enroll.query.get_or_404(enroll_id)
     return render_template('audited/enroll_detail.html', enroll=enroll)
 
+@audited_bp.route('/admin/enrolls/<int:enroll_id>/export', methods=['GET'])
+@admin_required
+def export_enroll_detail(enroll_id):
+    """导出单个登记申请的型号详情为CSV"""
+    enroll = Enroll.query.get_or_404(enroll_id)
+    
+    # 创建CSV文件
+    output = io.StringIO()
+    writer = csv.writer(output)
+    
+    # 写入表头
+    writer.writerow(['登记编号', '项目名称', '报备公司', '授权公司', '状态', 
+                     '有效期开始', '有效期结束', '型号', '数量', '条码', '中标状态'])
+    
+    # 写入型号数据
+    for model_quantity in enroll.model_quantities:
+        writer.writerow([
+            enroll.id,
+            enroll.project_name,
+            enroll.company,
+            enroll.authorized_company,
+            enroll.status,
+            enroll.start_date.strftime('%Y-%m-%d'),
+            enroll.end_date.strftime('%Y-%m-%d'),
+            model_quantity.model,
+            model_quantity.quantity,
+            model_quantity.barcode or '',
+            model_quantity.bid or '未开始'
+        ])
+    
+    # 设置响应头
+    from flask import Response
+    output.seek(0)
+    filename =  f"enroll_detail_{enroll.id}.csv"
+    return Response(
+        output.getvalue().encode('utf-8-sig'),  # 使用UTF-8 with BOM以支持中文
+        mimetype='text/csv',
+        headers={'Content-Disposition': f'attachment; filename="{filename}"'}
+    )
+
 @audited_bp.route('/admin/model_stats', methods=['GET'])
 @admin_required
 def get_model_stats():
