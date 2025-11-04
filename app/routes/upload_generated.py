@@ -46,6 +46,23 @@ def menu_page():
 def import_page():
     return render_template('uploadGeneratedFiles/upload.html')
 
+"""下载Excel导入模板"""
+@upload_generated_bp.route('/upload-generated/download-template')
+@generate_admin_required
+def download_template():
+    """下载Excel导入模板文件"""
+    template_path = os.path.join('app', 'static', 'templates', '授权书上传模板.xlsx')
+    
+    if not os.path.exists(template_path):
+        return jsonify({'success': False, 'message': '模板文件不存在'}), 404
+    
+    return send_file(
+        template_path,
+        as_attachment=True,
+        download_name='授权书上传模板.xlsx',
+        mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    )
+
 """数据列表查看页面"""
 @upload_generated_bp.route('/upload-generated/list')
 @generated_required

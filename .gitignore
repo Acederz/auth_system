@@ -13,6 +13,7 @@ app/utils/__pycache__/
 venv/
 config.py
 requirements.txt
+uwsgi.ini
 
 # Virtual Environment
 venv/
