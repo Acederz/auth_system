@@ -7,9 +7,13 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), unique=True, index=True)
     password_hash = db.Column(db.String(255))  # 使用 password_hash 而不是 password
+    role = db.Column(db.String(255))  # 区分用户
+    entity = db.Column(db.String(255))  # 用户所属主体/公司
     
-    def __init__(self, username, password=None):
+    def __init__(self, username, password=None, role=None, entity=None):
         self.username = username
+        self.role = role
+        self.entity = entity
         if password:
             self.set_password(password)
     

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>功能导航</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#4F46E5",
+              secondary: "#6B7280",
+            },
+            borderRadius: {
+              none: "0px",
+              sm: "2px",
+              DEFAULT: "4px",
+              md: "8px",
+              lg: "12px",
+              xl: "16px",
+              "2xl": "20px",
+              "3xl": "24px",
+              full: "9999px",
+              button: "4px",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="min-h-[1024px] bg-gray-50">
+    {% set active_page = 'menu' %}
+    {% include 'uploadGeneratedFiles/navbar.html' %}
+    
+    <div class="max-w-[1680px] mx-auto px-8 py-12">
+      <header class="text-center mb-12">
+        <h2 class="text-4xl font-bold text-gray-900 mb-4">功能导航</h2>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+          快速访问系统各项功能，提升工作效率
+        </p>
+      </header>
+
+      <main class="{% if session.role == 'generate_admin' %}grid grid-cols-3{% else %}flex justify-center{% endif %} gap-8">
+        {% if session.role == 'generate_admin' %}
+        <a
+          href="{{ url_for('upload_generated.import_page') }}"
+          class="group bg-white rounded-lg p-8 shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-[1.02] flex flex-col items-center"
+        >
+          <div
+            class="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mb-6"
+          >
+            <i class="fas fa-file-excel text-primary text-4xl"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-4">Excel 数据导入</h3>
+          <p class="text-gray-600 text-center mb-6">
+            支持批量导入 Excel 文件数据，自动识别表格结构，快速完成数据迁移工作
+          </p>
+          <span
+            class="text-primary font-medium group-hover:translate-x-1 transition-transform duration-300 flex items-center"
+          >
+            立即使用
+            <i class="fas fa-arrow-right ml-2"></i>
+          </span>
+        </a>
+        {% endif %}
+        <a
+          href="{{ url_for('upload_generated.list_page') }}"
+          class="group bg-white rounded-lg p-8 shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-[1.02] flex flex-col items-center {% if session.role != 'generate_admin' %}max-w-md{% endif %}"
+        >
+          <div
+            class="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mb-6"
+          >
+            <i class="fas fa-list text-primary text-4xl"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-4">数据列表查看</h3>
+          <p class="text-gray-600 text-center mb-6">
+            提供强大的数据列表管理功能，支持排序、筛选、搜索等操作，轻松管理海量数据
+          </p>
+          <span
+            class="text-primary font-medium group-hover:translate-x-1 transition-transform duration-300 flex items-center"
+          >
+            立即使用
+            <i class="fas fa-arrow-right ml-2"></i>
+          </span>
+        </a>
+        {% if session.role == 'generate_admin' %}
+        <a
+          href="{{ url_for('upload_generated.user_management_page') }}"
+          class="group bg-white rounded-lg p-8 shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-[1.02] flex flex-col items-center"
+        >
+          <div
+            class="w-24 h-24 bg-purple-100 rounded-full flex items-center justify-center mb-6"
+          >
+            <i class="fas fa-users text-purple-600 text-4xl"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-4">用户管理</h3>
+          <p class="text-gray-600 text-center mb-6">
+            管理系统用户账号，支持用户的新增、编辑、删除等操作，轻松进行权限管理
+          </p>
+          <span
+            class="text-primary font-medium group-hover:translate-x-1 transition-transform duration-300 flex items-center"
+          >
+            立即使用
+            <i class="fas fa-arrow-right ml-2"></i>
+          </span>
+        </a>
+        {% endif %}
+      </main>
+
+      <footer class="mt-16 text-center text-gray-600">
+        <p>如需帮助，请联系系统管理员</p>
+      </footer>
+    </div>
+  </body>
+</html>

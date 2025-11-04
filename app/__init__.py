@@ -9,6 +9,7 @@ from .routes.main import main
 from .routes.upload import upload
 from .routes.enroll import enroll_bp
 from .routes.audited import audited_bp
+from .routes.upload_generated import upload_generated_bp
 from .models.user import User
 
 # 注释掉OCR处理器获取函数
@@ -39,14 +40,18 @@ def create_app(config_name='default'):
     app.register_blueprint(upload)
     app.register_blueprint(enroll_bp)
     app.register_blueprint(audited_bp)
+    app.register_blueprint(upload_generated_bp)
 
     # 创建数据库表
     with app.app_context():
         db.create_all()
         # 创建默认管理员账户（如果不存在）
         if not User.query.filter_by(username='admin').first():
-            admin = User(username='admin', password='admin123')
+            admin = User(username='admin', password='admin123', role='admin')
             db.session.add(admin)
             db.session.commit()
-    
+        if not User.query.filter_by(username='admin_online').first():
+            admin = User(username='admin_online', password='admin123', role='generate_admin')
+            db.session.add(admin)
+            db.session.commit()
     return app

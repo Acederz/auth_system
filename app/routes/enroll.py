@@ -2,12 +2,12 @@ from flask import Blueprint, render_template, request, redirect, url_for, flash,
 from app.models.enroll import Enroll, ModelQuantity
 from app.extensions import db
 from datetime import datetime
-from app.utils.decorators import login_required, admin_required
+from app.utils.decorators import login_required, admin_required, project_required
 
 enroll_bp = Blueprint('enroll', __name__)
 
 @enroll_bp.route('/enroll/form', methods=['GET', 'POST'])
-@login_required
+@project_required
 def enroll():
     """处理登记表单"""
     if request.method == 'POST':
@@ -68,14 +68,14 @@ def enroll():
     return render_template('enroll/enroll.html')
 
 @enroll_bp.route('/success/<int:enroll_id>')
-@login_required
+@project_required
 def success(enroll_id):
     """登记成功页面"""
     enroll = Enroll.query.get_or_404(enroll_id)
     return render_template('enroll/success.html', enroll=enroll)
 
 @enroll_bp.route('/enroll/list', methods=['GET'])
-@login_required
+@project_required
 def enroll_list():
     """用户查看自己的登记列表"""
     page = request.args.get('page', 1, type=int) # 获取当前页码，默认为1
@@ -93,7 +93,7 @@ def enroll_list():
 
 
 @enroll_bp.route('/enroll/detail/<int:enroll_id>', methods=['GET']) # 新增详情路由
-@login_required
+@project_required
 def enroll_detail(enroll_id):
     """用户查看自己的登记详情"""
     enroll = Enroll.query.get_or_404(enroll_id) # 根据ID获取登记记录，未找到则返回404
@@ -105,7 +105,7 @@ def enroll_detail(enroll_id):
     return render_template('enroll/detail.html', enroll=enroll) # 渲染新的详情模板
 
 @enroll_bp.route('/enroll/model_stats', methods=['GET'])
-@login_required
+@project_required
 def get_model_stats():
     """获取型号的使用统计"""
     model = request.args.get('model', '')
@@ -146,7 +146,7 @@ def get_model_stats():
         return jsonify({'success': False, 'message': '获取统计信息失败'}), 500
 
 @enroll_bp.route('/enroll/update_bid_status/<int:enroll_id>', methods=['POST']) # 新增用于更新中标情况的路由
-@login_required # 确保用户已登录
+@project_required # 确保用户已登录
 def update_bid_status(enroll_id):
     """更新登记记录的中标情况"""
     enroll = Enroll.query.get(enroll_id) # 根据ID获取登记记录
@@ -181,7 +181,7 @@ def update_bid_status(enroll_id):
         return jsonify({'success': False, 'message': '更新失败，请稍后重试'}), 500 # 返回失败响应
 
 @enroll_bp.route('/enroll/search_auth', methods=['GET'])
-@login_required
+@project_required
 def search_auth():
     """根据项目和商品条码查询是否已有授权登记"""
     search_project = request.args.get('search_project', '')
@@ -240,7 +240,7 @@ def search_auth():
         }), 500
 
 @enroll_bp.route('/enroll/update_models_bid_status/<int:enroll_id>', methods=['POST'])
-@login_required
+@project_required
 def update_models_bid_status(enroll_id):
     """更新登记记录中多个型号的中标情况"""
     enroll = Enroll.query.get(enroll_id)

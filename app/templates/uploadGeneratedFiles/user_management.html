@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>用户管理</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#3B82F6",
+              secondary: "#64748B",
+            },
+            borderRadius: {
+              button: "4px",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="min-h-screen bg-gray-50">
+    {% set active_page = 'user_management' %}
+    {% include 'uploadGeneratedFiles/navbar.html' %}
+    
+    <div class="max-w-[1680px] mx-auto px-8 py-6">
+      <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+        <div class="flex items-center justify-between mb-6">
+          <h1 class="text-2xl font-bold text-gray-900">用户管理</h1>
+          <button
+            id="addUserBtn"
+            class="flex items-center px-4 py-2 bg-primary text-white text-sm font-medium !rounded-button hover:bg-blue-600 whitespace-nowrap"
+          >
+            <i class="fas fa-plus mr-2"></i>新增用户
+          </button>
+        </div>
+
+        <!-- 搜索区域 -->
+        <div class="mb-6">
+          <div class="flex items-center space-x-4">
+            <div class="flex-1">
+              <input
+                id="searchInput"
+                type="text"
+                class="w-full px-4 py-2 bg-white border border-gray-300 text-gray-900 text-sm !rounded-button focus:border-primary focus:ring-1 focus:ring-primary"
+                placeholder="搜索用户名或所属主体..."
+              />
+            </div>
+            <button
+              id="searchBtn"
+              class="px-6 py-2 bg-primary text-white text-sm font-medium !rounded-button hover:bg-blue-600 whitespace-nowrap"
+            >
+              <i class="fas fa-search mr-2"></i>搜索
+            </button>
+            <button
+              id="resetBtn"
+              class="px-6 py-2 bg-white border border-gray-300 text-gray-700 text-sm font-medium !rounded-button hover:bg-gray-50 whitespace-nowrap"
+            >
+              <i class="fas fa-redo mr-2"></i>重置
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-lg shadow-sm p-6">
+        <div class="flex justify-between items-center mb-6">
+          <div class="text-sm text-gray-600">
+            共 <span id="totalCount" class="font-medium text-gray-900">0</span> 个用户
+          </div>
+          <button
+            id="refreshBtn"
+            class="flex items-center px-4 py-2 border border-gray-300 text-gray-700 text-sm font-medium !rounded-button hover:bg-gray-50 whitespace-nowrap"
+          >
+            <i class="fas fa-sync-alt mr-2"></i>刷新
+          </button>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full">
+            <thead>
+              <tr class="border-b bg-gray-50">
+                <th class="px-4 py-3 text-left text-sm font-medium text-gray-600">用户名</th>
+                <th class="px-4 py-3 text-left text-sm font-medium text-gray-600">角色</th>
+                <th class="px-4 py-3 text-left text-sm font-medium text-gray-600">所属分公司</th>
+                <th class="px-4 py-3 text-left text-sm font-medium text-gray-600 w-[200px]">操作</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody">
+              <tr>
+                <td colspan="4" class="px-4 py-8 text-center text-gray-500">
+                  <i class="fas fa-spinner fa-spin mr-2"></i>加载中...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="flex justify-between items-center mt-6">
+          <div class="flex items-center space-x-4">
+            <span class="text-sm text-gray-700">每页显示</span>
+            <select
+              id="pageSizeSelect"
+              class="px-3 py-2 border border-gray-300 text-gray-700 text-sm !rounded-button focus:border-primary focus:ring-1 focus:ring-primary"
+            >
+              <option value="10">10 条</option>
+              <option value="20">20 条</option>
+              <option value="50">50 条</option>
+            </select>
+          </div>
+          <div id="pagination" class="flex items-center space-x-2"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 新增/编辑用户模态框 -->
+    <div id="userModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center">
+      <div class="bg-white rounded-lg shadow-xl max-w-md w-full mx-4">
+        <div class="p-6 border-b border-gray-200">
+          <div class="flex items-center justify-between">
+            <h2 id="modalTitle" class="text-xl font-bold text-gray-900">新增用户</h2>
+            <button id="closeModalBtn" class="text-gray-400 hover:text-gray-600">
+              <i class="fas fa-times text-xl"></i>
+            </button>
+          </div>
+        </div>
+        
+        <form id="userForm" class="p-6">
+          <input type="hidden" id="userId" />
+          
+          <div class="space-y-4">
+            <div class="space-y-2">
+              <label class="block text-sm font-medium text-gray-700">用户名 <span class="text-red-500">*</span></label>
+              <input
+                type="text"
+                id="username"
+                required
+                class="w-full px-4 py-2 border border-gray-300 text-gray-900 text-sm !rounded-button focus:border-primary focus:ring-1 focus:ring-primary"
+                placeholder="请输入用户名"
+              />
+            </div>
+            
+            <div class="space-y-2">
+              <label class="block text-sm font-medium text-gray-700">
+                密码 <span id="passwordRequired" class="text-red-500">*</span>
+                <span id="passwordOptional" class="text-gray-500 text-xs hidden">(留空则不修改)</span>
+              </label>
+              <input
+                type="password"
+                id="password"
+                class="w-full px-4 py-2 border border-gray-300 text-gray-900 text-sm !rounded-button focus:border-primary focus:ring-1 focus:ring-primary"
+                placeholder="请输入密码"
+              />
+            </div>
+            
+            <input type="hidden" id="role" value="generated" />
+            
+            <div class="space-y-2">
+              <label class="block text-sm font-medium text-gray-700">所属分公司 <span class="text-red-500">*</span></label>
+              <input
+                type="text"
+                id="entity"
+                required
+                class="w-full px-4 py-2 border border-gray-300 text-gray-900 text-sm !rounded-button focus:border-primary focus:ring-1 focus:ring-primary"
+                placeholder="请输入所属分公司"
+              />
+            </div>
+          </div>
+          
+          <div class="flex justify-end space-x-4 mt-6 pt-6 border-t border-gray-200">
+            <button
+              type="button"
+              id="cancelBtn"
+              class="px-6 py-2 border border-gray-300 text-gray-700 text-sm font-medium !rounded-button hover:bg-gray-50"
+            >
+              取消
+            </button>
+            <button
+              type="submit"
+              id="saveBtn"
+              class="px-6 py-2 bg-primary text-white text-sm font-medium !rounded-button hover:bg-blue-600"
+            >
+              保存
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- 确认对话框 -->
+    <div id="confirmModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center">
+      <div class="bg-white rounded-lg shadow-xl max-w-md w-full mx-4">
+        <div class="p-6 border-b border-gray-200">
+          <div class="flex items-center space-x-3">
+            <i class="fas fa-exclamation-triangle text-3xl text-red-500"></i>
+            <h2 class="text-xl font-bold text-gray-900">确认删除</h2>
+          </div>
+        </div>
+        
+        <div class="p-6">
+          <p id="confirmMessage" class="text-gray-700 text-base"></p>
+        </div>
+        
+        <div class="flex justify-end space-x-4 px-6 py-4 bg-gray-50 rounded-b-lg">
+          <button
+            type="button"
+            id="confirmCancelBtn"
+            class="px-6 py-2 border border-gray-300 text-gray-700 text-sm font-medium !rounded-button hover:bg-gray-100"
+          >
+            取消
+          </button>
+          <button
+            type="button"
+            id="confirmOkBtn"
+            class="px-6 py-2 bg-red-500 text-white text-sm font-medium !rounded-button hover:bg-red-600"
+          >
+            删除
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let currentPage = 1;
+      let pageSize = 10;
+      let totalCount = 0;
+      let currentEditId = null;
+
+      // 初始化
+      document.addEventListener('DOMContentLoaded', () => {
+        loadData();
+        
+        // 绑定事件
+        document.getElementById('addUserBtn').addEventListener('click', openAddModal);
+        document.getElementById('searchBtn').addEventListener('click', () => {
+          currentPage = 1;
+          loadData();
+        });
+        document.getElementById('resetBtn').addEventListener('click', resetSearch);
+        document.getElementById('refreshBtn').addEventListener('click', () => loadData());
+        document.getElementById('pageSizeSelect').addEventListener('change', (e) => {
+          pageSize = parseInt(e.target.value);
+          currentPage = 1;
+          loadData();
+        });
+        
+        // 搜索框回车事件
+        document.getElementById('searchInput').addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') {
+            currentPage = 1;
+            loadData();
+          }
+        });
+        
+        // 模态框事件
+        document.getElementById('closeModalBtn').addEventListener('click', closeModal);
+        document.getElementById('cancelBtn').addEventListener('click', closeModal);
+        document.getElementById('userForm').addEventListener('submit', saveUser);
+        
+        // 点击模态框背景关闭
+        document.getElementById('userModal').addEventListener('click', (e) => {
+          if (e.target.id === 'userModal') {
+            closeModal();
+          }
+        });
+      });
+
+      function resetSearch() {
+        document.getElementById('searchInput').value = '';
+        currentPage = 1;
+        loadData();
+      }
+
+      async function loadData() {
+        const tableBody = document.getElementById('tableBody');
+        tableBody.innerHTML = '<tr><td colspan="4" class="text-center text-gray-500 py-8"><i class="fas fa-spinner fa-spin mr-2"></i>加载中...</td></tr>';
+
+        try {
+          const search = document.getElementById('searchInput').value;
+          const params = new URLSearchParams({
+            page: currentPage,
+            page_size: pageSize,
+            search: search
+          });
+
+          const res = await fetch(`/upload-generated/api/users?${params}`);
+          const data = await res.json();
+
+          if (data.success) {
+            totalCount = data.total;
+            renderTable(data.data);
+            renderPagination(data.total_pages);
+            document.getElementById('totalCount').textContent = totalCount;
+          } else {
+            tableBody.innerHTML = `<tr><td colspan="4" class="text-center text-red-500 py-8">${data.message || '加载失败'}</td></tr>`;
+          }
+        } catch (err) {
+          tableBody.innerHTML = '<tr><td colspan="4" class="text-center text-red-500 py-8">网络错误，加载失败</td></tr>';
+          console.error('加载数据失败:', err);
+        }
+      }
+
+      function renderTable(items) {
+        const tableBody = document.getElementById('tableBody');
+        
+        if (!items || items.length === 0) {
+          tableBody.innerHTML = '<tr><td colspan="4" class="text-center text-gray-500 py-8">暂无数据</td></tr>';
+          return;
+        }
+
+        tableBody.innerHTML = items.map(item => {
+          const roleText = item.role === 'generate_admin' ? '管理员' : '普通用户';
+          const roleBadge = item.role === 'generate_admin' 
+            ? '<span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded">管理员</span>'
+            : '<span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded">普通用户</span>';
+          
+          // 管理员账户不显示删除按钮
+          const deleteButton = item.role === 'generate_admin' 
+            ? '' 
+            : `<button
+                  class="delete-btn text-red-600 hover:text-red-700 text-sm font-medium"
+                  data-id="${item.id}"
+                  data-username="${item.username}"
+                  title="删除用户"
+                >
+                  <i class="fas fa-trash mr-1"></i>删除
+                </button>`;
+          
+          // 管理员账户的编辑按钮提示修改密码
+          const editTitle = item.role === 'generate_admin' ? '修改密码' : '编辑用户';
+          const editText = item.role === 'generate_admin' ? '修改密码' : '编辑';
+          
+          return `
+            <tr class="border-b hover:bg-gray-50">
+              <td class="px-4 py-3 text-sm text-gray-900 font-medium">${item.username}</td>
+              <td class="px-4 py-3 text-sm">${roleBadge}</td>
+              <td class="px-4 py-3 text-sm text-gray-900">${item.entity || '-'}</td>
+              <td class="px-4 py-3">
+                <div class="flex items-center space-x-2">
+                  <button
+                    class="edit-btn text-blue-600 hover:text-blue-700 text-sm font-medium"
+                    data-id="${item.id}"
+                    title="${editTitle}"
+                  >
+                    <i class="fas fa-${item.role === 'generate_admin' ? 'key' : 'edit'} mr-1"></i>${editText}
+                  </button>
+                  ${deleteButton}
+                </div>
+              </td>
+            </tr>
+          `;
+        }).join('');
+        
+        // 绑定编辑按钮事件
+        document.querySelectorAll('.edit-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const id = e.currentTarget.getAttribute('data-id');
+            openEditModal(id);
+          });
+        });
+        
+        // 绑定删除按钮事件
+        document.querySelectorAll('.delete-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const id = e.currentTarget.getAttribute('data-id');
+            const username = e.currentTarget.getAttribute('data-username');
+            deleteUser(id, username);
+          });
+        });
+      }
+
+      function renderPagination(totalPages) {
+        const paginationEl = document.getElementById('pagination');
+        paginationEl.innerHTML = '';
+
+        if (totalPages <= 1) return;
+
+        const makeBtn = (label, page, active = false, disabled = false) => {
+          const btn = document.createElement('button');
+          btn.className = `px-3 py-2 text-sm font-medium !rounded-button ${
+            active 
+              ? 'bg-primary text-white' 
+              : 'border border-gray-300 text-gray-700 hover:bg-gray-50'
+          } ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`;
+          btn.textContent = label;
+          btn.disabled = disabled;
+          if (!disabled && !active) {
+            btn.addEventListener('click', () => {
+              currentPage = page;
+              loadData();
+            });
+          }
+          return btn;
+        };
+
+        // 上一页
+        paginationEl.appendChild(makeBtn('上一页', currentPage - 1, false, currentPage === 1));
+
+        // 页码
+        for (let i = 1; i <= totalPages; i++) {
+          paginationEl.appendChild(makeBtn(String(i), i, i === currentPage));
+        }
+
+        // 下一页
+        paginationEl.appendChild(makeBtn('下一页', currentPage + 1, false, currentPage === totalPages));
+      }
+
+      function openAddModal() {
+        currentEditId = null;
+        document.getElementById('modalTitle').textContent = '新增用户';
+        document.getElementById('userId').value = '';
+        document.getElementById('username').value = '';
+        document.getElementById('username').disabled = false;
+        document.getElementById('password').value = '';
+        document.getElementById('password').required = true;
+        document.getElementById('role').value = 'generated';  // 默认普通用户
+        document.getElementById('entity').value = '';
+        document.getElementById('entity').disabled = false;
+        document.getElementById('passwordRequired').classList.remove('hidden');
+        document.getElementById('passwordOptional').classList.add('hidden');
+        document.getElementById('userModal').classList.remove('hidden');
+      }
+
+      async function openEditModal(id) {
+        try {
+          const res = await fetch(`/upload-generated/api/users/${id}`);
+          const data = await res.json();
+          
+          if (data.success) {
+            currentEditId = id;
+            const user = data.data;
+            
+            // 判断是否为管理员账户
+            const isAdmin = user.role === 'generate_admin';
+            
+            if (isAdmin) {
+              // 管理员账户只能修改密码
+              document.getElementById('modalTitle').textContent = '修改管理员密码';
+              document.getElementById('userId').value = user.id;
+              document.getElementById('username').value = user.username;
+              document.getElementById('username').disabled = true;  // 禁用用户名
+              document.getElementById('password').value = '';
+              document.getElementById('password').required = true;  // 密码必填
+              document.getElementById('role').value = user.role;
+              document.getElementById('entity').value = user.entity || '';
+              document.getElementById('entity').disabled = true;  // 禁用所属主体
+              document.getElementById('passwordRequired').classList.remove('hidden');
+              document.getElementById('passwordOptional').classList.add('hidden');
+            } else {
+              // 普通用户可以编辑所有字段
+              document.getElementById('modalTitle').textContent = '编辑用户';
+              document.getElementById('userId').value = user.id;
+              document.getElementById('username').value = user.username;
+              document.getElementById('username').disabled = false;
+              document.getElementById('password').value = '';
+              document.getElementById('password').required = false;
+              document.getElementById('role').value = user.role;
+              document.getElementById('entity').value = user.entity || '';
+              document.getElementById('entity').disabled = false;
+              document.getElementById('passwordRequired').classList.add('hidden');
+              document.getElementById('passwordOptional').classList.remove('hidden');
+            }
+            
+            document.getElementById('userModal').classList.remove('hidden');
+          } else {
+            showToast(data.message || '获取用户失败', 'error');
+          }
+        } catch (err) {
+          showToast('网络错误，获取用户失败', 'error');
+          console.error('获取用户失败:', err);
+        }
+      }
+
+      function closeModal() {
+        document.getElementById('userModal').classList.add('hidden');
+        document.getElementById('userForm').reset();
+        // 恢复字段的disabled状态
+        document.getElementById('username').disabled = false;
+        document.getElementById('entity').disabled = false;
+        currentEditId = null;
+      }
+
+      async function saveUser(e) {
+        e.preventDefault();
+        
+        const saveBtn = document.getElementById('saveBtn');
+        const originalHTML = saveBtn.innerHTML;
+        
+        try {
+          saveBtn.disabled = true;
+          saveBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>保存中...';
+          
+          const formData = {
+            username: document.getElementById('username').value.trim(),
+            password: document.getElementById('password').value.trim(),
+            role: document.getElementById('role').value,
+            entity: document.getElementById('entity').value.trim()
+          };
+          
+          let url, method;
+          if (currentEditId) {
+            // 编辑模式
+            url = `/upload-generated/api/users/${currentEditId}`;
+            method = 'PUT';
+            // 如果密码为空，不传password字段
+            if (!formData.password) {
+              delete formData.password;
+            }
+          } else {
+            // 新增模式
+            url = '/upload-generated/api/users';
+            method = 'POST';
+          }
+          
+          const res = await fetch(url, {
+            method: method,
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData)
+          });
+          const data = await res.json();
+          
+          if (data.success) {
+            showToast(data.message || '保存成功！', 'success');
+            closeModal();
+            loadData();
+          } else {
+            showToast(data.message || '保存失败', 'error');
+          }
+        } catch (err) {
+          showToast('网络错误，保存失败', 'error');
+          console.error('保存失败:', err);
+        } finally {
+          saveBtn.disabled = false;
+          saveBtn.innerHTML = originalHTML;
+        }
+      }
+
+      async function deleteUser(id, username) {
+        const confirmed = await showConfirm(`确定要删除用户 "${username}" 吗？删除后将无法恢复！`);
+        
+        if (!confirmed) {
+          return;
+        }
+        
+        try {
+          const res = await fetch(`/upload-generated/api/users/${id}`, {
+            method: 'DELETE'
+          });
+          const data = await res.json();
+          
+          if (data.success) {
+            showToast(data.message || '删除成功！', 'success');
+            loadData();
+          } else {
+            showToast(data.message || '删除失败', 'error');
+          }
+        } catch (err) {
+          showToast('网络错误，删除失败', 'error');
+          console.error('删除失败:', err);
+        }
+      }
+
+      function showConfirm(message) {
+        return new Promise((resolve) => {
+          const modal = document.getElementById('confirmModal');
+          const messageEl = document.getElementById('confirmMessage');
+          const okBtn = document.getElementById('confirmOkBtn');
+          const cancelBtn = document.getElementById('confirmCancelBtn');
+          
+          messageEl.textContent = message;
+          modal.classList.remove('hidden');
+          
+          const handleOk = () => {
+            cleanup();
+            resolve(true);
+          };
+          
+          const handleCancel = () => {
+            cleanup();
+            resolve(false);
+          };
+          
+          const cleanup = () => {
+            modal.classList.add('hidden');
+            okBtn.removeEventListener('click', handleOk);
+            cancelBtn.removeEventListener('click', handleCancel);
+          };
+          
+          okBtn.addEventListener('click', handleOk);
+          cancelBtn.addEventListener('click', handleCancel);
+        });
+      }
+
+      function showToast(message, type = 'success') {
+        const toast = document.createElement('div');
+        toast.className = `fixed top-6 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-lg shadow-lg text-white ${
+          type === 'success' ? 'bg-green-500' : 'bg-red-500'
+        } z-50`;
+        toast.innerHTML = `
+          <div class="flex items-center space-x-2">
+            <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
+            <span>${message}</span>
+          </div>
+        `;
+        document.body.appendChild(toast);
+        
+        setTimeout(() => {
+          toast.style.opacity = '0';
+          toast.style.transition = 'opacity 0.5s';
+          setTimeout(() => toast.remove(), 500);
+        }, 3000);
+      }
+    </script>
+  </body>
+</html>
+

@@ -7,6 +7,19 @@ from app.extensions import db
 
 auth = Blueprint('auth', __name__, url_prefix='/auth')
 
+def jump_page(role):
+    print(role)
+    if role == 'admin':
+        return redirect(url_for('main.list'))
+    elif role == 'project':
+        return redirect(url_for('enroll.enroll'))
+    elif role == 'generated':
+        return redirect(url_for('upload_generated.list_page'))
+    elif role == 'generate_admin':
+        return redirect(url_for('upload_generated.menu_page'))
+    else:
+        return redirect(url_for('main.list'))
+
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     # 从会话中获取next_url，而不是URL参数
@@ -14,58 +27,48 @@ def login():
     
     # 如果用户已登录，直接重定向到授权列表页面或next_url
     if session.get('logged_in'):
-        if next_url:
-            # 使用后清除会话中的next_url
-            session.pop('next_url', None)
-            return redirect(next_url)
-        return redirect(url_for('main.list'))
-        
-    if request.method == 'POST':
-        username = request.form.get('username')
-        password = request.form.get('password')
-        
-        # 添加日志输出，便于调试
-        current_app.logger.info(f"Login attempt for user: {username}")
-        
-        if not username or not password:
-            flash('请输入用户名和密码', 'error')
-            return render_template('auth/login.html')
-        
-        # 从数据库查询用户
-        user = User.query.filter_by(username=username).first()
-        
-        # 验证用户和密码
-        if user and check_password_hash(user.password_hash, password):
-            session['logged_in'] = True
-            session['username'] = username
-            session['user_id'] = user.id  # 存储用户ID，便于后续操作
-            current_app.logger.info(f"User {username} logged in successfully")
+        # if next_url:
+        #     # 使用后清除会话中的next_url
+        #     session.pop('next_url', None)
+        #     return redirect(next_url)
+        return jump_page(session.get('role'))
+        # return redirect(url_for('main.list'))
+    else:
+        if request.method == 'POST':
+            session.clear()
+            username = request.form.get('username')
+            password = request.form.get('password')
             
-            # 如果有next_url，则重定向到原始请求页面
-            if next_url:
-                # 使用后清除会话中的next_url
-                session.pop('next_url', None)
+            # 添加日志输出，便于调试
+            current_app.logger.info(f"Login attempt for user: {username}")
+            
+            if not username or not password:
+                flash('请输入用户名和密码', 'error')
+                return render_template('auth/login.html')
+            
+            # 从数据库查询用户
+            user = User.query.filter_by(username=username).first()
+            
+            # 验证用户和密码
+            if user and check_password_hash(user.password_hash, password):
+                session['logged_in'] = True
+                session['username'] = username
+                session['user_id'] = user.id  # 存储用户ID，便于后续操作
+                session['role'] = user.role
+                session['entity'] = user.entity  # 存储用户所属主体/分公司
+                current_app.logger.info(f"User {username} logged in successfully")
+                role = user.role
+                # 如果有next_url，则重定向到原始请求页面
+                if next_url:
+                    # 使用后清除会话中的next_url
+                    session.pop('next_url', None)
+                    return jump_page(role)
+                else:
+                    return jump_page(role)
                 
-                # 检查权限
-                if username == 'admin':
-                    # 管理员有所有权限
-                    return redirect(next_url)
-                else:
-                    # 非管理员，检查是否访问的是管理员页面
-                    if 'users' in next_url:  # 简单判断是否为用户管理相关页面
-                        flash('您没有权限访问该页面', 'error')
-                        return redirect(url_for('enroll.enroll'))
-                    return redirect(next_url)
             else:
-                # 没有next_url，使用默认重定向
-                if username == 'admin':
-                    return redirect(url_for('main.list'))
-                else:
-                    return redirect(url_for('enroll.enroll'))
-        else:
-            flash('用户名或密码错误', 'error')
-            current_app.logger.warning(f"Failed login attempt for user: {username}")
-    
+                flash('用户名或密码错误', 'error')
+                current_app.logger.warning(f"Failed login attempt for user: {username}")
     return render_template('auth/login.html')
 
 @auth.route('/logout')
@@ -96,6 +99,8 @@ def add_user():
         username = request.form.get('username')
         password = request.form.get('password')
         confirm_password = request.form.get('confirm_password')
+        entity = request.form.get('entity')  # 获取主体字段
+        role = request.form.get('role', 'project')  # 获取角色字段，默认为project
         
         if not username or not password:
             flash('请输入用户名和密码', 'error')
@@ -111,8 +116,8 @@ def add_user():
             flash('用户名已存在', 'error')
             return render_template('auth/add_user.html')
             
-        # 创建新用户
-        new_user = User(username=username)
+        # 创建新用户，role固定为project（从隐藏字段获取）
+        new_user = User(username=username, entity=entity, role=role)
         new_user.set_password(password)
         
         try:

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Excel 数据导入</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#3B82F6",
+              secondary: "#64748B",
+            },
+            borderRadius: {
+              none: "0px",
+              sm: "2px",
+              DEFAULT: "4px",
+              md: "8px",
+              lg: "12px",
+              xl: "16px",
+              "2xl": "20px",
+              "3xl": "24px",
+              full: "9999px",
+              button: "4px",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      input[type="file"] {
+        display: none;
+      }
+      .editable:focus {
+        outline: 2px solid #3b82f6;
+        background: #f8fafc;
+      }
+      .toast {
+        animation: slideIn 0.3s ease-out, fadeOut 0.5s ease-in 2.5s forwards;
+      }
+      @keyframes slideIn {
+        from {
+          transform: translateY(-100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+      @keyframes fadeOut {
+        from {
+          opacity: 1;
+        }
+        to {
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body class="min-h-[1024px] bg-gray-50">
+    {% set active_page = 'import' %}
+    {% include 'uploadGeneratedFiles/navbar.html' %}
+    
+    <div class="max-w-[1680px] mx-auto px-8 py-6">
+      <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+        <h1 class="text-2xl font-bold mb-6">数据导入</h1>
+        <div
+          class="border-2 border-dashed border-gray-200 rounded-lg p-8 text-center mb-6"
+        >
+          <div class="mb-4">
+            <i class="fas fa-file-excel text-gray-400 text-4xl mb-4"></i>
+            <p class="text-gray-600 mb-2">将文件拖放到此处，或</p>
+            <label class="inline-block">
+              <input type="file" accept=".xlsx,.xls" id="fileInput" />
+              <button
+                id="chooseBtn"
+                class="bg-primary text-white px-4 py-2 !rounded-button hover:bg-blue-600 transition-colors whitespace-nowrap"
+              >
+                选择文件
+              </button>
+            </label>
+          </div>
+          <div id="fileName" class="flex items-center justify-center space-x-2 text-gray-600 hidden">
+            <i class="fas fa-file-excel mr-2"></i>
+            <span id="fileNameText">员工信息表.xlsx</span>
+            <button id="clearFileBtn" class="ml-2 px-2 py-1 text-xs border border-gray-300 !rounded-button text-gray-600 hover:bg-gray-50">删除</button>
+          </div>
+          <div class="text-sm text-gray-500 mt-4">
+            支持 .xlsx、.xls 格式，
+            <a href="#" class="text-primary hover:underline">下载导入模板</a>
+          </div>
+        </div>
+        <div class="overflow-x-auto mb-6">
+          <table id="previewTable" class="w-full border-collapse">
+            <thead>
+              <tr class="bg-gray-50">
+                <th
+                  class="border-b px-4 py-3 text-left text-sm font-medium text-gray-600"
+                >
+                  使用模板
+                </th>
+                <th
+                  class="border-b px-4 py-3 text-left text-sm font-medium text-gray-600"
+                >
+                  店铺类型
+                </th>
+                <th
+                  class="border-b px-4 py-3 text-left text-sm font-medium text-gray-600"
+                >
+                  授权主体
+                </th>
+                <th
+                  class="border-b px-4 py-3 text-left text-sm font-medium text-gray-600"
+                >
+                  授权平台
+                </th>
+                <th
+                  class="border-b px-4 py-3 text-left text-sm font-medium text-gray-600"
+                >
+                  授权品牌
+                </th>
+                <th
+                  class="border-b px-4 py-3 text-left text-sm font-medium text-gray-600"
+                >
+                  品牌商标号
+                </th>
+                <th
+                  class="border-b px-4 py-3 text-left text-sm font-medium text-gray-600"
+                >
+                  店铺名称
+                </th>
+                <th
+                  class="border-b px-4 py-3 text-left text-sm font-medium text-gray-600"
+                >
+                  授权期间
+                </th>
+                <th
+                  class="border-b px-4 py-3 text-left text-sm font-medium text-gray-600"
+                >
+                  授权字号
+                </th>
+                <th
+                  class="border-b px-4 py-3 text-left text-sm font-medium text-gray-600"
+                >
+                  授权方（盖章）主体
+                </th>
+                <th
+                  class="border-b px-4 py-3 text-left text-sm font-medium text-gray-600"
+                >
+                  用印时间
+                </th>
+              </tr>
+            </thead>
+            <tbody id="previewBody">
+            </tbody>
+          </table>
+        </div>
+        <div class="flex items-center justify-between mb-6">
+          <div class="text-sm text-gray-600">
+            共 <span id="totalCount" class="font-medium">0</span> 条数据，
+            <span id="errorCount" class="text-red-500">0</span> 条错误数据
+          </div>
+          <div class="flex space-x-4">
+            <button
+              class="px-4 py-2 border border-gray-300 text-gray-600 !rounded-button hover:bg-gray-50 transition-colors whitespace-nowrap"
+            >
+              取消
+            </button>
+            <button
+              id="confirmBtn"
+              class="px-4 py-2 bg-primary text-white !rounded-button hover:bg-blue-600 transition-colors whitespace-nowrap"
+            >
+              确认导入
+            </button>
+          </div>
+        </div>
+        <div id="pagination" class="flex items-center justify-center space-x-2"></div>
+      </div>
+    </div>
+    <div
+      id="toast"
+      class="hidden fixed top-6 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg toast"
+    >
+      <div class="flex items-center space-x-2">
+        <i class="fas fa-check-circle"></i>
+        <span>成功导入 2 条数据</span>
+      </div>
+    </div>
+    <script>
+      const fileInput = document.getElementById("fileInput");
+      const chooseBtn = document.getElementById("chooseBtn");
+      // 明确触发隐藏的文件选择框
+      chooseBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        fileInput.click();
+      });
+      const fileName = document.getElementById("fileName");
+      const fileNameText = document.getElementById("fileNameText");
+      const clearFileBtn = document.getElementById("clearFileBtn");
+      const dropZone = document.querySelector(".border-dashed");
+      const toast = document.getElementById("toast");
+      const previewBody = document.getElementById("previewBody");
+      const confirmBtn = document.getElementById("confirmBtn");
+      const totalCountEl = document.getElementById("totalCount");
+      const errorCountEl = document.getElementById("errorCount");
+      const paginationEl = document.getElementById("pagination");
+      const HEADER_KEYS = ['使用模板','店铺类型','授权主体','授权平台','授权品牌','品牌商标号','店铺名称','授权期间','授权字号','授权方（盖章）主体','用印时间'];
+      let previewRows = [];
+      let currentPage = 1;
+      const pageSize = 10;
+
+      fileInput.addEventListener("change", async (e) => {
+        if (e.target.files.length > 0) {
+          fileName.classList.remove("hidden");
+          fileNameText.textContent = e.target.files[0].name;
+          await uploadAndPreview(e.target.files[0]);
+        }
+      });
+      dropZone.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        dropZone.classList.add("border-primary");
+      });
+      dropZone.addEventListener("dragleave", (e) => {
+        e.preventDefault();
+        dropZone.classList.remove("border-primary");
+      });
+      dropZone.addEventListener("drop", async (e) => {
+        e.preventDefault();
+        dropZone.classList.remove("border-primary");
+        const files = e.dataTransfer.files;
+        if (files.length > 0) {
+          fileInput.files = files;
+          fileName.classList.remove("hidden");
+          fileNameText.textContent = files[0].name;
+          await uploadAndPreview(files[0]);
+        }
+      });
+
+      clearFileBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        // 清空文件选择
+        fileInput.value = '';
+        // 重置显示
+        fileName.classList.add('hidden');
+        // 清空预览与统计、分页
+        previewRows = [];
+        updateStats();
+        renderPagination();
+        previewBody.innerHTML = '';
+      });
+      async function uploadAndPreview(file) {
+        const formData = new FormData();
+        formData.append('file', file);
+        try {
+          const res = await fetch('/upload-generated/preview', {
+            method: 'POST',
+            body: formData
+          });
+          const data = await res.json();
+          if (!data.success) {
+            // 处理表头不匹配的详细错误信息
+            if (data.expected && data.found) {
+              const errorMsg = `${data.message || '预览失败'}\n\n期望的表头：\n${data.expected.join(', ')}\n\n实际的表头：\n${data.found.join(', ')}`;
+              alert(errorMsg);
+            } else {
+              alert(data.message || '预览失败');
+            }
+            return;
+          }
+          previewRows = data.rows || [];
+          currentPage = 1;
+          updateStats();
+          renderPagination();
+          renderPage(currentPage);
+        } catch (err) {
+          alert('网络错误，预览失败');
+        }
+      }
+
+      function isErrorRow(row) {
+        const period = (row['授权期间'] || '');
+        if (!period.includes('至') && !period.includes('to')) return false;
+        const parts = period.replace('to', '至').split('至').map(s => s.trim());
+        if (parts.length !== 2) return false;
+        const start = new Date(parts[0]);
+        const end = new Date(parts[1]);
+        return start > end;
+      }
+
+      function updateStats() {
+        totalCountEl.textContent = String(previewRows.length);
+        const err = previewRows.reduce((acc, r) => acc + (isErrorRow(r) ? 1 : 0), 0);
+        errorCountEl.textContent = String(err);
+      }
+
+      function renderPage(page) {
+        currentPage = page;
+        previewBody.innerHTML = '';
+        const start = (page - 1) * pageSize;
+        const end = Math.min(start + pageSize, previewRows.length);
+        for (let i = start; i < end; i++) {
+          const row = previewRows[i];
+          const isError = isErrorRow(row);
+          const tr = document.createElement('tr');
+          if (isError) tr.className = 'bg-red-50';
+          HEADER_KEYS.forEach((key, index) => {
+            const td = document.createElement('td');
+            td.className = 'border-b px-4 py-3 text-sm ' + (isError ? 'text-red-600' : 'text-gray-600') + (index === 0 ? '' : ' editable');
+            if (index > 0) td.contentEditable = 'true';
+            td.textContent = row[key] || '';
+            if (index > 0) {
+              td.addEventListener('blur', () => {
+                previewRows[i][key] = (td.textContent || '').trim();
+                // 若编辑了期间需要刷新错误统计与行样式
+                if (key === '授权期间') {
+                  updateStats();
+                  renderPage(currentPage);
+                }
+              });
+            }
+            tr.appendChild(td);
+          });
+          previewBody.appendChild(tr);
+        }
+      }
+
+      function renderPagination() {
+        paginationEl.innerHTML = '';
+        const totalPages = Math.max(1, Math.ceil(previewRows.length / pageSize));
+        const makeBtn = (label, active = false, handler = null, disabled = false) => {
+          const btn = document.createElement('button');
+          btn.className = 'w-8 h-8 flex items-center justify-center border ' + (active ? 'border-primary bg-primary text-white' : 'border-gray-300 !rounded-button text-gray-600 hover:bg-gray-50') + ' !rounded-button';
+          if (disabled) btn.classList.add('opacity-50', 'cursor-not-allowed');
+          btn.textContent = label;
+          if (handler && !disabled) btn.addEventListener('click', handler);
+          return btn;
+        };
+        // Prev
+        paginationEl.appendChild(makeBtn('<', false, () => { if (currentPage > 1) { renderPage(currentPage - 1); highlightActive(); } }, currentPage === 1));
+        // Numbers
+        for (let p = 1; p <= totalPages; p++) {
+          const btn = makeBtn(String(p), p === currentPage, () => { renderPage(p); highlightActive(); });
+          paginationEl.appendChild(btn);
+        }
+        // Next
+        paginationEl.appendChild(makeBtn('>', false, () => { if (currentPage < totalPages) { renderPage(currentPage + 1); highlightActive(); } }, currentPage === totalPages));
+
+        function highlightActive() {
+          renderPagination();
+        }
+      }
+
+      confirmBtn.addEventListener('click', async () => {
+        try {
+          const res = await fetch('/upload-generated/confirm', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ rows: previewRows })
+          });
+          const data = await res.json();
+          if (data.success) {
+            showToast(`成功导入 ${data.inserted || 0} 条数据`);
+          } else {
+            alert(data.message || '导入失败');
+          }
+        } catch (err) {
+          alert('网络错误，导入失败');
+        }
+      });
+
+      function showToast(message = '成功导入 2 条数据') {
+        toast.querySelector('span').textContent = message;
+        toast.classList.remove("hidden");
+        setTimeout(() => {
+          toast.classList.add("hidden");
+        }, 3000);
+      }
+    </script>
+  </body>
+</html>

@@ -32,6 +32,7 @@
                     <tr>
                         <th>ID</th>
                         <th>客户名</th>
+                        <th>所属主体</th>
                         <th>操作</th>
                     </tr>
                 </thead>
@@ -40,6 +41,7 @@
                     <tr>
                         <td>{{ user.id }}</td>
                         <td>{{ user.username }}</td>
+                        <td>{{ user.entity or '-' }}</td>
                         <td>
                             <div class="btn-group">
                                 <a href="{{ url_for('auth.reset_password', username=user.username) }}" class="btn btn-sm btn-warning">

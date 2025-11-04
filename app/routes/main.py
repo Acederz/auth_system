@@ -13,6 +13,7 @@ main = Blueprint('main', __name__)
 
 @main.route('/')
 @main.route('/index')
+@admin_required
 def index():
     # 修改为：如果未登录，重定向到登录页面；如果已登录，重定向到授权列表页面
     if not session.get('logged_in'):
@@ -92,6 +93,7 @@ def export_excel():
     )
 
 @main.route('/main/images', methods=['POST'])
+@admin_required
 def get_auth_images():
     """获取授权书的图片列表"""
     data = request.get_json()
@@ -161,12 +163,14 @@ def update_auth():
     return jsonify({'error': '未找到授权书'}), 404
 
 @main.route('/download_template')
+@admin_required
 def download_template():
     """下载授权书模板"""
     filepath = os.path.join(current_app.config['UPLOAD_FOLDER'], '授权模版.docx')
     return send_file(filepath, as_attachment=True)
 
 @main.route('/deleteauth/<auth_id>', methods=['DELETE'])
+@admin_required
 def delete_auth(auth_id):
     """删除授权书及其相关文档"""
     try:

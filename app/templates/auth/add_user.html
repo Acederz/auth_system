@@ -24,6 +24,12 @@
                             <label for="confirm_password" class="form-label">确认密码</label>
                             <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
                         </div>
+                        <div class="mb-3">
+                            <label for="entity" class="form-label">所属主体/公司</label>
+                            <input type="text" class="form-control" id="entity" name="entity" placeholder="请输入用户所属的公司或主体">
+                        </div>
+                        <!-- 隐藏的role字段，固定为project -->
+                        <input type="hidden" name="role" value="project">
                         <div class="d-flex justify-content-between">
                             <button type="submit" class="btn btn-primary">添加用户</button>
                             <a href="{{ url_for('auth.user_list') }}" class="btn btn-secondary">返回</a>

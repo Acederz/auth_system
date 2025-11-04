@@ -1,0 +1,46 @@
+<!-- 顶部导航栏组件 -->
+<nav class="bg-white shadow-sm border-b border-gray-200">
+  <div class="max-w-[1680px] mx-auto px-8">
+    <div class="flex items-center justify-between h-16">
+      <!-- 左侧：系统名称 -->
+      <div class="flex items-center space-x-8">
+        <a href="{{ url_for('upload_generated.menu_page') }}" class="text-xl font-bold text-gray-900 hover:text-primary transition-colors">
+          <i class="fas fa-shield-alt mr-2"></i>项目保护系统
+        </a>
+        <div class="hidden md:flex items-center space-x-4">
+          {% if session.role == 'generate_admin' %}
+          <a href="{{ url_for('upload_generated.menu_page') }}" 
+             class="{% if active_page == 'menu' %}text-primary border-b-2 border-primary{% else %}text-gray-600 hover:text-primary transition-colors{% endif %} px-3 py-2 {% if active_page != 'menu' %}rounded-md{% endif %} text-sm font-medium">
+            <i class="fas fa-home mr-1"></i>功能菜单
+          </a>
+          <a href="{{ url_for('upload_generated.import_page') }}" 
+             class="{% if active_page == 'import' %}text-primary border-b-2 border-primary{% else %}text-gray-600 hover:text-primary transition-colors{% endif %} px-3 py-2 {% if active_page != 'import' %}rounded-md{% endif %} text-sm font-medium">
+            <i class="fas fa-file-import mr-1"></i>数据导入
+          </a>
+          {% endif %}
+          <a href="{{ url_for('upload_generated.list_page') }}" 
+             class="{% if active_page == 'list' %}text-primary border-b-2 border-primary{% else %}text-gray-600 hover:text-primary transition-colors{% endif %} px-3 py-2 {% if active_page != 'list' %}rounded-md{% endif %} text-sm font-medium">
+            <i class="fas fa-list mr-1"></i>数据列表
+          </a>
+          {% if session.role == 'generate_admin' %}
+          <a href="{{ url_for('upload_generated.user_management_page') }}" 
+             class="{% if active_page == 'user_management' %}text-primary border-b-2 border-primary{% else %}text-gray-600 hover:text-primary transition-colors{% endif %} px-3 py-2 {% if active_page != 'user_management' %}rounded-md{% endif %} text-sm font-medium">
+            <i class="fas fa-users mr-1"></i>用户管理
+          </a>
+          {% endif %}
+        </div>
+      </div>
+      
+      <!-- 右侧：用户操作 -->
+      <div class="flex items-center space-x-4">
+        <!-- <a href="{{ url_for('main.list') }}" class="text-gray-600 hover:text-primary transition-colors px-3 py-2 rounded-md text-sm font-medium">
+          <i class="fas fa-file-alt mr-1"></i>授权书管理
+        </a> -->
+        <a href="{{ url_for('auth.logout') }}" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 !rounded-button text-sm font-medium transition-colors">
+          <i class="fas fa-sign-out-alt mr-1"></i>退出登录
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
