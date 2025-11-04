@@ -51,7 +51,9 @@ def import_page():
 @generate_admin_required
 def download_template():
     """下载Excel导入模板文件"""
-    template_path = os.path.join('app', 'static', 'templates', '授权书上传模板.xlsx')
+    from flask import current_app
+    # 使用Flask应用的根路径构建绝对路径
+    template_path = os.path.join(current_app.root_path, 'static', 'templates', '授权书上传模板.xlsx')
     
     if not os.path.exists(template_path):
         return jsonify({'success': False, 'message': '模板文件不存在'}), 404
