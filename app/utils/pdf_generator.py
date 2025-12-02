@@ -3,17 +3,34 @@ PDF 文档生成工具
 根据 Generated 模型数据和模板文件生成PDF授权书
 """
 import os
+import sys
+import subprocess
 from datetime import datetime
 from flask import current_app
 
+# 分别导入各个模块，以便更准确地报告错误
+Document = None
+convert = None
+pythoncom = None
+_import_errors = []
+
 try:
     from docx import Document
+except Exception as e:
+    # 捕获所有异常，不仅仅是 ImportError
+    _import_errors.append(f'python-docx 导入失败: {type(e).__name__}: {str(e)}')
+
+try:
     from docx2pdf import convert
+except Exception as e:
+    # 捕获所有异常，不仅仅是 ImportError
+    _import_errors.append(f'docx2pdf 导入失败: {type(e).__name__}: {str(e)}')
+
+try:
     import pythoncom
-except ImportError:
-    Document = None
-    convert = None
-    pythoncom = None
+except Exception:
+    # pythoncom 只在 Windows 上可用，这是正常的
+    pass
 
 
 class PDFGenerator:
@@ -62,10 +79,16 @@ class PDFGenerator:
             tuple: (success: bool, file_path: str or error_message: str)
         """
         if Document is None:
-            return False, '系统缺少 python-docx 依赖，请先安装：pip install python-docx'
-        
-        if convert is None:
-            return False, '系统缺少 docx2pdf 依赖，请先安装：pip install docx2pdf'
+            error_msg = '系统缺少 python-docx 依赖，请先安装：pip install python-docx'
+            if _import_errors:
+                # 只显示 python-docx 相关的错误
+                docx_errors = [e for e in _import_errors if 'python-docx' in e]
+                if docx_errors:
+                    error_msg += f'\n详细错误：{docx_errors[0]}'
+                else:
+                    error_msg += f'\n详细错误：{"; ".join(_import_errors)}'
+            error_msg += '\n提示：如果已安装但仍报错，请检查：1) Python 环境是否正确；2) 虚拟环境是否激活；3) 依赖是否安装在当前 Python 环境中'
+            return False, error_msg
         
         # 使用配置中的输出路径
         if output_dir is None:
@@ -123,17 +146,30 @@ class PDFGenerator:
             pdf_filename = self._generate_pdf_filename(generated_model)
             pdf_path = os.path.join(output_dir, pdf_filename)
             
-            # 初始化 COM（Windows 需要）
-            if pythoncom is not None:
-                pythoncom.CoInitialize()
-            
-            try:
-                # 转换为PDF
-                convert(temp_word_path, pdf_path)
-            finally:
-                # 清理 COM
+            # 转换为PDF - 根据操作系统选择转换方法
+            if sys.platform == 'win32' and convert is not None:
+                # Windows: 使用 docx2pdf (需要 Microsoft Word)
                 if pythoncom is not None:
-                    pythoncom.CoUninitialize()
+                    pythoncom.CoInitialize()
+                try:
+                    convert(temp_word_path, pdf_path)
+                except Exception as e:
+                    return False, f'PDF转换失败（Windows）: {str(e)}。请确保已安装 Microsoft Word。'
+                finally:
+                    if pythoncom is not None:
+                        pythoncom.CoUninitialize()
+            else:
+                # Linux/Mac: 优先使用 LibreOffice 命令行工具
+                success = self._convert_with_libreoffice(temp_word_path, pdf_path)
+                if not success:
+                    # 如果 LibreOffice 不可用，尝试使用 docx2pdf（如果可用，某些 Linux 环境可能支持）
+                    if convert is not None:
+                        try:
+                            convert(temp_word_path, pdf_path)
+                        except Exception as e:
+                            return False, f'PDF转换失败。Linux系统请安装LibreOffice: sudo apt-get install libreoffice 或 sudo yum install libreoffice。错误详情: {str(e)}'
+                    else:
+                        return False, 'PDF转换失败。Linux系统请安装LibreOffice: sudo apt-get install libreoffice 或 sudo yum install libreoffice。如果已安装，请确保 libreoffice 命令在系统 PATH 中。'
             
             # 删除临时Word文件
             if os.path.exists(temp_word_path):
@@ -307,6 +343,59 @@ class PDFGenerator:
             filename = filename.replace(char, '_')
         
         return filename
+    
+    def _convert_with_libreoffice(self, docx_path, pdf_path):
+        """
+        使用 LibreOffice 命令行工具将 Word 文档转换为 PDF（Linux/Mac）
+        
+        Args:
+            docx_path: Word 文档路径
+            pdf_path: 输出 PDF 路径
+            
+        Returns:
+            bool: 转换是否成功
+        """
+        try:
+            # 确保输出目录存在
+            output_dir = os.path.dirname(pdf_path)
+            os.makedirs(output_dir, exist_ok=True)
+            
+            # 尝试不同的 LibreOffice 命令
+            libreoffice_cmds = [
+                ['libreoffice', '--headless', '--convert-to', 'pdf', '--outdir', output_dir, docx_path],
+                ['soffice', '--headless', '--convert-to', 'pdf', '--outdir', output_dir, docx_path],
+            ]
+            
+            for cmd in libreoffice_cmds:
+                try:
+                    result = subprocess.run(
+                        cmd,
+                        stdout=subprocess.PIPE,
+                        stderr=subprocess.PIPE,
+                        timeout=60,
+                        check=False
+                    )
+                    
+                    if result.returncode == 0:
+                        # LibreOffice 生成的 PDF 文件名可能与预期不同
+                        # 查找生成的 PDF 文件
+                        base_name = os.path.splitext(os.path.basename(docx_path))[0]
+                        generated_pdf = os.path.join(output_dir, f'{base_name}.pdf')
+                        
+                        if os.path.exists(generated_pdf):
+                            # 如果文件名不同，重命名
+                            if generated_pdf != pdf_path:
+                                if os.path.exists(pdf_path):
+                                    os.remove(pdf_path)
+                                os.rename(generated_pdf, pdf_path)
+                            return True
+                except (subprocess.TimeoutExpired, FileNotFoundError):
+                    continue
+            
+            return False
+        except Exception as e:
+            print(f"LibreOffice 转换错误: {str(e)}")
+            return False
 
 
 # 便捷函数
