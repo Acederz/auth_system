@@ -146,6 +146,8 @@ def generated_required(f):
             
             flash('您没有权限访问此页面', 'error')
             return redirect(default_page)
+        
+        return f(*args, **kwargs)
     return decorated_function
 
 #授权书模板生成管理员——三期
@@ -178,4 +180,6 @@ def generate_admin_required(f):
             
             flash('您没有权限访问此页面', 'error')
             return redirect(default_page)
+        
+        return f(*args, **kwargs)
     return decorated_function
