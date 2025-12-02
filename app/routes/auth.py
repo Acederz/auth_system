@@ -85,10 +85,13 @@ def user_list():
     
     if search_query:
         # 如果有搜索查询，根据用户名进行过滤
-        users = User.query.filter(User.username.like(f'%{search_query}%')).all()
+        users = User.query.filter(
+            User.username.like(f'%{search_query}%'),
+            User.role == 'project'
+        ).all()
     else:
         # 否则获取所有用户
-        users = User.query.all()
+        users = User.query.filter_by(role='project').all()
     
     return render_template('auth/user_list.html', users=users)
 
