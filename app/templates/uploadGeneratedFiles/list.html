@@ -243,6 +243,13 @@
             >
               <i class="fas fa-download mr-2"></i>批量下载PDF
             </button>
+            <button
+              id="batchDeleteBtn"
+              class="flex items-center px-4 py-2 bg-gray-600 text-white text-sm font-medium !rounded-button hover:bg-gray-700 whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed hidden"
+              disabled
+            >
+              <i class="fas fa-trash mr-2"></i>批量删除
+            </button>
           </div>
           <div class="flex items-center space-x-4">
             <button
@@ -574,6 +581,7 @@
         // 批量操作
         document.getElementById('batchGeneratePdfBtn').addEventListener('click', batchGeneratePDFDocuments);
         document.getElementById('batchDownloadPdfBtn').addEventListener('click', () => batchDownloadDocuments('pdf'));
+        document.getElementById('batchDeleteBtn').addEventListener('click', batchDeleteRecords);
         
         // 模态框事件
         document.getElementById('closeModalBtn').addEventListener('click', closeEditModal);
@@ -596,6 +604,7 @@
         const selectedCount = document.getElementById('selectedCount');
         const batchGeneratePdfBtn = document.getElementById('batchGeneratePdfBtn');
         const batchDownloadPdfBtn = document.getElementById('batchDownloadPdfBtn');
+        const batchDeleteBtn = document.getElementById('batchDeleteBtn');
         
         selectedCount.textContent = count;
         
@@ -605,12 +614,16 @@
           batchGeneratePdfBtn.disabled = false;
           batchDownloadPdfBtn.classList.remove('hidden');
           batchDownloadPdfBtn.disabled = false;
+          batchDeleteBtn.classList.remove('hidden');
+          batchDeleteBtn.disabled = false;
         } else {
           selectedInfo.classList.add('hidden');
           batchGeneratePdfBtn.classList.add('hidden');
           batchGeneratePdfBtn.disabled = true;
           batchDownloadPdfBtn.classList.add('hidden');
           batchDownloadPdfBtn.disabled = true;
+          batchDeleteBtn.classList.add('hidden');
+          batchDeleteBtn.disabled = true;
         }
         
         // 更新全选框状态
@@ -1207,6 +1220,92 @@
         } catch (err) {
           showToast('网络错误，删除失败', 'error');
           console.error('删除记录失败:', err);
+        }
+      }
+      
+      // 批量删除记录
+      async function batchDeleteRecords() {
+        const checkboxes = document.querySelectorAll('.row-checkbox:checked');
+        const ids = Array.from(checkboxes).map(cb => parseInt(cb.getAttribute('data-id')));
+        
+        if (ids.length === 0) {
+          showToast('请选择要删除的数据', 'error');
+          return;
+        }
+        
+        const confirmed = await showConfirm({
+          title: '批量删除确认',
+          message: `确定要删除选中的 ${ids.length} 条记录吗？删除后将无法恢复！`,
+          type: 'danger',
+          okText: '删除',
+          cancelText: '取消'
+        });
+        
+        if (!confirmed) {
+          return;
+        }
+        
+        try {
+          // 显示进度弹窗
+          showProgress('批量删除记录');
+          
+          // 批量删除 - 使用Promise.all并行删除以提高效率
+          const total = ids.length;
+          let completed = 0;
+          
+          // 创建所有删除请求
+          const deletePromises = ids.map(async (id, index) => {
+            try {
+              const res = await fetch(`/upload-generated/api/record/${id}`, {
+                method: 'DELETE'
+              });
+              const data = await res.json();
+              
+              // 更新进度
+              completed++;
+              updateProgress({
+                progress: Math.round((completed / total) * 100),
+                current: completed,
+                total: total,
+                message: `正在删除记录... (${completed}/${total})`
+              });
+              
+              return { success: data.success, id, message: data.message };
+            } catch (err) {
+              completed++;
+              updateProgress({
+                progress: Math.round((completed / total) * 100),
+                current: completed,
+                total: total,
+                message: `正在删除记录... (${completed}/${total})`
+              });
+              return { success: false, id, message: err.message };
+            }
+          });
+          
+          // 等待所有删除操作完成
+          const results = await Promise.all(deletePromises);
+          
+          // 统计结果
+          const successCount = results.filter(r => r.success).length;
+          const failedCount = results.filter(r => !r.success).length;
+          
+          // 隐藏进度弹窗
+          hideProgress();
+          
+          // 显示结果
+          if (failedCount === 0) {
+            showToast(`成功删除 ${successCount} 条记录！`, 'success');
+          } else {
+            showToast(`删除完成：成功 ${successCount} 条，失败 ${failedCount} 条`, failedCount === total ? 'error' : 'success');
+          }
+          
+          // 重新加载列表
+          loadData();
+        } catch (err) {
+          hideProgress();
+          showToast('网络错误，批量删除失败', 'error');
+          console.error('批量删除失败:', err);
         }
       }
 

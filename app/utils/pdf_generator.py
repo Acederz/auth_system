@@ -146,30 +146,24 @@ class PDFGenerator:
             pdf_filename = self._generate_pdf_filename(generated_model)
             pdf_path = os.path.join(output_dir, pdf_filename)
             
-            # 转换为PDF - 根据操作系统选择转换方法
-            if sys.platform == 'win32' and convert is not None:
-                # Windows: 使用 docx2pdf (需要 Microsoft Word)
-                if pythoncom is not None:
-                    pythoncom.CoInitialize()
-                try:
-                    convert(temp_word_path, pdf_path)
-                except Exception as e:
-                    return False, f'PDF转换失败（Windows）: {str(e)}。请确保已安装 Microsoft Word。'
-                finally:
-                    if pythoncom is not None:
-                        pythoncom.CoUninitialize()
-            else:
-                # Linux/Mac: 优先使用 LibreOffice 命令行工具
-                success = self._convert_with_libreoffice(temp_word_path, pdf_path)
-                if not success:
-                    # 如果 LibreOffice 不可用，尝试使用 docx2pdf（如果可用，某些 Linux 环境可能支持）
-                    if convert is not None:
-                        try:
-                            convert(temp_word_path, pdf_path)
-                        except Exception as e:
-                            return False, f'PDF转换失败。Linux系统请安装LibreOffice: sudo apt-get install libreoffice 或 sudo yum install libreoffice。错误详情: {str(e)}'
-                    else:
-                        return False, 'PDF转换失败。Linux系统请安装LibreOffice: sudo apt-get install libreoffice 或 sudo yum install libreoffice。如果已安装，请确保 libreoffice 命令在系统 PATH 中。'
+            # 转换为PDF - 统一使用 LibreOffice（跨平台一致）
+            success = self._convert_with_libreoffice(temp_word_path, pdf_path)
+            if not success:
+                # 根据操作系统提供不同的安装提示
+                if sys.platform == 'win32':
+                    return False, (
+                        'PDF转换失败（Windows）。请安装LibreOffice。\n'
+                        '下载地址：https://www.libreoffice.org/download/\n'
+                        '安装后请确保 LibreOffice 在系统 PATH 中，或重启应用程序。'
+                    )
+                else:
+                    # Linux/Mac
+                    return False, (
+                        'PDF转换失败。请安装LibreOffice。\n'
+                        'Linux: sudo apt-get install libreoffice 或 sudo yum install libreoffice\n'
+                        'Mac: brew install --cask libreoffice\n'
+                        '如果已安装，请确保 libreoffice 命令在系统 PATH 中。'
+                    )
             
             # 删除临时Word文件
             if os.path.exists(temp_word_path):
@@ -286,67 +280,25 @@ class PDFGenerator:
             print(f"警告：处理文本框时出错: {str(e)}")
     
     def _replace_in_paragraph(self, paragraph, replace_data):
-        """
-        替换段落中的占位符，保持原有格式
-        
-        改进后的实现会：
-        1. 找到包含占位符的 run
-        2. 在该 run 中直接替换文本，保持该 run 的格式（字体、大小、颜色、加粗等）
-        3. 如果占位符跨越多个 runs，会合并并保持第一个包含占位符的 run 的格式
-        """
+        """替换段落中的占位符"""
         full_text = paragraph.text
         need_replace = any(placeholder in full_text for placeholder in replace_data.keys())
         
-        if not need_replace:
-            return
-        
-        # 执行文本替换
-        new_text = full_text
-        for placeholder, value in replace_data.items():
-            new_text = new_text.replace(placeholder, str(value))
-        
-        if new_text == full_text:
-            return  # 没有实际替换
-        
-        # 查找包含占位符的 run(s)
-        placeholder_runs = []
-        for run in paragraph.runs:
-            run_text = run.text
-            if any(placeholder in run_text for placeholder in replace_data.keys()):
-                placeholder_runs.append(run)
-        
-        if not placeholder_runs:
-            # 如果占位符跨越多个 runs，可能找不到，使用原逻辑
-            original_runs = list(paragraph.runs)
-            for run in paragraph.runs:
-                run.text = ''
-            
-            if original_runs:
-                # 使用第一个 run 的格式
-                run = original_runs[0]
-                run.text = new_text
-            else:
-                paragraph.add_run(new_text)
-            return
-        
-        # 如果占位符在单个 run 中，直接在该 run 中替换，保持格式
-        if len(placeholder_runs) == 1:
-            run = placeholder_runs[0]
-            run_text = run.text
-            new_run_text = run_text
+        if need_replace:
+            new_text = full_text
             for placeholder, value in replace_data.items():
-                new_run_text = new_run_text.replace(placeholder, str(value))
-            run.text = new_run_text
-        else:
-            # 占位符跨越多个 runs，合并并保持第一个 run 的格式
-            first_run = placeholder_runs[0]
+                new_text = new_text.replace(placeholder, str(value))
             
-            # 清空所有包含占位符的 runs
-            for run in placeholder_runs:
-                run.text = ''
-            
-            # 在第一个 run 中放置新文本，保持其格式
-            first_run.text = new_text
+            if new_text != full_text:
+                original_runs = list(paragraph.runs)
+                for run in paragraph.runs:
+                    run.text = ''
+                
+                if original_runs:
+                    run = original_runs[0]
+                    run.text = new_text
+                else:
+                    paragraph.add_run(new_text)
     
     def _generate_temp_word_path(self, generated_model, output_dir):
         """生成临时Word文件路径（包含时间戳避免并发冲突）"""
@@ -386,6 +338,103 @@ class PDFGenerator:
         
         return filename
     
+    def _convert_with_word_com(self, docx_path, pdf_path):
+        """
+        使用 Word COM 接口转换 PDF，确保背景图片和水印正确显示
+        
+        Args:
+            docx_path: Word 文档路径
+            pdf_path: 输出 PDF 路径
+            
+        Returns:
+            bool: 转换是否成功
+            
+        Raises:
+            Exception: 如果转换失败
+        """
+        try:
+            import win32com.client
+        except ImportError:
+            # 如果 win32com 不可用，回退到 docx2pdf
+            if convert is None:
+                raise Exception("win32com 不可用且 docx2pdf 也不可用")
+            convert(docx_path, pdf_path)
+            return True
+        
+        try:
+            # 创建 Word 应用程序对象
+            word = win32com.client.Dispatch("Word.Application")
+            word.Visible = False
+            word.DisplayAlerts = False
+            
+            try:
+                # 打开文档
+                doc = word.Documents.Open(
+                    os.path.abspath(docx_path),
+                    ReadOnly=True
+                )
+                
+                try:
+                    # 关键设置：确保背景图片被包含
+                    # Word 的 ExportAsFixedFormat 方法会默认包含背景，
+                    # 但我们需要确保打印选项设置为包含背景图形
+                    # 这会影响 PDF 导出时是否包含背景
+                    
+                    # 设置打印选项：包含背景图形
+                    # 这个设置确保在导出 PDF 时背景图片会被包含
+                    doc.PrintBackground = True
+                    
+                    # 导出为 PDF
+                    # FormatType=17 表示 PDF 格式
+                    # OptimizeFor=0 表示不优化（保持质量）
+                    # BitmapMissingFonts=True 确保字体正确显示
+                    # UseISO19005_1=False 使用标准 PDF 格式
+                    # 注意：ExportAsFixedFormat 默认会包含背景，但设置 PrintBackground 可以确保
+                    doc.ExportAsFixedFormat(
+                        OutputFileName=os.path.abspath(pdf_path),
+                        ExportFormat=17,  # wdExportFormatPDF = 17
+                        OpenAfterExport=False,
+                        OptimizeFor=0,  # wdExportOptimizeForPrint = 0
+                        BitmapMissingFonts=True,
+                        DocStructureTags=True,
+                        CreateBookmarks=0,  # wdExportCreateNoBookmarks = 0
+                        UseISO19005_1=False,
+                        IncludeDocProps=True
+                    )
+                    
+                    return True
+                    
+                finally:
+                    # 关闭文档
+                    doc.Close(SaveChanges=False)
+                    
+            finally:
+                # 退出 Word 应用程序
+                word.Quit(SaveChanges=False)
+                
+        except Exception as e:
+            # 如果 COM 接口失败，回退到 docx2pdf
+            com_error = str(e)
+            if convert is None:
+                raise Exception(f"Word COM 转换失败且 docx2pdf 不可用。请安装 Microsoft Word 或安装 docx2pdf 库。错误详情: {com_error}")
+            try:
+                # 尝试使用 docx2pdf 作为备用方案
+                convert(docx_path, pdf_path)
+                return True
+            except Exception as e2:
+                # 所有转换方法都失败
+                docx2pdf_error = str(e2)
+                error_msg = (
+                    f"PDF转换失败：所有转换方法都不可用。\n"
+                    f"1. Word COM 接口错误: {com_error}\n"
+                    f"2. docx2pdf 错误: {docx2pdf_error}\n\n"
+                    f"解决方案：\n"
+                    f"- 确保已安装 Microsoft Word（用于 Word COM 接口）\n"
+                    f"- 或安装 LibreOffice（推荐，跨平台支持）\n"
+                    f"- 或检查 docx2pdf 库是否正确安装"
+                )
+                raise Exception(error_msg)
+    
     def _convert_with_libreoffice(self, docx_path, pdf_path):
         """
         使用 LibreOffice 命令行工具将 Word 文档转换为 PDF（Linux/Mac）
@@ -416,30 +465,32 @@ class PDFGenerator:
             
             # 尝试不同的 LibreOffice 命令，使用高质量 PDF 过滤器
             # 使用 pdf:writer_pdf_Export 过滤器并设置质量参数
+            # 关键：添加 ExportFormFields=true 和 ExportBookmarks=true 以确保所有内容被包含
+            # 注意：LibreOffice 默认会包含背景，但我们需要确保设置正确
             libreoffice_cmds = [
-                # 方法1: 使用过滤器参数设置高质量（推荐）
+                # 方法1: 使用过滤器参数设置高质量并包含背景（推荐）
                 [
                     'libreoffice', '--headless', '--nodefault', '--nolockcheck',
-                    '--convert-to', 'pdf:writer_pdf_Export:{"UseTaggedPDF":true,"Quality":100,"ReduceImageResolution":false,"MaxImageResolution":300}',
+                    '--convert-to', 'pdf:writer_pdf_Export:{"UseTaggedPDF":true,"Quality":100,"ReduceImageResolution":false,"MaxImageResolution":300,"ExportFormFields":true,"ExportBookmarks":true}',
                     '--outdir', output_dir, docx_path
                 ],
                 [
                     'soffice', '--headless', '--nodefault', '--nolockcheck',
-                    '--convert-to', 'pdf:writer_pdf_Export:{"UseTaggedPDF":true,"Quality":100,"ReduceImageResolution":false,"MaxImageResolution":300}',
+                    '--convert-to', 'pdf:writer_pdf_Export:{"UseTaggedPDF":true,"Quality":100,"ReduceImageResolution":false,"MaxImageResolution":300,"ExportFormFields":true,"ExportBookmarks":true}',
                     '--outdir', output_dir, docx_path
                 ],
-                # 方法2: 使用简化的高质量参数
+                # 方法2: 使用简化的高质量参数（包含背景）
                 [
                     'libreoffice', '--headless', '--nodefault', '--nolockcheck',
-                    '--convert-to', 'pdf:writer_pdf_Export:{"Quality":100}',
+                    '--convert-to', 'pdf:writer_pdf_Export:{"Quality":100,"ExportFormFields":true}',
                     '--outdir', output_dir, docx_path
                 ],
                 [
                     'soffice', '--headless', '--nodefault', '--nolockcheck',
-                    '--convert-to', 'pdf:writer_pdf_Export:{"Quality":100}',
+                    '--convert-to', 'pdf:writer_pdf_Export:{"Quality":100,"ExportFormFields":true}',
                     '--outdir', output_dir, docx_path
                 ],
-                # 方法3: 基础命令（兼容性备用）
+                # 方法3: 基础命令（兼容性备用，LibreOffice 默认包含背景）
                 ['libreoffice', '--headless', '--convert-to', 'pdf', '--outdir', output_dir, docx_path],
                 ['soffice', '--headless', '--convert-to', 'pdf', '--outdir', output_dir, docx_path],
             ]
@@ -494,6 +545,7 @@ class PDFGenerator:
         """
         try:
             # unoconv 命令，使用高质量设置
+            # 注意：unoconv 默认会包含背景图片，但明确设置可以确保兼容性
             cmd = [
                 'unoconv',
                 '-f', 'pdf',
@@ -502,6 +554,7 @@ class PDFGenerator:
                 '--export', 'Quality=100',
                 '--export', 'ReduceImageResolution=false',
                 '--export', 'MaxImageResolution=300',
+                '--export', 'ExportFormFields=true',
                 '-o', pdf_path,
                 docx_path
             ]
