@@ -146,16 +146,32 @@ class PDFGenerator:
             pdf_filename = self._generate_pdf_filename(generated_model)
             pdf_path = os.path.join(output_dir, pdf_filename)
             
-            # 转换为PDF - 统一使用 LibreOffice（跨平台一致）
-            success = self._convert_with_libreoffice(temp_word_path, pdf_path)
+            # 转换为PDF
+            success = False
+            conversion_errors = []
+            
+            if sys.platform == 'win32':
+                try:
+                    success = self._convert_with_docx2pdf(temp_word_path, pdf_path)
+                except Exception as e:
+                    conversion_errors.append(str(e))
+                    success = False
+            
+            if not success:
+                success = self._convert_with_libreoffice(temp_word_path, pdf_path)
             if not success:
                 # 根据操作系统提供不同的安装提示
                 if sys.platform == 'win32':
-                    return False, (
-                        'PDF转换失败（Windows）。请安装LibreOffice。\n'
-                        '下载地址：https://www.libreoffice.org/download/\n'
-                        '安装后请确保 LibreOffice 在系统 PATH 中，或重启应用程序。'
+                    error_msg = (
+                        'PDF转换失败（Windows）。请确保已安装 docx2pdf（依赖 Microsoft Word）'
+                        '并安装 LibreOffice 作为备选。\n'
+                        'docx2pdf: pip install docx2pdf\n'
+                        'LibreOffice: https://www.libreoffice.org/download/\n'
+                        '安装后请确保相关命令在系统 PATH 中，或重启应用程序。'
                     )
+                    if conversion_errors:
+                        error_msg += f"\n\n详细错误：{conversion_errors[0]}"
+                    return False, error_msg
                 else:
                     # Linux/Mac
                     return False, (
@@ -259,46 +275,39 @@ class PDFGenerator:
                     # 收集完整文本
                     full_text = ''.join([t.text or '' for t in text_elements])
                     
-                    # 检查是否需要替换
-                    need_replace = any(placeholder in full_text for placeholder in replace_data.keys())
+                    placeholders = [p for p in replace_data.keys() if p in full_text]
+                    if not placeholders:
+                        continue
                     
-                    if need_replace:
-                        # 执行替换
-                        new_text = full_text
-                        for placeholder, value in replace_data.items():
-                            new_text = new_text.replace(placeholder, str(value))
-                        
-                        # 更新第一个文本元素，清空其他
-                        if text_elements:
-                            text_elements[0].text = new_text
-                            # 清空其他文本元素
-                            for t in text_elements[1:]:
-                                t.text = ''
+                    for t in text_elements:
+                        if not t.text:
+                            continue
+                        new_text = t.text
+                        for placeholder in placeholders:
+                            new_text = new_text.replace(placeholder, str(replace_data[placeholder]))
+                        if new_text != t.text:
+                            t.text = new_text
         
         except Exception as e:
             # 如果处理文本框出错，记录但不中断整个替换过程
             print(f"警告：处理文本框时出错: {str(e)}")
     
     def _replace_in_paragraph(self, paragraph, replace_data):
-        """替换段落中的占位符"""
+        """在保持原始样式的前提下替换段落中的占位符"""
         full_text = paragraph.text
-        need_replace = any(placeholder in full_text for placeholder in replace_data.keys())
+        placeholders = [p for p in replace_data.keys() if p in full_text]
         
-        if need_replace:
-            new_text = full_text
-            for placeholder, value in replace_data.items():
-                new_text = new_text.replace(placeholder, str(value))
-            
-            if new_text != full_text:
-                original_runs = list(paragraph.runs)
-                for run in paragraph.runs:
-                    run.text = ''
-                
-                if original_runs:
-                    run = original_runs[0]
-                    run.text = new_text
-                else:
-                    paragraph.add_run(new_text)
+        if not placeholders:
+            return
+        
+        for run in paragraph.runs:
+            if not run.text:
+                continue
+            new_text = run.text
+            for placeholder in placeholders:
+                new_text = new_text.replace(placeholder, str(replace_data[placeholder]))
+            if new_text != run.text:
+                run.text = new_text
     
     def _generate_temp_word_path(self, generated_model, output_dir):
         """生成临时Word文件路径（包含时间戳避免并发冲突）"""
@@ -307,8 +316,14 @@ class PDFGenerator:
         parts = []
         if generated_model.store_type:
             parts.append(generated_model.store_type)
-        if generated_model.store_name:
-            parts.append(generated_model.store_name)
+        # if generated_model.store_name:
+        #     parts.append(generated_model.store_name)
+        if getattr(generated_model, 'auth_number', None):
+            parts.append(generated_model.auth_number)
+        if getattr(generated_model, 'subsidiary', None):
+            parts.append(generated_model.subsidiary)
+        if getattr(generated_model, 'authorized_entity', None):
+            parts.append(generated_model.authorized_entity)
         parts.append(timestamp)  # 临时文件包含时间戳
         
         filename = '_'.join(parts)
@@ -322,8 +337,14 @@ class PDFGenerator:
         parts = []
         if generated_model.store_type:
             parts.append(generated_model.store_type)
-        if generated_model.store_name:
-            parts.append(generated_model.store_name)
+        # if generated_model.store_name:
+        #     parts.append(generated_model.store_name)
+        if getattr(generated_model, 'auth_number', None):
+            parts.append(generated_model.auth_number)
+        if getattr(generated_model, 'subsidiary', None):
+            parts.append(generated_model.subsidiary)
+        if getattr(generated_model, 'authorized_entity', None):
+            parts.append(generated_model.authorized_entity)
         
         filename = '_'.join(parts)
         filename = self._sanitize_filename(filename)
@@ -337,6 +358,26 @@ class PDFGenerator:
             filename = filename.replace(char, '_')
         
         return filename
+    
+    def _convert_with_docx2pdf(self, docx_path, pdf_path):
+        """
+        使用 docx2pdf 进行转换（Windows 首选，依赖本地 Word）
+        """
+        if convert is None:
+            raise Exception('未安装 docx2pdf，请执行 pip install docx2pdf')
+        
+        output_dir = os.path.dirname(pdf_path)
+        os.makedirs(output_dir, exist_ok=True)
+        
+        if os.path.exists(pdf_path):
+            os.remove(pdf_path)
+        
+        convert(docx_path, pdf_path)
+        
+        if not os.path.exists(pdf_path):
+            raise Exception('docx2pdf 转换后未生成 PDF，请检查 Microsoft Word 是否安装并可用')
+        
+        return True
     
     def _convert_with_word_com(self, docx_path, pdf_path):
         """
@@ -465,29 +506,29 @@ class PDFGenerator:
             
             # 尝试不同的 LibreOffice 命令，使用高质量 PDF 过滤器
             # 使用 pdf:writer_pdf_Export 过滤器并设置质量参数
-            # 关键：提高图像分辨率到 600 DPI 以减少像素感，禁用所有压缩
+            # 关键：提高图像分辨率到 1200 DPI 以减少像素感，禁用所有压缩
             # 注意：LibreOffice 默认会包含背景，但我们需要确保设置正确
             libreoffice_cmds = [
-                # 方法1: 使用过滤器参数设置超高质量并包含背景（推荐，600 DPI）
+                # 方法1: 使用过滤器参数设置超高质量并包含背景（推荐，1200 DPI）
                 [
                     'libreoffice', '--headless', '--nodefault', '--nolockcheck',
-                    '--convert-to', 'pdf:writer_pdf_Export:{"UseTaggedPDF":true,"Quality":100,"ReduceImageResolution":false,"MaxImageResolution":600,"SelectPdfVersion":1,"ExportFormFields":true,"ExportBookmarks":true,"UseTransitionalEncoding":true}',
+                    '--convert-to', 'pdf:writer_pdf_Export:{"UseTaggedPDF":true,"Quality":100,"ReduceImageResolution":false,"MaxImageResolution":1200,"SelectPdfVersion":1,"ExportFormFields":true,"ExportBookmarks":true,"UseTransitionalEncoding":true}',
                     '--outdir', output_dir, docx_path
                 ],
                 [
                     'soffice', '--headless', '--nodefault', '--nolockcheck',
-                    '--convert-to', 'pdf:writer_pdf_Export:{"UseTaggedPDF":true,"Quality":100,"ReduceImageResolution":false,"MaxImageResolution":600,"SelectPdfVersion":1,"ExportFormFields":true,"ExportBookmarks":true,"UseTransitionalEncoding":true}',
+                    '--convert-to', 'pdf:writer_pdf_Export:{"UseTaggedPDF":true,"Quality":100,"ReduceImageResolution":false,"MaxImageResolution":1200,"SelectPdfVersion":1,"ExportFormFields":true,"ExportBookmarks":true,"UseTransitionalEncoding":true}',
                     '--outdir', output_dir, docx_path
                 ],
-                # 方法2: 使用 600 DPI 的简化高质量参数（包含背景）
+                # 方法2: 使用 1200 DPI 的简化高质量参数（包含背景）
                 [
                     'libreoffice', '--headless', '--nodefault', '--nolockcheck',
-                    '--convert-to', 'pdf:writer_pdf_Export:{"Quality":100,"ReduceImageResolution":false,"MaxImageResolution":600,"ExportFormFields":true}',
+                    '--convert-to', 'pdf:writer_pdf_Export:{"Quality":100,"ReduceImageResolution":false,"MaxImageResolution":1200,"ExportFormFields":true}',
                     '--outdir', output_dir, docx_path
                 ],
                 [
                     'soffice', '--headless', '--nodefault', '--nolockcheck',
-                    '--convert-to', 'pdf:writer_pdf_Export:{"Quality":100,"ReduceImageResolution":false,"MaxImageResolution":600,"ExportFormFields":true}',
+                    '--convert-to', 'pdf:writer_pdf_Export:{"Quality":100,"ReduceImageResolution":false,"MaxImageResolution":1200,"ExportFormFields":true}',
                     '--outdir', output_dir, docx_path
                 ],
                 # 方法3: 基础命令（兼容性备用，LibreOffice 默认包含背景）
@@ -544,7 +585,7 @@ class PDFGenerator:
             bool: 转换是否成功
         """
         try:
-            # unoconv 命令，使用超高质量设置（600 DPI 以减少像素感）
+            # unoconv 命令，使用超高质量设置（1200 DPI 以减少像素感）
             # 注意：unoconv 默认会包含背景图片，但明确设置可以确保兼容性
             cmd = [
                 'unoconv',
@@ -553,7 +594,7 @@ class PDFGenerator:
                 '--export', 'UseTaggedPDF=true',
                 '--export', 'Quality=100',
                 '--export', 'ReduceImageResolution=false',
-                '--export', 'MaxImageResolution=600',  # 提高到 600 DPI 以减少像素感
+                '--export', 'MaxImageResolution=1200',  # 提高到 1200 DPI 以减少像素感
                 '--export', 'SelectPdfVersion=1',
                 '--export', 'ExportFormFields=true',
                 '-o', pdf_path,
@@ -609,9 +650,9 @@ class PDFGenerator:
                 '-dNOPAUSE',
                 '-dQUIET',
                 '-dBATCH',
-                # 图像分辨率设置（提高到 600 DPI 以减少像素感）
-                '-dColorImageResolution=600',  # 彩色图像分辨率提高到 600 DPI
-                '-dGrayImageResolution=600',   # 灰度图像分辨率提高到 600 DPI
+                # 图像分辨率设置（提高到 1200 DPI 以减少像素感）
+                '-dColorImageResolution=1200',  # 彩色图像分辨率提高到 1200 DPI
+                '-dGrayImageResolution=1200',   # 灰度图像分辨率提高到 1200 DPI
                 '-dMonoImageResolution=1200',   # 单色图像分辨率保持 1200 DPI
                 # 完全禁用图像压缩和降采样
                 '-dDownsampleColorImages=false',  # 不降低彩色图像分辨率

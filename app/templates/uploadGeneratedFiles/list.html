@@ -253,6 +253,12 @@
           </div>
           <div class="flex items-center space-x-4">
             <button
+              id="downloadAllPdfBtn"
+              class="flex items-center px-4 py-2 bg-indigo-600 text-white text-sm font-medium !rounded-button hover:bg-indigo-700 whitespace-nowrap"
+            >
+              <i class="fas fa-cloud-download-alt mr-2"></i>全部下载PDF
+            </button>
+            <button
               id="refreshBtn"
               class="flex items-center px-4 py-2 border border-gray-300 text-gray-700 text-sm font-medium !rounded-button hover:bg-gray-50 whitespace-nowrap"
             >
@@ -565,6 +571,7 @@
         });
         document.getElementById('resetBtn').addEventListener('click', resetFilters);
         document.getElementById('refreshBtn').addEventListener('click', () => loadData());
+        document.getElementById('downloadAllPdfBtn').addEventListener('click', downloadAllFilteredPDF);
         document.getElementById('pageSizeSelect').addEventListener('change', (e) => {
           pageSize = parseInt(e.target.value);
           currentPage = 1;
@@ -861,43 +868,7 @@
             pollTaskStatus(data.task_id, async (task) => {
               // 任务完成，下载ZIP文件
               if (task.result && task.result.zip_filename) {
-                const result = task.result;
-                
-                // 下载文件
-                window.location.href = `/upload-generated/api/download-zip/${result.zip_filename}`;
-                
-                // 显示详细的成功信息
-                let message = `${typeName}文档批量下载成功！`;
-                let details = [];
-                
-                if (result.generated_count > 0) {
-                  details.push(`新生成 ${result.generated_count} 个`);
-                }
-                if (result.existed_count > 0) {
-                  details.push(`已存在 ${result.existed_count} 个`);
-                }
-                if (result.failed_count > 0) {
-                  details.push(`失败 ${result.failed_count} 个`);
-                }
-                
-                if (details.length > 0) {
-                  message += `（${details.join('，')}）`;
-                }
-                
-                showToast(message, 'success');
-                
-                // 如果有生成新文件或失败的情况，显示详细统计
-                if (result.generated_count > 0 || result.failed_count > 0) {
-                  setTimeout(() => {
-                    showConfirm({
-                      title: '批量下载完成',
-                      message: `共处理 ${ids.length} 个文件：\n✓ 成功下载 ${result.total_count} 个\n${result.generated_count > 0 ? `✓ 新生成 ${result.generated_count} 个\n` : ''}${result.existed_count > 0 ? `✓ 已存在 ${result.existed_count} 个\n` : ''}${result.failed_count > 0 ? `✗ 失败 ${result.failed_count} 个` : ''}`,
-                      type: 'info',
-                      okText: '知道了',
-                      cancelText: ''
-                    });
-                  }, 1000);
-                }
+                handleZipDownloadSuccess(task.result, typeName, ids.length);
               } else {
                 showToast('批量下载完成', 'success');
               }
@@ -909,6 +880,56 @@
         } catch (err) {
           hideProgress();
           showToast(`网络错误，批量下载${typeName}失败`, 'error');
+        }
+      }
+
+      // 根据筛选条件下载全部PDF
+      async function downloadAllFilteredPDF() {
+        if (!totalCount || totalCount === 0) {
+          showToast('当前筛选条件下暂无数据可下载', 'error');
+          return;
+        }
+        
+        const confirmed = await showConfirm({
+          title: '全部下载PDF确认',
+          message: `当前筛选条件下共有 ${totalCount} 条数据。\n系统将自动生成缺失文件并打包下载，确定继续吗？`,
+          type: 'info',
+          okText: '开始下载',
+          cancelText: '取消'
+        });
+        
+        if (!confirmed) {
+          return;
+        }
+        
+        try {
+          showProgress('准备下载筛选结果PDF文档');
+          
+          const res = await fetch('/upload-generated/api/download-all-async', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              type: 'pdf',
+              filters: getFilterParams()
+            })
+          });
+          const data = await res.json();
+          
+          if (data.success && data.task_id) {
+            pollTaskStatus(data.task_id, (task) => {
+              if (task.result && task.result.zip_filename) {
+                handleZipDownloadSuccess(task.result, 'PDF', totalCount);
+              } else {
+                showToast('全部下载任务完成', 'success');
+              }
+            });
+          } else {
+            hideProgress();
+            showToast(data.message || '全部下载失败', 'error');
+          }
+        } catch (err) {
+          hideProgress();
+          showToast('网络错误，全部下载失败', 'error');
         }
       }
       
@@ -1000,6 +1021,57 @@
           showToast('网络错误，预览失败', 'error');
           btn.disabled = false;
           btn.innerHTML = originalHTML;
+        }
+      }
+      
+      // 处理ZIP下载结果（生成成功/失败统计）
+      function handleZipDownloadSuccess(result, typeName, totalRequested) {
+        window.location.href = `/upload-generated/api/download-zip/${result.zip_filename}`;
+        
+        let message = `${typeName}文档批量下载成功！`;
+        const details = [];
+        
+        if (result.generated_count > 0) {
+          details.push(`新生成 ${result.generated_count} 个`);
+        }
+        if (result.existed_count > 0) {
+          details.push(`已存在 ${result.existed_count} 个`);
+        }
+        if (result.failed_count > 0) {
+          details.push(`失败 ${result.failed_count} 个`);
+        }
+        
+        if (details.length > 0) {
+          message += `（${details.join('，')}）`;
+        }
+        
+        showToast(message, 'success');
+        
+        const total = (typeof totalRequested === 'number' && !Number.isNaN(totalRequested))
+          ? totalRequested
+          : (result.total_count || 0) + (result.failed_count || 0);
+        
+        if (result.generated_count > 0 || result.failed_count > 0) {
+          let summary = `共处理 ${total} 个文件：\n✓ 成功下载 ${result.total_count} 个\n`;
+          if (result.generated_count > 0) {
+            summary += `✓ 新生成 ${result.generated_count} 个\n`;
+          }
+          if (result.existed_count > 0) {
+            summary += `✓ 已存在 ${result.existed_count} 个\n`;
+          }
+          if (result.failed_count > 0) {
+            summary += `✗ 失败 ${result.failed_count} 个`;
+          }
+          
+          setTimeout(() => {
+            showConfirm({
+              title: '批量下载完成',
+              message: summary.trim(),
+              type: 'info',
+              okText: '知道了',
+              cancelText: ''
+            });
+          }, 1000);
         }
       }
       

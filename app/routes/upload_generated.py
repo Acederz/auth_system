@@ -34,6 +34,128 @@ EXPECTED_HEADERS = [
     '店铺名称', '店铺ID', '所属分公司', '授权期间', '授权字号', '授权方（盖章）主体', '用印时间'
 ]
 
+
+def _start_async_download_task(app, records, file_type='pdf', task_name='download_batch'):
+    """
+    后台线程：根据记录列表生成/收集PDF并打包成ZIP，支持进度查询
+    """
+    if not records:
+        raise ValueError('没有可下载的记录')
+    
+    task_id = task_manager.create_task(task_name, total=len(records))
+    
+    def download_task():
+        with app.app_context():
+            try:
+                task_manager.set_task_running(
+                    task_id,
+                    f'正在准备 {len(records)} 个{file_type.upper()}文档...'
+                )
+                
+                output_dir = app.config.get('UPLOAD_FOLDER_SHOUQUAN', 'app/static/generated_docs')
+                
+                generated_count = 0
+                existed_count = 0
+                failed_count = 0
+                failed_files = []
+                
+                memory_file = BytesIO()
+                
+                with zipfile.ZipFile(memory_file, 'w', zipfile.ZIP_DEFLATED) as zf:
+                    for index, record in enumerate(records, 1):
+                        try:
+                            task_manager.set_task_progress(
+                                task_id,
+                                index,
+                                f'正在处理 {index}/{len(records)}: {record.store_name or "未命名"}'
+                            )
+                            
+                            # 生成文件名：店铺类型_店铺名称_授权字号_所属分公司_授权主体
+                            parts = []
+                            if record.store_type:
+                                parts.append(record.store_type)
+                            # if record.store_name:
+                            #     parts.append(record.store_name)
+                            if record.auth_number:
+                                parts.append(record.auth_number)
+                            if record.subsidiary:
+                                parts.append(record.subsidiary)
+                            if record.authorized_entity:
+                                parts.append(record.authorized_entity)
+                            
+                            if not parts:
+                                failed_count += 1
+                                failed_files.append(f'ID {record.id}: 缺少必要的命名字段')
+                                continue
+                            
+                            filename = '_'.join(parts)
+                            filename = re.sub(r'[<>:"/\\|?*]', '_', filename)
+                            filename = f"{filename}.pdf"
+                            
+                            file_path = os.path.join(output_dir, filename)
+                            
+                            if not os.path.exists(file_path):
+                                try:
+                                    success, result = generate_pdf_document(record)
+                                    
+                                    if success:
+                                        generated_count += 1
+                                        file_path = result
+                                    else:
+                                        failed_count += 1
+                                        failed_files.append(f'{filename}: {result}')
+                                        continue
+                                except Exception as e:
+                                    failed_count += 1
+                                    failed_files.append(f'{filename}: {str(e)}')
+                                    continue
+                            else:
+                                existed_count += 1
+                            
+                            if os.path.exists(file_path):
+                                zf.write(file_path, filename)
+                        except Exception as e:
+                            failed_count += 1
+                            failed_files.append(f'ID {record.id}: {str(e)}')
+                
+                total_files = generated_count + existed_count
+                
+                if total_files == 0:
+                    task_manager.set_task_failed(
+                        task_id,
+                        f'所有文件生成失败。失败原因：{"; ".join(failed_files[:3])}'
+                    )
+                    return
+                
+                memory_file.seek(0)
+                timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
+                zip_filename = f'授权书_{file_type}_{timestamp}.zip'
+                temp_zip_path = os.path.join(output_dir, f'temp_{zip_filename}')
+                
+                with open(temp_zip_path, 'wb') as f:
+                    f.write(memory_file.getvalue())
+                
+                task_manager.set_task_completed(
+                    task_id,
+                    result={
+                        'zip_filename': zip_filename,
+                        'zip_path': temp_zip_path,
+                        'generated_count': generated_count,
+                        'existed_count': existed_count,
+                        'failed_count': failed_count,
+                        'total_count': total_files
+                    },
+                    message=f'下载准备完成：成功 {total_files} 个，失败 {failed_count} 个'
+                )
+            except Exception as e:
+                task_manager.set_task_failed(task_id, str(e))
+    
+    thread = threading.Thread(target=download_task)
+    thread.daemon = True
+    thread.start()
+    
+    return task_id
+
 """功能菜单页面"""
 @upload_generated_bp.route('/upload-generated/menu')
 @generate_admin_required
@@ -535,8 +657,14 @@ def api_check_pdf(id):
         parts = []
         if record.store_type:
             parts.append(record.store_type)
-        if record.store_name:
-            parts.append(record.store_name)
+        # if record.store_name:
+        #     parts.append(record.store_name)
+        if record.auth_number:
+            parts.append(record.auth_number)
+        if record.subsidiary:
+            parts.append(record.subsidiary)
+        if record.authorized_entity:
+            parts.append(record.authorized_entity)
         
         filename = '_'.join(parts)
         # 清理文件名中的非法字符
@@ -642,16 +770,22 @@ def api_download_batch():
         
         with zipfile.ZipFile(memory_file, 'w', zipfile.ZIP_DEFLATED) as zf:
             for record in records:
-                # 生成文件名
+                # 生成文件名：店铺类型_授权字号_所属分公司_授权主体
                 parts = []
                 if record.store_type:
                     parts.append(record.store_type)
-                if record.store_name:
-                    parts.append(record.store_name)
+                # if record.store_name:
+                #     parts.append(record.store_name)
+                if record.auth_number:
+                    parts.append(record.auth_number)
+                if record.subsidiary:
+                    parts.append(record.subsidiary)
+                if record.authorized_entity:
+                    parts.append(record.authorized_entity)
                 
                 if not parts:
                     failed_count += 1
-                    failed_files.append(f'ID {record.id}: 缺少店铺类型或店铺名称')
+                    failed_files.append(f'ID {record.id}: 缺少必要的命名字段')
                     continue
                 
                 filename = '_'.join(parts)
@@ -730,141 +864,94 @@ def api_download_batch():
 def api_download_batch_async():
     try:
         from flask import current_app
-        # 获取实际的应用实例
         app = current_app._get_current_object()
         
         payload = request.get_json(silent=True) or {}
         ids = payload.get('ids', [])
-        file_type = payload.get('type', 'pdf')  # 只支持 'pdf'
+        file_type = (payload.get('type') or 'pdf').strip().lower()
         
         if not ids:
             return jsonify({'success': False, 'message': '请选择要下载的文件'}), 400
         
-        # 查询数据
+        if file_type != 'pdf':
+            return jsonify({'success': False, 'message': '暂只支持PDF文件下载'}), 400
+        
         records = Generated.query.filter(Generated.id.in_(ids)).all()
         
         if not records:
             return jsonify({'success': False, 'message': '未找到指定的数据'}), 404
         
-        # 创建任务
-        task_id = task_manager.create_task('download_batch', total=len(records))
-        
-        # 启动后台线程
-        def download_batch_task():
-            # 在后台线程中使用应用上下文
-            with app.app_context():
-                try:
-                    task_manager.set_task_running(task_id, f'正在准备批量下载 {len(records)} 个{file_type.upper()}文档...')
-                    
-                    output_dir = app.config.get('UPLOAD_FOLDER_SHOUQUAN', 'app/static/generated_docs')
-                    
-                    # 统计信息
-                    generated_count = 0
-                    existed_count = 0
-                    failed_count = 0
-                    failed_files = []
-                    
-                    # 创建ZIP文件
-                    memory_file = BytesIO()
-                    
-                    with zipfile.ZipFile(memory_file, 'w', zipfile.ZIP_DEFLATED) as zf:
-                        for index, record in enumerate(records, 1):
-                            try:
-                                task_manager.set_task_progress(
-                                    task_id,
-                                    index,
-                                    f'正在处理 {index}/{len(records)}: {record.store_name or "未命名"}'
-                                )
-                                
-                                # 生成文件名
-                                parts = []
-                                if record.store_type:
-                                    parts.append(record.store_type)
-                                if record.store_name:
-                                    parts.append(record.store_name)
-                                
-                                if not parts:
-                                    failed_count += 1
-                                    failed_files.append(f'ID {record.id}: 缺少店铺类型或店铺名称')
-                                    continue
-                                
-                                filename = '_'.join(parts)
-                                filename = re.sub(r'[<>:"/\\|?*]', '_', filename)
-                                
-                                # 只支持PDF
-                                filename = f"{filename}.pdf"
-                                
-                                file_path = os.path.join(output_dir, filename)
-                                
-                                # 检查文件是否存在
-                                if not os.path.exists(file_path):
-                                    # 文件不存在，先生成
-                                    try:
-                                        success, result = generate_pdf_document(record)
-                                        
-                                        if success:
-                                            generated_count += 1
-                                            file_path = result
-                                        else:
-                                            failed_count += 1
-                                            failed_files.append(f'{filename}: {result}')
-                                            continue
-                                    except Exception as e:
-                                        failed_count += 1
-                                        failed_files.append(f'{filename}: {str(e)}')
-                                        continue
-                                else:
-                                    existed_count += 1
-                                
-                                # 添加文件到ZIP
-                                if os.path.exists(file_path):
-                                    zf.write(file_path, filename)
-                            except Exception as e:
-                                failed_count += 1
-                                failed_files.append(f'ID {record.id}: {str(e)}')
-                    
-                    total_files = generated_count + existed_count
-                    
-                    if total_files == 0:
-                        task_manager.set_task_failed(
-                            task_id, 
-                            f'所有文件生成失败。失败原因：{"; ".join(failed_files[:3])}'
-                        )
-                        return
-                    
-                    # 保存ZIP文件到临时位置
-                    memory_file.seek(0)
-                    timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
-                    zip_filename = f'授权书_{file_type}_{timestamp}.zip'
-                    temp_zip_path = os.path.join(output_dir, f'temp_{zip_filename}')
-                    
-                    with open(temp_zip_path, 'wb') as f:
-                        f.write(memory_file.getvalue())
-                    
-                    task_manager.set_task_completed(
-                        task_id,
-                        result={
-                            'zip_filename': zip_filename,
-                            'zip_path': temp_zip_path,
-                            'generated_count': generated_count,
-                            'existed_count': existed_count,
-                            'failed_count': failed_count,
-                            'total_count': total_files
-                        },
-                        message=f'批量下载准备完成：成功 {total_files} 个，失败 {failed_count} 个'
-                    )
-                    
-                except Exception as e:
-                    task_manager.set_task_failed(task_id, str(e))
-        
-        thread = threading.Thread(target=download_batch_task)
-        thread.daemon = True
-        thread.start()
+        task_id = _start_async_download_task(app, records, file_type, 'download_batch')
         
         return jsonify({
             'success': True,
             'task_id': task_id,
-            'message': '任务已创建，正在后台准备下载...'
+            'message': f'任务已创建，正在后台准备下载 {len(records)} 个PDF文档...'
+        })
+        
+    except Exception as e:
+        return jsonify({'success': False, 'message': f'创建下载任务失败: {str(e)}'}), 500
+
+
+@upload_generated_bp.route('/upload-generated/api/download-all-async', methods=['POST'])
+@generated_required
+def api_download_all_async():
+    """根据当前筛选条件下载所有PDF（异步生成ZIP）"""
+    try:
+        from flask import current_app, session
+        app = current_app._get_current_object()
+        
+        payload = request.get_json(silent=True) or {}
+        filters = payload.get('filters', {}) or {}
+        file_type = (payload.get('type') or 'pdf').strip().lower()
+        
+        if file_type != 'pdf':
+            return jsonify({'success': False, 'message': '暂只支持PDF文件下载'}), 400
+        
+        query = Generated.query
+        
+        user_role = session.get('role')
+        user_entity = session.get('entity')
+        if user_role == 'generated' and user_entity:
+            query = query.filter(Generated.subsidiary == user_entity)
+        
+        template_used = (filters.get('template_used') or '').strip()
+        store_type = (filters.get('store_type') or '').strip()
+        authorized_entity = (filters.get('authorized_entity') or '').strip()
+        platform = (filters.get('platform') or '').strip()
+        brand = (filters.get('brand') or '').strip()
+        store_name = (filters.get('store_name') or '').strip()
+        auth_number = (filters.get('auth_number') or '').strip()
+        stamping_entity = (filters.get('stamping_entity') or '').strip()
+        
+        if template_used:
+            query = query.filter(Generated.template_used.like(f'%{template_used}%'))
+        if store_type:
+            query = query.filter(Generated.store_type.like(f'%{store_type}%'))
+        if authorized_entity:
+            query = query.filter(Generated.authorized_entity.like(f'%{authorized_entity}%'))
+        if platform:
+            query = query.filter(Generated.platform.like(f'%{platform}%'))
+        if brand:
+            query = query.filter(Generated.brand.like(f'%{brand}%'))
+        if store_name:
+            query = query.filter(Generated.store_name.like(f'%{store_name}%'))
+        if auth_number:
+            query = query.filter(Generated.auth_number.like(f'%{auth_number}%'))
+        if stamping_entity:
+            query = query.filter(Generated.stamping_entity.like(f'%{stamping_entity}%'))
+        
+        records = query.order_by(Generated.created_at.desc()).all()
+        
+        if not records:
+            return jsonify({'success': False, 'message': '当前筛选条件下暂无可下载数据'}), 404
+        
+        task_id = _start_async_download_task(app, records, file_type, 'download_all')
+        
+        return jsonify({
+            'success': True,
+            'task_id': task_id,
+            'message': f'任务已创建，正在准备下载 {len(records)} 个PDF文档...'
         })
         
     except Exception as e:
