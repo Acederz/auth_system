@@ -465,29 +465,29 @@ class PDFGenerator:
             
             # 尝试不同的 LibreOffice 命令，使用高质量 PDF 过滤器
             # 使用 pdf:writer_pdf_Export 过滤器并设置质量参数
-            # 关键：添加 ExportFormFields=true 和 ExportBookmarks=true 以确保所有内容被包含
+            # 关键：提高图像分辨率到 600 DPI 以减少像素感，禁用所有压缩
             # 注意：LibreOffice 默认会包含背景，但我们需要确保设置正确
             libreoffice_cmds = [
-                # 方法1: 使用过滤器参数设置高质量并包含背景（推荐）
+                # 方法1: 使用过滤器参数设置超高质量并包含背景（推荐，600 DPI）
                 [
                     'libreoffice', '--headless', '--nodefault', '--nolockcheck',
-                    '--convert-to', 'pdf:writer_pdf_Export:{"UseTaggedPDF":true,"Quality":100,"ReduceImageResolution":false,"MaxImageResolution":300,"ExportFormFields":true,"ExportBookmarks":true}',
+                    '--convert-to', 'pdf:writer_pdf_Export:{"UseTaggedPDF":true,"Quality":100,"ReduceImageResolution":false,"MaxImageResolution":600,"SelectPdfVersion":1,"ExportFormFields":true,"ExportBookmarks":true,"UseTransitionalEncoding":true}',
                     '--outdir', output_dir, docx_path
                 ],
                 [
                     'soffice', '--headless', '--nodefault', '--nolockcheck',
-                    '--convert-to', 'pdf:writer_pdf_Export:{"UseTaggedPDF":true,"Quality":100,"ReduceImageResolution":false,"MaxImageResolution":300,"ExportFormFields":true,"ExportBookmarks":true}',
+                    '--convert-to', 'pdf:writer_pdf_Export:{"UseTaggedPDF":true,"Quality":100,"ReduceImageResolution":false,"MaxImageResolution":600,"SelectPdfVersion":1,"ExportFormFields":true,"ExportBookmarks":true,"UseTransitionalEncoding":true}',
                     '--outdir', output_dir, docx_path
                 ],
-                # 方法2: 使用简化的高质量参数（包含背景）
+                # 方法2: 使用 600 DPI 的简化高质量参数（包含背景）
                 [
                     'libreoffice', '--headless', '--nodefault', '--nolockcheck',
-                    '--convert-to', 'pdf:writer_pdf_Export:{"Quality":100,"ExportFormFields":true}',
+                    '--convert-to', 'pdf:writer_pdf_Export:{"Quality":100,"ReduceImageResolution":false,"MaxImageResolution":600,"ExportFormFields":true}',
                     '--outdir', output_dir, docx_path
                 ],
                 [
                     'soffice', '--headless', '--nodefault', '--nolockcheck',
-                    '--convert-to', 'pdf:writer_pdf_Export:{"Quality":100,"ExportFormFields":true}',
+                    '--convert-to', 'pdf:writer_pdf_Export:{"Quality":100,"ReduceImageResolution":false,"MaxImageResolution":600,"ExportFormFields":true}',
                     '--outdir', output_dir, docx_path
                 ],
                 # 方法3: 基础命令（兼容性备用，LibreOffice 默认包含背景）
@@ -544,7 +544,7 @@ class PDFGenerator:
             bool: 转换是否成功
         """
         try:
-            # unoconv 命令，使用高质量设置
+            # unoconv 命令，使用超高质量设置（600 DPI 以减少像素感）
             # 注意：unoconv 默认会包含背景图片，但明确设置可以确保兼容性
             cmd = [
                 'unoconv',
@@ -553,7 +553,8 @@ class PDFGenerator:
                 '--export', 'UseTaggedPDF=true',
                 '--export', 'Quality=100',
                 '--export', 'ReduceImageResolution=false',
-                '--export', 'MaxImageResolution=300',
+                '--export', 'MaxImageResolution=600',  # 提高到 600 DPI 以减少像素感
+                '--export', 'SelectPdfVersion=1',
                 '--export', 'ExportFormFields=true',
                 '-o', pdf_path,
                 docx_path
@@ -599,21 +600,33 @@ class PDFGenerator:
             # 创建临时文件
             temp_pdf = pdf_path + '.tmp'
             
-            # 使用 Ghostscript 优化 PDF，使用高质量设置
+            # 使用 Ghostscript 优化 PDF，使用超高质量设置（完全禁用压缩，提高分辨率）
+            # 注意：不使用预设（-dPDFSETTINGS），而是完全自定义设置以确保最高质量
             cmd = [
                 'gs',
                 '-sDEVICE=pdfwrite',
-                '-dCompatibilityLevel=1.5',
-                '-dPDFSETTINGS=/prepress',  # 使用高质量预设（适合打印）
+                '-dCompatibilityLevel=1.7',
                 '-dNOPAUSE',
                 '-dQUIET',
                 '-dBATCH',
-                '-dColorImageResolution=300',  # 彩色图像分辨率
-                '-dGrayImageResolution=300',   # 灰度图像分辨率
-                '-dMonoImageResolution=1200',   # 单色图像分辨率
+                # 图像分辨率设置（提高到 600 DPI 以减少像素感）
+                '-dColorImageResolution=600',  # 彩色图像分辨率提高到 600 DPI
+                '-dGrayImageResolution=600',   # 灰度图像分辨率提高到 600 DPI
+                '-dMonoImageResolution=1200',   # 单色图像分辨率保持 1200 DPI
+                # 完全禁用图像压缩和降采样
                 '-dDownsampleColorImages=false',  # 不降低彩色图像分辨率
                 '-dDownsampleGrayImages=false',   # 不降低灰度图像分辨率
                 '-dDownsampleMonoImages=false',   # 不降低单色图像分辨率
+                # 禁用压缩以提高质量
+                '-dAutoRotatePages=/None',  # 不自动旋转页面
+                '-dColorConversionStrategy=/LeaveColorUnchanged',  # 保持颜色不变
+                '-dEncodeColorImages=false',  # 不编码彩色图像（保持原始质量）
+                '-dEncodeGrayImages=false',   # 不编码灰度图像（保持原始质量）
+                '-dEncodeMonoImages=false',    # 不编码单色图像（保持原始质量）
+                # 使用高质量压缩算法（如果必须压缩）
+                '-dColorImageFilter=/FlateEncode',  # 使用无损压缩
+                '-dGrayImageFilter=/FlateEncode',   # 使用无损压缩
+                '-dMonoImageFilter=/CCITTFaxEncode', # 单色使用传真编码
                 '-sOutputFile=' + temp_pdf,
                 pdf_path
             ]
