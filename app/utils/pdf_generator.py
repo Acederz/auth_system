@@ -347,6 +347,7 @@ class PDFGenerator:
     def _convert_with_libreoffice(self, docx_path, pdf_path):
         """
         使用 LibreOffice 命令行工具将 Word 文档转换为 PDF（Linux/Mac）
+        使用高质量设置以改善显示效果
         
         Args:
             docx_path: Word 文档路径
@@ -360,8 +361,43 @@ class PDFGenerator:
             output_dir = os.path.dirname(pdf_path)
             os.makedirs(output_dir, exist_ok=True)
             
-            # 尝试不同的 LibreOffice 命令
+            # 首先尝试使用 unoconv（如果可用），它提供更好的质量控制
+            if self._try_unoconv(docx_path, pdf_path):
+                return True
+            
+            # 设置环境变量以改善 PDF 质量
+            env = os.environ.copy()
+            # 设置更高的图像分辨率
+            env['SAL_USE_VCLPLUGIN'] = 'gen'
+            # 禁用压缩以提高质量
+            env['SAL_DISABLE_OPENCL'] = '1'
+            
+            # 尝试不同的 LibreOffice 命令，使用高质量 PDF 过滤器
+            # 使用 pdf:writer_pdf_Export 过滤器并设置质量参数
             libreoffice_cmds = [
+                # 方法1: 使用过滤器参数设置高质量（推荐）
+                [
+                    'libreoffice', '--headless', '--nodefault', '--nolockcheck',
+                    '--convert-to', 'pdf:writer_pdf_Export:{"UseTaggedPDF":true,"Quality":100,"ReduceImageResolution":false,"MaxImageResolution":300}',
+                    '--outdir', output_dir, docx_path
+                ],
+                [
+                    'soffice', '--headless', '--nodefault', '--nolockcheck',
+                    '--convert-to', 'pdf:writer_pdf_Export:{"UseTaggedPDF":true,"Quality":100,"ReduceImageResolution":false,"MaxImageResolution":300}',
+                    '--outdir', output_dir, docx_path
+                ],
+                # 方法2: 使用简化的高质量参数
+                [
+                    'libreoffice', '--headless', '--nodefault', '--nolockcheck',
+                    '--convert-to', 'pdf:writer_pdf_Export:{"Quality":100}',
+                    '--outdir', output_dir, docx_path
+                ],
+                [
+                    'soffice', '--headless', '--nodefault', '--nolockcheck',
+                    '--convert-to', 'pdf:writer_pdf_Export:{"Quality":100}',
+                    '--outdir', output_dir, docx_path
+                ],
+                # 方法3: 基础命令（兼容性备用）
                 ['libreoffice', '--headless', '--convert-to', 'pdf', '--outdir', output_dir, docx_path],
                 ['soffice', '--headless', '--convert-to', 'pdf', '--outdir', output_dir, docx_path],
             ]
@@ -372,8 +408,9 @@ class PDFGenerator:
                         cmd,
                         stdout=subprocess.PIPE,
                         stderr=subprocess.PIPE,
-                        timeout=60,
-                        check=False
+                        timeout=120,  # 增加超时时间，因为高质量转换可能需要更长时间
+                        check=False,
+                        env=env
                     )
                     
                     if result.returncode == 0:
@@ -388,6 +425,10 @@ class PDFGenerator:
                                 if os.path.exists(pdf_path):
                                     os.remove(pdf_path)
                                 os.rename(generated_pdf, pdf_path)
+                            
+                            # 尝试使用 Ghostscript 进一步优化 PDF 质量（如果可用）
+                            self._optimize_pdf_with_gs(pdf_path)
+                            
                             return True
                 except (subprocess.TimeoutExpired, FileNotFoundError):
                     continue
@@ -396,6 +437,116 @@ class PDFGenerator:
         except Exception as e:
             print(f"LibreOffice 转换错误: {str(e)}")
             return False
+    
+    def _try_unoconv(self, docx_path, pdf_path):
+        """
+        尝试使用 unoconv 工具转换（如果可用）
+        unoconv 提供更好的质量控制选项
+        
+        Args:
+            docx_path: Word 文档路径
+            pdf_path: 输出 PDF 路径
+            
+        Returns:
+            bool: 转换是否成功
+        """
+        try:
+            # unoconv 命令，使用高质量设置
+            cmd = [
+                'unoconv',
+                '-f', 'pdf',
+                '--format=pdf',
+                '--export', 'UseTaggedPDF=true',
+                '--export', 'Quality=100',
+                '--export', 'ReduceImageResolution=false',
+                '--export', 'MaxImageResolution=300',
+                '-o', pdf_path,
+                docx_path
+            ]
+            
+            result = subprocess.run(
+                cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                timeout=120,
+                check=False
+            )
+            
+            if result.returncode == 0 and os.path.exists(pdf_path):
+                return True
+        except (subprocess.TimeoutExpired, FileNotFoundError):
+            pass
+        except Exception as e:
+            print(f"unoconv 转换尝试失败: {str(e)}")
+        
+        return False
+    
+    def _optimize_pdf_with_gs(self, pdf_path):
+        """
+        使用 Ghostscript 优化 PDF 质量（如果可用）
+        
+        Args:
+            pdf_path: PDF 文件路径
+        """
+        try:
+            # 检查 Ghostscript 是否可用
+            result = subprocess.run(
+                ['gs', '--version'],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                timeout=5,
+                check=False
+            )
+            
+            if result.returncode != 0:
+                return  # Ghostscript 不可用，跳过优化
+            
+            # 创建临时文件
+            temp_pdf = pdf_path + '.tmp'
+            
+            # 使用 Ghostscript 优化 PDF，使用高质量设置
+            cmd = [
+                'gs',
+                '-sDEVICE=pdfwrite',
+                '-dCompatibilityLevel=1.5',
+                '-dPDFSETTINGS=/prepress',  # 使用高质量预设（适合打印）
+                '-dNOPAUSE',
+                '-dQUIET',
+                '-dBATCH',
+                '-dColorImageResolution=300',  # 彩色图像分辨率
+                '-dGrayImageResolution=300',   # 灰度图像分辨率
+                '-dMonoImageResolution=1200',   # 单色图像分辨率
+                '-dDownsampleColorImages=false',  # 不降低彩色图像分辨率
+                '-dDownsampleGrayImages=false',   # 不降低灰度图像分辨率
+                '-dDownsampleMonoImages=false',   # 不降低单色图像分辨率
+                '-sOutputFile=' + temp_pdf,
+                pdf_path
+            ]
+            
+            result = subprocess.run(
+                cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                timeout=60,
+                check=False
+            )
+            
+            if result.returncode == 0 and os.path.exists(temp_pdf):
+                # 替换原文件
+                if os.path.exists(pdf_path):
+                    os.remove(pdf_path)
+                os.rename(temp_pdf, pdf_path)
+        except (subprocess.TimeoutExpired, FileNotFoundError):
+            pass
+        except Exception as e:
+            # 如果优化失败，删除临时文件（如果存在）
+            temp_pdf = pdf_path + '.tmp'
+            if os.path.exists(temp_pdf):
+                try:
+                    os.remove(temp_pdf)
+                except:
+                    pass
+            print(f"Ghostscript 优化失败（不影响主流程）: {str(e)}")
 
 
 # 便捷函数
