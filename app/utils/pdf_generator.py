@@ -286,25 +286,67 @@ class PDFGenerator:
             print(f"警告：处理文本框时出错: {str(e)}")
     
     def _replace_in_paragraph(self, paragraph, replace_data):
-        """替换段落中的占位符"""
+        """
+        替换段落中的占位符，保持原有格式
+        
+        改进后的实现会：
+        1. 找到包含占位符的 run
+        2. 在该 run 中直接替换文本，保持该 run 的格式（字体、大小、颜色、加粗等）
+        3. 如果占位符跨越多个 runs，会合并并保持第一个包含占位符的 run 的格式
+        """
         full_text = paragraph.text
         need_replace = any(placeholder in full_text for placeholder in replace_data.keys())
         
-        if need_replace:
-            new_text = full_text
-            for placeholder, value in replace_data.items():
-                new_text = new_text.replace(placeholder, str(value))
+        if not need_replace:
+            return
+        
+        # 执行文本替换
+        new_text = full_text
+        for placeholder, value in replace_data.items():
+            new_text = new_text.replace(placeholder, str(value))
+        
+        if new_text == full_text:
+            return  # 没有实际替换
+        
+        # 查找包含占位符的 run(s)
+        placeholder_runs = []
+        for run in paragraph.runs:
+            run_text = run.text
+            if any(placeholder in run_text for placeholder in replace_data.keys()):
+                placeholder_runs.append(run)
+        
+        if not placeholder_runs:
+            # 如果占位符跨越多个 runs，可能找不到，使用原逻辑
+            original_runs = list(paragraph.runs)
+            for run in paragraph.runs:
+                run.text = ''
             
-            if new_text != full_text:
-                original_runs = list(paragraph.runs)
-                for run in paragraph.runs:
-                    run.text = ''
-                
-                if original_runs:
-                    run = original_runs[0]
-                    run.text = new_text
-                else:
-                    paragraph.add_run(new_text)
+            if original_runs:
+                # 使用第一个 run 的格式
+                run = original_runs[0]
+                run.text = new_text
+            else:
+                paragraph.add_run(new_text)
+            return
+        
+        # 如果占位符在单个 run 中，直接在该 run 中替换，保持格式
+        if len(placeholder_runs) == 1:
+            run = placeholder_runs[0]
+            run_text = run.text
+            new_run_text = run_text
+            for placeholder, value in replace_data.items():
+                new_run_text = new_run_text.replace(placeholder, str(value))
+            run.text = new_run_text
+        else:
+            # 占位符跨越多个 runs，合并并保持第一个 run 的格式
+            first_run = placeholder_runs[0]
+            
+            # 清空所有包含占位符的 runs
+            for run in placeholder_runs:
+                run.text = ''
+            
+            # 在第一个 run 中放置新文本，保持其格式
+            first_run.text = new_text
     
     def _generate_temp_word_path(self, generated_model, output_dir):
         """生成临时Word文件路径（包含时间戳避免并发冲突）"""
